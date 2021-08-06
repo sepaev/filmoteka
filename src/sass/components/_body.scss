@@ -1,0 +1,60 @@
+.filmoteka {
+  //filmoteka
+  &__filmoteka__set {
+    // set
+  }
+}
+
+.film {
+  &__thumb {
+    // thumb
+  }
+  &__img {
+    // img
+  }
+  &__info {
+    //__info
+  }
+  &__heading {
+    //__heading
+  }
+  &__description {
+    //__description
+  }
+  &__year {
+    //__year
+  }
+}
+
+.filmoteka-nav {
+  display: flex;
+  &__left {
+    //__left
+  }
+  &__right {
+    //__right
+  }
+  &__first {
+    //__first
+  }
+  &__last {
+    //__last
+  }
+  &__prev {
+    //__prev
+  }
+  &__next {
+    //__next
+  }
+  &__pages {
+    //__pages
+  }
+  &__pages--list {
+    //__pages--list
+    display: flex;
+  }
+  &__pages--link {
+    padding: 5px;
+    //__pages--link
+  }
+}

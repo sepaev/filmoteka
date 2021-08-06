@@ -1,0 +1,27 @@
+.footer {
+  &__info {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #545454;
+  }
+  &__dev--p {
+    //p
+    &::after {
+      content: icon;
+      height: 12.9px;
+      width: 14px;
+      color: #ff6b08;
+    }
+  }
+  &__dev--link {
+    //link
+  }
+}

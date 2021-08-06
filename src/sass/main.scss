@@ -1,0 +1,9 @@
+@import '../../node_modules/modern-normalize/modern-normalize.css';
+@import './utils/variables';
+@import './utils/placeholder';
+@import './utils/mixins';
+
+@import './components/common';
+@import './components/header';
+@import './components/body';
+@import './components/footer';

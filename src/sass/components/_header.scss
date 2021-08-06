@@ -1,0 +1,35 @@
+.header {
+  //header
+  &__logo {
+    //logo
+  }
+}
+
+.header-nav {
+  //header-nav
+  &__list {
+    //list
+  }
+  &__link {
+    //link
+  }
+  &__link.current {
+    //current
+  }
+}
+
+.header-search {
+  //search wrapper
+  &__input {
+    //search__input
+  }
+  &__label {
+    //search__label
+  }
+  &__button {
+    //search__button
+  }
+  &__error {
+    color: #ff001b;
+  }
+}
