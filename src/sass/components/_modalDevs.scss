@@ -1,3 +1,59 @@
 .modal-devs {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+
+  opacity: 1;
+
+  transition-duration: 250ms;
+}
+
+.modal-devs.is-hidden {
+  visibility: hidden;
   opacity: 0;
+  pointer-events: none;
+}
+
+.modal-devs__overlay {
+  height: 650px;
+  width: 310px;
+
+  position: absolute;
+  top: 0%;
+  left: 0%;
+
+  padding: 40px;
+
+  @media (min-width: 450px) {
+    height: 609px;
+    width: 450px;
+  }
+  @media (min-width: 1200px) {
+    height: 581px;
+    width: 528px;
+  }
+}
+
+.networks__img {
+  background-color: blue;
+  fill: chartreuse;
+}
+
+.team__heading {
+  text-align: center;
+}
+
+.team-list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.scram,
+.team,
+.team2 {
+  margin-left: 10px;
 }
