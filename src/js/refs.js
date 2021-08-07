@@ -8,11 +8,12 @@ export const getRefs = () => {
     nextButton: document.querySelector('.filmoteka-nav__right'),
     devLink: document.querySelector('.footer__dev--link'),
     paginationNav: document.querySelector('.filmoteka-nav'),
+    modalFilm: document.querySelector('.modal-film'),
+    modalDevs: document.querySelector('.modal-devs'),
     //кнопка WATCHED
     //кнопка QUEUE
     //кнопка Закрытия модалки
     //кнопка ADD TO WATCHED
     //кнопка ADD TO QUEUE
-    //слушатель клика по всем разработчикам
   };
 };

@@ -7,6 +7,7 @@ import { onSearchButtonClick } from "./js/searchButton"
 import { onFilmClick } from "./js/sectionFilmoteka"
 import { onHeaderNavClick } from "./js/headerNav"
 import { onPaginationNavClick } from "./js/paginationNav"
+import { onDevLinkClick } from "./js/footerDevelopers"
 
 const refs = getRefs();
 console.log("Подключенные рефы ↓");
@@ -28,7 +29,7 @@ refs.searchButton.addEventListener('click', e => {
 // обработка клика по фильму
 refs.filmsSection.addEventListener('click', e => {
     e.preventDefault;
-    onFilmClick(e);
+    onFilmClick(e, refs);
 });
 
 // обработка клика по header nav
@@ -44,10 +45,10 @@ refs.paginationNav.addEventListener('click', e => {
 });
 
 // обработка клика по header developer link
-// refs.headerNav.addEventListener('click', e => {
-//     e.preventDefault;
-//     onHeaderNavClick(e);
-// });
+refs.devLink.addEventListener('click', e => {
+    e.preventDefault;
+    onDevLinkClick(e, refs);
+});
 
 
 
