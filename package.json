@@ -26,6 +26,9 @@
     "sass": "^1.32.8"
   },
   "dependencies": {
-    "modern-normalize": "^1.1.0"
+    "D": "^1.0.0",
+    "axios": "^0.21.1",
+    "modern-normalize": "^1.1.0",
+    "throttle-debounce": "^3.0.1"
   }
 }
