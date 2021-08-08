@@ -6,6 +6,7 @@
   height: 100%;
   z-index: 3;
 
+  background-color: cadetblue;
   opacity: 1;
 
   transition-duration: 250ms;
@@ -20,21 +21,24 @@
 .modal-devs__overlay {
   height: 650px;
   width: 310px;
+  background-color: rgb(223, 217, 217);
 
   position: absolute;
   top: 0%;
   left: 0%;
-
-  padding: 40px;
 
   @media (min-width: 450px) {
     height: 609px;
     width: 450px;
   }
   @media (min-width: 1200px) {
-    height: 581px;
-    width: 528px;
+    height: 850px;
+    width: 600px;
   }
+}
+
+.is-hidden .modal-devs__overlay {
+  transform: translate(-50%, -50%) scaleY(0);
 }
 
 .networks__img {
@@ -50,10 +54,19 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 0px;
 }
 
 .scram,
 .team,
 .team2 {
-  margin-left: 10px;
+  margin-left: 30px;
+}
+
+.networks {
+  padding: 0pt;
+}
+
+.team-list__thumb {
+  margin-bottom: 10px;
 }
