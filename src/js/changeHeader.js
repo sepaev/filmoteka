@@ -13,21 +13,26 @@ export const changeHeader = (pageName, target) => {
     if (pageName === 'HOME') {
         removeListnersForMyLibrary(refs)
         removeListnersForHome(refs);
-        console.log(refs);
         target.innerHTML = home(); //меняю шапку
+        
         const newRefs = getRefs();
         loadListnersForHome(newRefs);
         addClass(newRefs.headerContainer, 'home');
+        addClass(newRefs.headerNav.children[0].children[0], 'current');
         removeClass(newRefs.headerContainer, 'my-library');
+        removeClass(newRefs.headerNav.children[1].children[0], 'current');
     };
     
     if (pageName === 'MY LIBRARY') {
         removeListnersForHome(refs);
         target.innerHTML = myLibrary(); //меняю шапку
+        
         const newRefs = getRefs();
         loadListnersForMyLibrary(newRefs);
         addClass(newRefs.headerContainer, 'my-library');
+        addClass(newRefs.headerNav.children[1].children[0], 'current');
         removeClass(newRefs.headerContainer, 'home');
+        removeClass(newRefs.headerNav.children[0].children[0], 'current');
     };
     console.log('Переключаем шапку на ' + pageName);
 }
