@@ -1,29 +1,62 @@
 .header {
-  padding: 46px 21px 43px 20px;
- background-image: url(/images/img/mobile/1x/headerHomeBG.jpg);
- color:#fff;
- text-decoration: none;
- -webkit-appearance: none;
-//  list-style:none;
- 
- vertical-align: baseline;
-
-  @media (min-width: $min-desktop) {
-    max-width: 1280px;
-  padding: 71px 41px 71px 59px;}
-  //header
+  color: #fff;
+  text-decoration: none;
+  -webkit-appearance: none;
+  //header специально внизу контейнер для изменений на всю шапку
   &__container {
-  
-  display:flex;
-  justify-content: space-between;
+    justify-content: space-between;
+    vertical-align: baseline;
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    @media (max-width: $max-mobile) {
+      padding: 46px 20px 43px 21px;
+      min-width: $min-mobile;
     }
+    @media (min-width: $min-tablet) and (max-width: $max-tablet) {
+      min-width: $min-tablet;
+    }
+    @media (min-width: $min-desktop) {
+      min-width: $min-desktop;
+      padding: 71px 41px 71px 59px;
+    }
+
+    &.home {
+      @media (max-width: $max-mobile) {
+        background-image: url(/images/img/mobile/1x/headerHomeBG.jpg);
+      }
+      @media (min-width: $min-tablet) and (max-width: $max-tablet) {
+        background-image: url(/images/img/tablet/1x/headerHomeBG.jpg);
+      }
+      @media (min-width: $min-desktop) {
+        background-image: url(/images/img/desktop/1x/headerHomeBG.jpg);
+      }
+    }
+
+    &.my-library {
+      @media (max-width: $max-mobile) {
+        background-image: url(/images/img/mobile/1x/headerLibraryBG.jpg);
+      }
+      @media (min-width: $min-tablet) and (max-width: $max-tablet) {
+        background-image: url(/images/img/tablet/1x/headerLibraryBG.jpg);
+      }
+      @media (min-width: $min-desktop) {
+        background-image: url(/images/img/desktop/1x/headerLibraryBG.jpg);
+      }
+    }
+  }
+
   &__logo {
-    
-    
+    display: inline-flex;
+    width: 175px;
   }
 
   &__logo-name {
-    display:none;
+    @media (max-width: $max-mobile) {
+      display: none;
+    }
   }
 
   &__logo-icon {
@@ -31,20 +64,19 @@
     align-content: center;
     align-self: center;
     vertical-align: baseline;
-    padding:0;
+    padding: 0;
   }
 }
 
 .header-nav {
-  display:flex;
-  justify-content:flex-end;
+  display: inline-block;
+  justify-content: flex-end;
   text-decoration: none;
-  
+  margin-left: auto;
   &__list {
-    
-    display:flex;
-  justify-content:space-between;
-  padding:0;
+    display: flex;
+    justify-content: space-between;
+    padding: 0;
   }
   &__link {
     margin-left: 40px;
@@ -55,71 +87,68 @@
     line-height: 14px;
     text-transform: uppercase;
     text-decoration: none;
-    color:$white-color;
+    color: $white-color;
   }
   &__link.current::after {
-      content:"";
-      position:absolute;
-      display:block;
-      background-color: orange;
-      width: 100%;
-      height: 4px;
-      border-radius: 2px;
-      bottom:-33px;
-
+    content: '';
+    position: absolute;
+    display: block;
+    background-color: orange;
+    width: 100%;
+    height: 4px;
+    border-radius: 2px;
+    bottom: -33px;
   }
 }
 
 .header-search {
-  
-  
   align-content: center;
-
- 
+  display: block;
 
   &__input {
-    position:absolute;
+    position: absolute;
     margin-bottom: 22px;
-    
+
     width: 280px;
     // height: 100%;
     background-color: transparent;
-    border:transparent;
+    border: transparent;
     border-bottom: 0.5px solid #fff;
     font-style: normal;
     font-weight: 600;
     font-size: 14px;
     line-height: 1.214;
-    
   }
 
   &__container {
-    position:relative;
-    display:flex;
+    position: relative;
+    display: flex;
     justify-content: space-between;
   }
   &__label {
-    display:inline-block;
-    position:relative;
-
+    display: inline-block;
+    position: relative;
   }
   &__button {
     // padding:0%;
     // background-color: white;
-    width:12px;
-    height:12px;
-    display:inline-flex;
+    width: 12px;
+    height: 12px;
+    display: inline-flex;
+    background-color: transparent;
+    background-image: url('../images/svg/search.svg');
+    border: none;
   }
 
   &__error {
     color: $red-color;
     margin-top: 22px;
-    text-align:center;
+    text-align: center;
   }
 
   // &__icon {
-    
+
   //   width: 12px;
   //   height:12px;
-    border-color: transparent;
+  border-color: transparent;
 }

@@ -1,4 +1,4 @@
-import { changeHeader } from "./headerNav"
+import { changeHeader } from "./changeHeader"
 import { debounce } from 'throttle-debounce';
 import { consts } from "./consts";
 import { onSearchBoxChange, onSearchBoxFocus } from "./searchBox"
@@ -23,6 +23,7 @@ export const loadListnersForHome = (refs) => {
     });
     
     //добавление обработчика событий кнопки поиска
+    console.dir(refs);
     refs.searchButton.addEventListener('click', e => {
         e.preventDefault;
         onSearchButtonClick(e); //from "./js/searchButton" все что происходит во время клика по кнопке поиск
@@ -43,7 +44,7 @@ export const removeListnersForHome = (refs) => {
                 console.log("удаление3");
     }
         //удаление обработчика событий кнопки поиска
-    console.log(refs.searchButton);
+    console.log('удалено');
     if (refs.searchButton) {
         refs.searchButton.removeEventListener('click', e => {
             e.preventDefault;

@@ -2,7 +2,7 @@ import './sass/main.scss';
 import { getRefs } from './js/refs'
 
 import { onFilmClick } from "./js/sectionFilmoteka"
-import { changeHeader } from "./js/headerNav"
+import { changeHeader } from "./js/changeHeader"
 import { onPaginationNavClick } from "./js/paginationNav"
 import { onDevLinkClick } from "./js/footerDevelopers"
 import { onLoad } from "./js/onLoad"
