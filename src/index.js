@@ -1,53 +1,47 @@
 import './sass/main.scss';
-import { debounce } from 'throttle-debounce';
 import { getRefs } from './js/refs'
-import { consts } from "./js/consts";
-import { onSearchBoxChange, onSearchBoxFocus } from "./js/searchBox"
-import { onSearchButtonClick } from "./js/searchButton"
+
 import { onFilmClick } from "./js/sectionFilmoteka"
-import { onHeaderNavClick } from "./js/headerNav"
+import { changeHeader } from "./js/headerNav"
 import { onPaginationNavClick } from "./js/paginationNav"
 import { onDevLinkClick } from "./js/footerDevelopers"
+import { onLoad } from "./js/onLoad"
 
 const refs = getRefs();
+onLoad(refs); //функция загружает все что необходимо сделать при запуске
+              // тут находятся слушатели на кнопки и инпуты шапки
 console.log("Подключенные рефы ↓");
-console.dir(refs);
-//обработка инпута
-refs.searchBox.addEventListener('input',
-  debounce(consts.DEBOUNCE_DELAY, (e) => {
-    onSearchBoxChange(e);
-  }))
+console.dir(refs); //чтоб сразу увидеть все подключенные рефы. Позже все консоли удалятся
 
-refs.searchBox.addEventListener('focus', e => onSearchBoxFocus(e));
-  
-// обработка кнопки поиска
-refs.searchButton.addEventListener('click', e => {
-  e.preventDefault;
-  onSearchButtonClick(e);
-});
 
 // обработка клика по фильму
 refs.filmsSection.addEventListener('click', e => {
     e.preventDefault;
-    onFilmClick(e, refs);
+    onFilmClick(e, refs); //from "./js/sectionFilmoteka" клик по любой карточке фильма
 });
 
 // обработка клика по header nav
 refs.headerNav.addEventListener('click', e => {
-    e.preventDefault;
-    onHeaderNavClick(e);
+  e.preventDefault;
+  if (e.target.nodeName === "A") {
+    changeHeader(e.target.textContent, refs.headerDivToChange); //from "./js/headerNav" меняет шапку HOME/MY LIBRARY
+  };
+});
+
+// обработка клика по header logo
+refs.headerLogo.addEventListener('click', e => {
+  changeHeader('HOME', refs.headerDivToChange); //from "./js/headerNav" всегда меняет шапку на HOME
 });
 
 // обработка клика по header pagination nav
 refs.paginationNav.addEventListener('click', e => {
-    e.preventDefault;
-    onPaginationNavClick(e);
+  e.preventDefault;
+  if (e.target.nodeName === "A") { onPaginationNavClick(e.target.textContent) };
 });
-
 // обработка клика по header developer link
 refs.devLink.addEventListener('click', e => {
     e.preventDefault;
-    onDevLinkClick(e, refs);
+    onDevLinkClick(e, refs); //from "./js/footerDevelopers"  клик по ссылке разработчиков
 });
 
 
