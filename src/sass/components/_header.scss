@@ -16,6 +16,7 @@
       min-width: $min-mobile;
     }
     @media (min-width: $min-tablet) and (max-width: $max-tablet) {
+      padding:71px 41px 76px 59px;
       min-width: $min-tablet;
     }
     @media (min-width: $min-desktop) {
@@ -48,17 +49,25 @@
     }
   }
 &__nav-block {
-  @media (max-width: $max-mobile) {
-    
   display:flex;
   justify-content: space-between;
   margin-bottom:38px;
+  @media (max-width: $max-mobile) {
+    
+  
   }
+  @media (min-width: $min-tablet) and (max-width: $max-tablet) {
+    
+  }
+
 }
   &__logo {
-    @media (max-width: $max-mobile) {
     display: inline-flex;
+    @media (max-width: $max-mobile) {
     // width: 175px;
+  }
+  @media (min-width: $min-tablet) and (max-width: $max-tablet) {
+    
   }
 }
 
@@ -76,6 +85,9 @@
     vertical-align: baseline;
     padding: 0;
     }
+    @media (min-width: $min-tablet) and (max-width: $max-tablet) {
+    margin-right: 10px;
+    }
   }
 }
 
@@ -86,14 +98,18 @@
   text-decoration: none;
   // margin-left: auto;
   &__list {
-    @media (max-width: $max-mobile) {
     display: flex;
     justify-content: space-between;
     padding: 0;
+    @media (max-width: $max-mobile) {
+    
+    }
+
+    @media (min-width: $min-tablet) and (max-width: $max-tablet) {
+    
     }
   }
   &__link {
-    @media (max-width: $max-mobile) {
     margin-left: 40px;
     font-family: 'Roboto', sans-serif;
     font-style: normal;
@@ -104,6 +120,8 @@
     text-decoration: none;
     color: $white-color;
     }
+    @media (max-width: $max-mobile) {
+    
   }
   &__link.current {
     border-bottom: 3px solid $orange-color;
@@ -111,14 +129,13 @@
 }
 
 .header-search {
+  display: block;
+  align-content: center;
   @media (max-width: $max-mobile) {
-    display: block;
-    align-content: center;
+    
     
   }
   &__input {
-    @media (max-width: $max-mobile) {
-     
     position: absolute;
     margin-bottom: 22px;
     width: 280px;
@@ -130,14 +147,27 @@
     font-weight: 600;
     font-size: 14px;
     line-height: 1.214;
+    @media (max-width: $max-mobile) {
+     
     }
+    @media (min-width: $min-tablet) and (max-width: $max-tablet) {
+      justify-content: center;
+      color:turquoise;
+      
+      }
+    
   }
 
   &__container {
-    @media (max-width: $max-mobile) {
     position: relative;
     display: flex;
     justify-content: space-between;
+    @media (max-width: $max-mobile) {
+    
+    }
+    @media (min-width: $min-tablet) and (max-width: $max-tablet) {
+    justify-content: space-between;
+    
     }
   }
   &__label {
@@ -147,13 +177,14 @@
   &__button {
     // padding:0%;
     // background-color: white;
-    @media (max-width: $max-mobile) {
     width: 12px;
     height: 12px;
     display: inline-flex;
     background-color: transparent;
     background-image: url('../images/svg/search.svg');
     border: none;
+    @media (max-width: $max-mobile) {
+    
     }
   }
 
