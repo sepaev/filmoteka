@@ -151,9 +151,10 @@
      
     }
     @media (min-width: $min-tablet) and (max-width: $max-tablet) {
+      position:absolute;
       justify-content: center;
-      color:turquoise;
-      
+      margin-left: 165px;
+      width:336px;
       }
     
   }
@@ -167,12 +168,16 @@
     }
     @media (min-width: $min-tablet) and (max-width: $max-tablet) {
     justify-content: space-between;
+    margin-left: 216px;
     
     }
   }
   &__label {
     display: inline-block;
     position: relative;
+    @media (min-width: $min-tablet) and (max-width: $max-tablet) {
+      
+    }
   }
   &__button {
     // padding:0%;
@@ -185,6 +190,9 @@
     border: none;
     @media (max-width: $max-mobile) {
     
+    }
+    @media (min-width: $min-tablet) and (max-width: $max-tablet) {
+      margin-right:159px;
     }
   }
 
