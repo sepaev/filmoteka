@@ -47,11 +47,20 @@
       }
     }
   }
-
-  &__logo {
-    display: inline-flex;
-    width: 175px;
+&__nav-block {
+  @media (max-width: $max-mobile) {
+    
+  display:flex;
+  justify-content: space-between;
+  margin-bottom:38px;
   }
+}
+  &__logo {
+    @media (max-width: $max-mobile) {
+    display: inline-flex;
+    // width: 175px;
+  }
+}
 
   &__logo-name {
     @media (max-width: $max-mobile) {
@@ -60,27 +69,33 @@
   }
 
   &__logo-icon {
-    display: flex;
-    align-content: center;
-    align-self: center;
+    // display: flex;
+    // align-content: center;
+    // align-self: center;
+    @media (max-width: $max-mobile) {
     vertical-align: baseline;
     padding: 0;
+    }
   }
 }
 
 .header-nav {
-  display: inline-block;
-  justify-content: flex-end;
+  
+  // display: inline-block;
+  // justify-content: flex-end;
   text-decoration: none;
-  margin-left: auto;
+  // margin-left: auto;
   &__list {
+    @media (max-width: $max-mobile) {
     display: flex;
     justify-content: space-between;
     padding: 0;
+    }
   }
   &__link {
+    @media (max-width: $max-mobile) {
     margin-left: 40px;
-    font-family: Roboto;
+    font-family: 'Roboto', sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 12px;
@@ -88,27 +103,24 @@
     text-transform: uppercase;
     text-decoration: none;
     color: $white-color;
+    }
   }
-  &__link.current::after {
-    content: '';
-    position: absolute;
-    display: block;
-    background-color: orange;
-    width: 100%;
-    height: 4px;
-    border-radius: 2px;
-    bottom: -33px;
+  &__link.current {
+    border-bottom: 3px solid $orange-color;
   }
 }
 
 .header-search {
-  align-content: center;
-  display: block;
-
+  @media (max-width: $max-mobile) {
+    display: block;
+    align-content: center;
+    
+  }
   &__input {
+    @media (max-width: $max-mobile) {
+     
     position: absolute;
     margin-bottom: 22px;
-
     width: 280px;
     // height: 100%;
     background-color: transparent;
@@ -118,12 +130,15 @@
     font-weight: 600;
     font-size: 14px;
     line-height: 1.214;
+    }
   }
 
   &__container {
+    @media (max-width: $max-mobile) {
     position: relative;
     display: flex;
     justify-content: space-between;
+    }
   }
   &__label {
     display: inline-block;
@@ -132,23 +147,22 @@
   &__button {
     // padding:0%;
     // background-color: white;
+    @media (max-width: $max-mobile) {
     width: 12px;
     height: 12px;
     display: inline-flex;
     background-color: transparent;
     background-image: url('../images/svg/search.svg');
     border: none;
+    }
   }
 
   &__error {
-    color: $red-color;
+    // color: $red-color;
+    color:transparent;
     margin-top: 22px;
     text-align: center;
   }
 
-  // &__icon {
-
-  //   width: 12px;
-  //   height:12px;
-  border-color: transparent;
+  
 }
