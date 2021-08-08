@@ -60,6 +60,9 @@
     
   }
 
+  @media (min-width: $min-desktop) {
+  }
+
 }
   &__logo {
     display: inline-flex;
@@ -72,6 +75,11 @@
 }
 
   &__logo-name {
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 35px;
     @media (max-width: $max-mobile) {
       display: none;
     }
@@ -87,6 +95,10 @@
     }
     @media (min-width: $min-tablet) and (max-width: $max-tablet) {
     margin-right: 10px;
+    }
+
+    @media (min-width: $min-desktop) {
+      margin-right: 10px;
     }
   }
 }
@@ -133,8 +145,8 @@
   align-content: center;
   @media (max-width: $max-mobile) {
     
-    
   }
+
   &__input {
     position: absolute;
     margin-bottom: 22px;
@@ -155,20 +167,30 @@
       justify-content: center;
       margin-left: 165px;
       width:336px;
-      }
+    }
     
+    @media (min-width: $min-desktop) {
+      position:absolute;
+      justify-content: center;
+      margin-left: 285px;
+      width:336px;
+    }
   }
 
   &__container {
-    position: relative;
+    
     display: flex;
     justify-content: space-between;
     @media (max-width: $max-mobile) {
     
     }
     @media (min-width: $min-tablet) and (max-width: $max-tablet) {
-    justify-content: space-between;
-    margin-left: 216px;
+      margin-left:165px;
+    
+    
+    }
+
+    @media (min-width: $min-desktop) {
     
     }
   }
@@ -177,6 +199,10 @@
     position: relative;
     @media (min-width: $min-tablet) and (max-width: $max-tablet) {
       
+    }
+    @media (min-width: $min-desktop) {
+    
+    margin-left:285px;
     }
   }
   &__button {
@@ -192,8 +218,13 @@
     
     }
     @media (min-width: $min-tablet) and (max-width: $max-tablet) {
-      margin-right:159px;
+      margin-right:169px;
     }
+
+    @media (min-width: $min-desktop) {
+    
+      margin-right: 304px;
+      }
   }
 
   &__error {
