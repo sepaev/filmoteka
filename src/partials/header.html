@@ -1,17 +1,18 @@
 <header class="header">
-  <div class="header__logo"></div>
-  <nav class="header-nav">
-    <ul class="header-nav__list">
-      <li><a class="header-nav__link current" id="homeLink" href="#">HOME</a></li>
-      <li><a class="header-nav__link" id="myLibraryLink" href="#">MY LIBRARY</a></li>
-    </ul>
-  </nav>
-  <div class="header-search">
-    <input class="header-search__input" type="text" />
-    <label for=".header-search__label">Поиск фильмов</label>
-    <button class="header-search__button">Search</button>
-    <p class="header-search__error">
-      Search result not successful. Enter the correct movie name and
-    </p>
+  <div class="header__container home">
+    <div class="header__logo">
+      <svg class="header__logo-icon" width="24" height="24">
+        <use href="./images/svg/sprite.svg#icon-film"></use>
+      </svg>
+    </div>
+    <nav class="header-nav">
+      <ul class="header-nav__list">
+        <li><a class="header-nav__link current" id="homeLink" href="#">HOME</a></li>
+        <li><a class="header-nav__link" id="myLibraryLink" href="#">MY LIBRARY</a></li>
+      </ul>
+    </nav>
+    <div class="header-search my-library">
+      <!-- содержимое этого тега искать в partials/templates/hbs -->
+    </div>
   </div>
 </header>
