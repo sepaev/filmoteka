@@ -1,5 +1,15 @@
 <section class="modal-film">
   <div class="modal-film__overlay">
-    <h3>Это модалка</h3>
+    <!-- кнопка закрытия модалки на случай, если для этого не будет использоваться библиотека -->
+    <button type="button" class="closeBtn"></button>
+
+    <div class="modal__card-wrapper">
+      <!-- сюда будет рендериться шаблон -->
+    </div>
+
+    <div class="modal__buttons">
+      <button type="button" class="modal__add-watched">add to Watched</button>
+      <button type="button" class="modal__add-queque">add to queue</button>
+    </div>
   </div>
 </section>
