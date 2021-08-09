@@ -94,19 +94,12 @@
     display: flex;
     justify-content: space-between;
     margin-bottom: 38px;
-    @media (max-width: $max-mobile) {
-    }
-    @media (min-width: $min-tablet) and (max-width: $max-tablet) {
-    }
+    
   }
   &__logo {
     display: flex;
     align-items: baseline;
-    @media (max-width: $max-mobile) {
-      // width: 175px;
-    }
-    @media (min-width: $min-tablet) and (max-width: $max-tablet) {
-    }
+    
   }
 
   &__logo-name {
@@ -146,11 +139,7 @@
     display: flex;
     justify-content: space-between;
     padding: 0;
-    @media (max-width: $max-mobile) {
-    }
-
-    @media (min-width: $min-tablet) and (max-width: $max-tablet) {
-    }
+    
   }
   &__link {
     margin-left: 39px;
@@ -163,8 +152,7 @@
     text-decoration: none;
     color: $white-color;
   }
-  @media (max-width: $max-mobile) {
-  }
+  
   &__link.current {
     border-bottom: 3px solid $orange-color;
   }
@@ -184,8 +172,6 @@
     // margin-left: 216px;
   }
 
-  // &__container {
-  // }
   &__input {
     margin-bottom: 22px;
     width: 280px;
@@ -205,12 +191,8 @@
       font-size: 14px;
       line-height: 1.143;
     }
-    @media (max-width: $max-mobile) {
-    }
+   
     @media (min-width: $min-tablet) and (max-width: $max-tablet) {
-      // position: absolute;
-      // justify-content: center;
-      // margin-left: 165px;
       width: 336px;
     }
     @media (min-width: $min-desktop) {
@@ -221,8 +203,7 @@
   &__label {
     display: inline-block;
     position: relative;
-    @media (min-width: $min-tablet) and (max-width: $max-tablet) {
-    }
+    
   }
   &__button {
     // padding:0%;
@@ -249,4 +230,55 @@
     margin-top: 22px;
     text-align: center;
   }
+}
+.my-library {
+
+  &__btns {
+  display: flex;
+  justify-content:center;
+  
+  }
+
+  @media (min-width: $min-tablet) and (max-width: $max-tablet) {
+    
+    align-content: center;
+  }
+
+&__watched-btn {
+  margin-right: 20px;
+padding: 14px 36.38px 12px 36.38px;
+border: 1px solid $white-color;
+border-radius: 5px;
+background-color: transparent;
+color: $white-color;
+font-family: 'Roboto', sans-serif;
+font-style: normal;
+font-weight: 500;
+font-size: 12px;
+line-height: 16px;
+text-transform: uppercase;
+}
+
+&__queue-btn {
+padding: 14px 36.38px 12px 36.38px;
+border: 1px solid $white-color;
+border-radius: 5px;
+background-color: transparent;
+color: $white-color;
+font-family: 'Roboto', sans-serif;
+font-style: normal;
+font-weight: 500;
+font-size: 12px;
+line-height: 16px;
+text-transform: uppercase;
+}
+&__watched-btn:hover,
+&__watched-btn:focus {
+  background-color: $orange-color;
+}
+
+&__queue-btn:hover,
+&__queue-btn:focus {
+  background-color: $orange-color;
+}
 }
