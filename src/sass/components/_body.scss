@@ -175,7 +175,8 @@ p {
   }
   &__text {
     font-family: $main-font;
-    color: $orange-color;
+    font-size: 16px;
+    color: $white-color;
     display: inline-flex;
     border-radius: 10px;
     width: 144px;
@@ -184,10 +185,9 @@ p {
 
     align-items: center;
     justify-content: center;
-    border-color: $orange-color;
-    color: $red-color;
-    background-image: -webkit-linear-gradient(45deg, $orange-color 50%, transparent 50%);
-    background-image: linear-gradient(45deg, $orange-color 50%, transparent 50%);
+    border-color: #c7c5c469;
+    background-image: -webkit-linear-gradient(45deg, #c7c5c469 50%, transparent 50%);
+    background-image: linear-gradient(45deg, #c7c5c469 50%, transparent 50%);
     background-position: 100%;
     background-size: 400%;
     background: 1000ms ease-in-out;
@@ -198,7 +198,6 @@ p {
   }
   &__img {
     display: flex;
-    // background-color: rgb(174, 0, 255);
     margin-left: 10px;
   }
 }
@@ -218,7 +217,7 @@ p {
   align-items: center;
   height: 40px;
   justify-content: space-between;
-  color: #000000;
+  color: $black-color;
   margin-top: 40px;
   margin-bottom: 40px;
   @media (max-width: 320px) {
@@ -240,7 +239,7 @@ p {
     display: flex;
     align-items: center;
 
-    color: #000000;
+    color: $black-color;
   }
   &__right {
     //__right
@@ -253,7 +252,7 @@ p {
     display: flex;
     align-items: center;
 
-    color: #000000;
+    color: $black-color;
   }
   &__first {
     //__first
@@ -308,7 +307,6 @@ p {
     color: $black-color;
   }
   &__pages {
-    // width: 100%;
     //__pages
   }
   &__pages--list {
@@ -350,4 +348,50 @@ p {
     height: 40px;
     justify-content: center;
   }
+}
+
+// ScrollUP копка для возврата к верху страницы
+.scroll__top {
+  display: flex; //ВАЖНО изменить параметр путем добавления класа .active-scroll!!!!!!!!!
+  position: fixed;
+  bottom: 25px;
+  right: 55px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  justify-content: center;
+  &:hover,
+  &:focus {
+    // цвет иконки всредине при наведении
+    background-color: #ff6b081c;
+  }
+  @media screen and (max-width: $min-mobile) {
+    bottom: 50px;
+    right: 50px;
+    width: 35px;
+    height: 35px;
+  }
+  @media screen and (min-width: $max-mobile) {
+    bottom: 130px;
+    right: 24px;
+    width: 50px;
+    height: 50px;
+  }
+
+  @media screen and (min-width: $max-tablet) {
+    bottom: 130px;
+    right: 14px;
+  }
+}
+.scroll__icon {
+  border-radius: 50%;
+  cursor: pointer;
+  fill: $orange-color;
+  &:hover,
+  &:focus {
+    transform: scale(1.1);
+  }
+}
+.active-scroll {
+  display: flex;
 }
