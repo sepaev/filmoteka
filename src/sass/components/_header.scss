@@ -27,24 +27,66 @@
     &.home {
       @media (max-width: $max-mobile) {
         background-image: url(/images/img/mobile/1x/headerHomeBG.jpg);
+        @media screen and (min-device-pixel-ratio: 2),
+          screen and (-webkit-min-device-pixel-ratio: 2),
+          screen and (-o-min-device-pixel-ratio: 2/1),
+          screen and (min-resolution: 192dpi),
+          screen and (min-resolution: 2dppx) {
+          background-image: url(/images/img/mobile/2x/headerHomeBG.jpg);
+        }
       }
       @media (min-width: $min-tablet) and (max-width: $max-tablet) {
         background-image: url(/images/img/tablet/1x/headerHomeBG.jpg);
+        @media screen and (min-device-pixel-ratio: 2),
+          screen and (-webkit-min-device-pixel-ratio: 2),
+          screen and (-o-min-device-pixel-ratio: 2/1),
+          screen and (min-resolution: 192dpi),
+          screen and (min-resolution: 2dppx) {
+          background-image: url(/images/img/tablet/2x/headerHomeBG.jpg);
+        }
       }
       @media (min-width: $min-desktop) {
         background-image: url(/images/img/desktop/1x/headerHomeBG.jpg);
+        @media screen and (min-device-pixel-ratio: 2),
+          screen and (-webkit-min-device-pixel-ratio: 2),
+          screen and (-o-min-device-pixel-ratio: 2/1),
+          screen and (min-resolution: 192dpi),
+          screen and (min-resolution: 2dppx) {
+          background-image: url(/images/img/desktop/2x/headerHomeBG.jpg);
+        }
       }
     }
 
     &.my-library {
       @media (max-width: $max-mobile) {
         background-image: url(/images/img/mobile/1x/headerLibraryBG.jpg);
+        @media screen and (min-device-pixel-ratio: 2),
+          screen and (-webkit-min-device-pixel-ratio: 2),
+          screen and (-o-min-device-pixel-ratio: 2/1),
+          screen and (min-resolution: 192dpi),
+          screen and (min-resolution: 2dppx) {
+          background-image: url(/images/img/mobile/2x/headerLibraryBG.jpg);
+        }
       }
       @media (min-width: $min-tablet) and (max-width: $max-tablet) {
         background-image: url(/images/img/tablet/1x/headerLibraryBG.jpg);
+        @media screen and (min-device-pixel-ratio: 2),
+          screen and (-webkit-min-device-pixel-ratio: 2),
+          screen and (-o-min-device-pixel-ratio: 2/1),
+          screen and (min-resolution: 192dpi),
+          screen and (min-resolution: 2dppx) {
+          background-image: url(/images/img/tablet/2x/headerLibraryBG.jpg);
+        }
       }
       @media (min-width: $min-desktop) {
         background-image: url(/images/img/desktop/1x/headerLibraryBG.jpg);
+        @media screen and (min-device-pixel-ratio: 2),
+          screen and (-webkit-min-device-pixel-ratio: 2),
+          screen and (-o-min-device-pixel-ratio: 2/1),
+          screen and (min-resolution: 192dpi),
+          screen and (min-resolution: 2dppx) {
+          background-image: url(/images/img/desktop/2x/headerLibraryBG.jpg);
+        }
       }
     }
   }
@@ -139,7 +181,7 @@
   }
   @media (min-width: $min-tablet) and (max-width: $max-tablet) {
     justify-content: space-between;
-    margin-left: 216px;
+    // margin-left: 216px;
   }
 
   // &__container {
