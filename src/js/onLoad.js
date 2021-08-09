@@ -41,7 +41,6 @@ export const removeListnersForHome = (refs) => {
         refs.searchBox.removeEventListener('focus', e => {
               onSearchBoxFocus(e); 
         });
-                console.log("удаление3");
     }
         //удаление обработчика событий кнопки поиска
     console.log('удалено');
