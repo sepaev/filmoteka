@@ -12,15 +12,15 @@
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;
+  margin: 0;
+  color: $footer-text-color;
 
-  @media screen and (max-width: $min-mobile) {
+  @media screen and (max-width: $max-mobile) {
     font-size: 14px;
     line-height: 16.41px;
   }
-  margin: 0;
-  color: $footer-text-color;
   &__info {
-    @media screen and (max-width: $min-mobile) {
+    @media screen and (max-width: $max-mobile) {
       margin-left: 67px;
     }
   }
@@ -37,9 +37,11 @@
   &__img {
     margin-left: 10px;
     margin-right: 10px;
+    // display: flex;
   }
   &__dev--link {
     margin: 0;
     color: $footer-text-color;
+    text-decoration: underline;
   }
 }
