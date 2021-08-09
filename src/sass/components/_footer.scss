@@ -1,103 +1,47 @@
-// .footer {
-//   display: flex;
-//   align-items: center;
-//   text-align: center;
-//   justify-content: center;
-//   padding-bottom: 28px;
-//   padding-top: 30px;
-//   background-color: $footer-background-color;
-
-//   font-size: 16px;
-//   line-height: 19px;
-//   font-family: Roboto;
-//   font-style: normal;
-//   font-weight: normal;
-//   margin: 0;
-//   color: $footer-text-color;
-
-//   @media screen and (max-width: $max-mobile) {
-//     font-size: 14px;
-//     line-height: 16.41px;
-//   }
-//   &__info {
-//     @media screen and (max-width: $max-mobile) {
-//       margin-left: 67px;
-//     }
-//   }
-//   &__dev--p {
-//     margin: 0;
-
-//     // &::after {
-//     //   content: icon;
-//     //   height: 12.9px;
-//     //   width: 14px;
-//     //   color: #ff6b08;
-//     // }
-//   }
-//   &__img {
-//     margin-left: 10px;
-//     margin-right: 10px;
-//     // display: flex;
-//   }
-//   &__dev--link {
-//     margin: 0;
-//     color: $footer-text-color;
-//     text-decoration: underline;
-//   }
-// }
-
 .footer {
-  padding: 29px 0;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  padding-bottom: 28px;
+  padding-top: 30px;
   background-color: $footer-background-color;
 
-  &__info {
+  font-size: 16px;
+  line-height: 19px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  margin: 0;
+  color: $footer-text-color;
+
+  @media screen and (max-width: $max-mobile) {
     font-size: 14px;
-    line-height: 1.143;
-    color: #545454;
-    margin: 0;
-
-    @media screen and (max-width: $max-mobile) {
-      font-size: 14px;
-      line-height: 16.41px;
-    }
-
-    &:first-child {
-      margin-bottom: 10px;
-
-      @media screen and (max-width: $max-mobile) {
-        margin-bottom: 0;
-      }
-    }
+    line-height: 16.41px;
   }
-
   &__box {
-    display: flex;
-    // flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    @media screen and (max-width: $max-mobile) {
-      flex-direction: row;
+    @media screen and (min-width: $min-tablet) {
+      display: flex;
     }
   }
-
+  .mobile {
+    @media screen and (max-width: $max-mobile) {
+      margin-bottom: 10px;
+    }
+  }
+  &__info {
+    display: block;
+  }
   &__img {
-    margin: 0 10px;
-  }
+    display: inline-block;
 
+    margin-left: 10px;
+    margin-right: 10px;
+    // display: flex;
+  }
   &__dev--link {
+    margin: 0;
     color: $footer-text-color;
-  }
-
-  .dark-theme .footer {
-    background-color: var(--color-bg-dark-footer);
-  }
-
-  .dark-theme .footer__info {
-    color: var(--color-text-inverse);
-  }
-
-  .dark-theme .footer__dev--link {
-    color: currentColor;
+    text-decoration: underline;
   }
 }
