@@ -12,10 +12,11 @@ export const getRefs = () => {
     devLink: document.querySelector('.footer__dev--link'),
     paginationNav: document.querySelector('.filmoteka-nav'),
     modalFilm: document.querySelector('.modal-film'),
+    modalFilmCloseBtn: document.querySelector('.modal-film__close'),
     modalDevs: document.querySelector('.modal-devs'),
+    devCloseBtn: document.querySelector('.modal-devs__close-btn'),
     watchedBtn: document.querySelector('.my-library__watched-btn'),
     queueBtn: document.querySelector('.my-library__queue-btn'),
-      //кнопка Закрытия модалки
     //кнопка ADD TO WATCHED
     //кнопка ADD TO QUEUE
   };

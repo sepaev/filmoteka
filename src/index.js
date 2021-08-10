@@ -17,7 +17,7 @@ console.dir(refs); //чтоб сразу увидеть все подключе�
 // обработка клика по фильму
 refs.filmsSection.addEventListener('click', e => {
     e.preventDefault;
-    onFilmClick(e, refs); //from "./js/sectionFilmoteka" клик по любой карточке фильма
+    onFilmClick(e); //from "./js/sectionFilmoteka" клик по любой карточке фильма
 });
 
 // обработка клика по header nav
@@ -41,7 +41,7 @@ refs.paginationNav.addEventListener('click', e => {
 // обработка клика по header developer link
 refs.devLink.addEventListener('click', e => {
     e.preventDefault;
-    onDevLinkClick(e, refs); //from "./js/footerDevelopers"  клик по ссылке разработчиков
+    onDevLinkClick(e); //from "./js/footerDevelopers"  клик по ссылке разработчиков
 });
 
 
