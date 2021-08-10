@@ -1,8 +1,9 @@
+{{#each this}}
 <div class="modal-card__img-thumb">
-  <img class="modal-card__image"/>
+  <img class="modal-card__image"  src="{{poster_path}}" alt="Film {{title}} poster"/ >
 </div>
 <div class="modal-card__data">
-  <h2 class="modal-card__data-heading">{{name}}</h2>
+  <h2 class="modal-card__data-heading">{{original_title}</h2>
   <ul class="modal-card__list">
     <li class="modal-card__list-item">
       <p>Vote / Votes</p>
@@ -28,3 +29,4 @@
     {{overview}}
   </p>
 </div>
+{{/each}}

@@ -17,6 +17,7 @@ export const getRefs = () => {
     devCloseBtn: document.querySelector('.modal-devs__close-btn'),
     watchedBtn: document.querySelector('.my-library__watched-btn'),
     queueBtn: document.querySelector('.my-library__queue-btn'),
+    galleryItems: document.querySelector('.filmoteka__set')
     //кнопка ADD TO WATCHED
     //кнопка ADD TO QUEUE
     scrollTopBtn: document.querySelector('.scroll__top'),
