@@ -1,11 +1,14 @@
+{{#each this}}
 <li class="film">
     <div class="film__thumb">
-        <img class="film__img" src="{{picture}}" alt="{{description}}" />
+        <img class="film__img" src="{{poster_path}}" alt="{{title}}" />
     </div>
     <div class="film__info">
-        <h3 class="film__heading">{{filmName}}</h3>
-        <p class="film__description">{{genre}} | <span class="film__year">{{year}}</span></p>
+        <h3 class="film__heading">{{tittle}}</h3>
+        <p class="film__description">{{genres}} | <span class="film__year">{{release_date}</span></p>
+         <p class="card-vote">{{vote_average}}</p>
     </div>
 </li>
+{{/each}}
 
  {{!-- для этого шаблона нужно picture, description, genre, year, filmName--}}
