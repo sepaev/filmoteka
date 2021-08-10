@@ -19,6 +19,6 @@ export const getRefs = () => {
     queueBtn: document.querySelector('.my-library__queue-btn'),
     //кнопка ADD TO WATCHED
     //кнопка ADD TO QUEUE
-    scrollTop: document.querySelector('.scroll__top'),
+    scrollTopBtn: document.querySelector('.scroll__top'),
   };
 };

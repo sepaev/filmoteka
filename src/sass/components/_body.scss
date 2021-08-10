@@ -362,7 +362,7 @@ p {
 
 // ScrollUP копка для возврата к верху страницы
 .scroll__top {
-  display: flex; //ВАЖНО изменить параметр путем добавления класа .active-scroll!!!!!!!!!
+  display: none; //ВАЖНО изменить параметр путем добавления класа .active-scroll!!!!!!!!!
   position: fixed;
   bottom: 1px;
   right: 1px;
