@@ -7,6 +7,7 @@ import { onPaginationNavClick } from "./js/paginationNav"
 import { onDevLinkClick } from "./js/footerDevelopers"
 import { onLoad } from "./js/onLoad"
 
+
 const refs = getRefs();
 onLoad(refs); //функция загружает все что необходимо сделать при запуске
               // тут находятся слушатели на кнопки и инпуты шапки
