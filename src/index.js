@@ -1,11 +1,13 @@
 import './sass/main.scss';
 import { getRefs } from './js/refs'
-
+import { debounce } from 'throttle-debounce';
+import { consts } from "./js/consts";
 import { onFilmClick } from "./js/sectionFilmoteka"
 import { changeHeader } from "./js/changeHeader"
 import { onPaginationNavClick } from "./js/paginationNav"
 import { onDevLinkClick } from "./js/footerDevelopers"
 import { onLoad } from "./js/onLoad"
+import { activateScrollButton } from './js/btnScrollUp'
 
 const refs = getRefs();
 onLoad(refs); //функция загружает все что необходимо сделать при запуске
@@ -43,6 +45,13 @@ refs.devLink.addEventListener('click', e => {
     e.preventDefault;
     onDevLinkClick(e); //from "./js/footerDevelopers"  клик по ссылке разработчиков
 });
+// обработка клика по scroll UP
+window.addEventListener('scroll',
+  debounce(consts.DEBOUNCE_DELAY, (e) => {
+     activateScrollButton(e);//from "./js/footerDevelopers"  клик кнопке вверх
+   }));
+
+
 
 
 

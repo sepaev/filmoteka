@@ -20,5 +20,6 @@ export const getRefs = () => {
     galleryItems: document.querySelector('.filmoteka__set')
     //кнопка ADD TO WATCHED
     //кнопка ADD TO QUEUE
+    scrollTopBtn: document.querySelector('.scroll__top'),
   };
 };
