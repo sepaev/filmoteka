@@ -5,18 +5,18 @@ import { onSearchBoxChange, onSearchBoxFocus } from "./searchBox"
 import { onWatchedButtonClick, onQueueButtonClick } from "./libraryButtons"
 import { onSearchButtonClick } from "./searchButton"
 import { renderGallery } from "../js/renderGallery"
+import {showPageHome} from './showPage'
 
-
-
-
-
-
+const showDefaultHome = () => {
+    showPageHome(1);
+}
 
 
 
 // функция по загрузке
 export const onLoad = refs => {
     changeHeader('HOME', refs.headerDivToChange)
+    showDefaultHome();
 }
 
 export const loadListnersForHome = (refs) => {
