@@ -14,6 +14,7 @@ export const getRefs = () => {
     modalFilm: document.querySelector('.modal-film'),
     modalFilmCloseBtn: document.querySelector('.modal-film__close'),
     modalDevs: document.querySelector('.modal-devs'),
+    modalCard: document.querySelector('.modal-card'),
     devCloseBtn: document.querySelector('.modal-devs__close-btn'),
     watchedBtn: document.querySelector('.my-library__watched-btn'),
     queueBtn: document.querySelector('.my-library__queue-btn'),
