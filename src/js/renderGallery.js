@@ -5,10 +5,10 @@ import { getRefs } from '../js/refs';
 const refs = getRefs();
 
 export const renderGallery = function (objects) {
-    refs.galleryItems.innerHTML = '';
-    if (objects.id) {
-        refs.galleryItems.insertAdjacentHTML('afterbegin', oneMovie(objects));
-    } else {
+    // refs.galleryItems.innerHTML = '';
+    // if (objects.id) {
         refs.galleryItems.insertAdjacentHTML('afterbegin', galleryMovies(objects));
-    }
+    // } else {
+        // refs.galleryItems.insertAdjacentHTML('afterbegin', galleryMovies(objects));
+    // }
   };

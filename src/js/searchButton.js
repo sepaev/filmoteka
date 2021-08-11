@@ -1,11 +1,13 @@
-import {getContent} from "./getContent"
+import {getMoviesPagination } from "./getContent"
 import Notiflix from "notiflix";
+import { renderGallery } from "../js/renderGallery"
+import { getRefs } from "./refs";
 
 export const onSearchButtonClick = e => {
-    console.log('Кликаем поиск');
-    console.log(e);
+    const refs = getRefs();
+    console.dir(refs.searchBox);
     Notiflix.Loading.pulse();
-    getContent(e)
+    getMoviesPagination(refs.searchBox.value, 1)
         .then(data => {
             Notiflix.Loading.remove();
             return data.results;
@@ -23,9 +25,17 @@ export const onSearchButtonClick = e => {
                     title: film['title'],
                     vote_average: film['vote_average'],
                     vote_count: film['vote_count'],
+                    genre_ids: film['genre_ids'].join(', '),
+                    year: film['release_date'].slice(0, 4),
                 };
             })
-        }).then( obj => console.log(obj))
+        }).then(films => {
+            refs.galleryItems.innerHTML = '';
+            console.dir(films);
+            films.forEach(film => {
+                renderGallery(film);
+            });
+            })
           .catch(error => {
            Notiflix.Loading.remove();
            console.log(error);

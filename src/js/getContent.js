@@ -6,7 +6,7 @@ axios.defaults.baseURL = `${API_URL}`;
 
 // landing page movies
 
-async function fetchGetTrending(pageValue) {
+export const fetchGetTrending = async (pageValue) => {
     const { data } = await axios.get(
       `/trending/movie/week?api_key=${API_KEY}&page=${pageValue}`,
     );
@@ -17,7 +17,7 @@ async function fetchGetTrending(pageValue) {
 
 // on Search movies
 
-async function fetchGetSearchMovie(valueSearch, pageValue) {
+export const fetchGetSearchMovie = async (valueSearch, pageValue) => {
     const { data } = await axios.get(
       `/search/movie?api_key=${API_KEY}&page=${pageValue}&query=${valueSearch}`,
     );
@@ -27,7 +27,7 @@ async function fetchGetSearchMovie(valueSearch, pageValue) {
 
 // get Movies by ID
 
-async function fetchGetMovieById(id) {
+export const fetchGetMovieById = async (id) => {
     const { data } = await axios.get(`/movie/${id}?api_key=${API_KEY}`);
     return data;
 }
@@ -35,7 +35,7 @@ async function fetchGetMovieById(id) {
 // function to get movies for landing page - trending or on Search
 // dynamic page Value with pagination 
 
-async function getMoviesPagination(searchValue, pageValue = 1) {
+export const getMoviesPagination = async (searchValue, pageValue = 1) => {
     if (!searchValue) {
       const data = await fetchGetTrending(pageValue).catch(err =>
         console.log(err),
@@ -51,7 +51,7 @@ async function getMoviesPagination(searchValue, pageValue = 1) {
     }
 }
 
-export default {fetchGetTrending, fetchGetSearchMovie, fetchGetMovieById, getMoviesPagination}
+// export default {fetchGetTrending, fetchGetSearchMovie, fetchGetMovieById, getMoviesPagination}
 
 
 
