@@ -14,10 +14,6 @@ import './js/theme';
 const refs = getRefs();
 onLoad(refs); //функция загружает все что необходимо сделать при запуске
               // тут находятся слушатели на кнопки и инпуты шапки
-console.log("Подключенные рефы ↓");
-console.dir(refs); //чтоб сразу увидеть все подключенные рефы. Позже все консоли удалятся
-
-
 // обработка клика по фильму
 refs.filmsSection.addEventListener('click', e => {
     e.preventDefault;
