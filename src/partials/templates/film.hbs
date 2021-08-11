@@ -1,8 +1,10 @@
 <li class="film" data-id="{{id}}">
     <div class="film__thumb">
-        <img class="film__img" src="https://image.tmdb.org/t/p/w300/{{poster_path}}"
-        
-            alt="{{title}}" />
+            <picture class="film__img" >
+                <source media="(min-width:1024px)" srcset="https://image.tmdb.org/t/p/w500{{poster_path}}">
+                <source media="(min-width:768px)" srcset="https://image.tmdb.org/t/p/w400{{poster_path}}">
+                <img src="https://image.tmdb.org/t/p/w300{{poster_path}}" alt="{{title}}" loading="lazy" style="width:auto;">
+            </picture>
         <div class="film-overlay">
             <a href="film-overlay__link">
                 <p class="film-overlay__text">
