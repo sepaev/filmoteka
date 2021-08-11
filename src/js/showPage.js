@@ -10,7 +10,6 @@ export const showPageHome = (pageNumber) => {
     getMoviesPagination(refs.searchBox.value, pageNumber) //async
     .then(data => {
         Notiflix.Loading.remove();
-
         return data.results;
     })
         .then(films => {

@@ -4,7 +4,6 @@ import { consts } from "./consts";
 import { onSearchBoxChange, onSearchBoxFocus } from "./searchBox"
 import { onWatchedButtonClick, onQueueButtonClick } from "./libraryButtons"
 import { onSearchButtonClick } from "./searchButton"
-import { renderGallery } from "../js/renderGallery"
 import {showPageHome} from './showPage'
 
 const showDefaultHome = () => {
@@ -21,10 +20,9 @@ export const onLoad = refs => {
 
 export const loadListnersForHome = (refs) => {
   //добавление обработчика событий инпута
-    refs.searchBox.addEventListener('keydown',
-        debounce(consts.DEBOUNCE_DELAY, (e) => {
-        onSearchBoxChange(e); //from "./js/searchBox" все что происходит во время ввода + debounce
-    }))
+    refs.searchBox.addEventListener('keydown', (e) => {
+        onSearchBoxChange(e);//from "./js/searchBox" все что происходит во время ввода + debounce
+    })
   
     refs.searchBox.addEventListener('focus', e => {
         onSearchBoxFocus(e); //from "./js/searchBox" все что происходит во время получения фокуса

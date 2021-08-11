@@ -15,6 +15,14 @@ export const getGenres = (genresIdsFromAPI) => {
     });
     return genresString.slice(0, genresString.length - 2);
 }
+export const checkPoster = (poster, reserve) => {
+    // if (!poster) return '/3UJ3aHkRzpmIM87BWrk72nTN2v8.jpg';
+    // if (!poster) return '/a7lscT93aGgvD6W5Po7dTVLdv19.jpg';
+    // if (!poster) return '/4WMsWamXvGD0gC9mHfaoz3dmmwJ.jpg';
+    if (poster) return poster;
+    if (reserve) return reserve;
+    return '/qpGlfnvynjPqAtqRCyFMFGLAAgW.jpg';
+}
 
 export const parseFilmsData = (films) => {
     return films.map(film => {
@@ -24,7 +32,7 @@ export const parseFilmsData = (films) => {
             original_title: film['original_title'],
             overview: film['overview'],
             popularity: film['popularity'],
-            poster_path: film['poster_path'],
+            poster_path: checkPoster(film['poster_path'],film['backdrop_path']),
             release_date: film['release_date'],
             title: film['title'],
             vote_average: film['vote_average'],
