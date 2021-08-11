@@ -7,7 +7,9 @@ import { changeHeader } from "./js/changeHeader"
 import { onPaginationNavClick } from "./js/paginationNav"
 import { onDevLinkClick } from "./js/footerDevelopers"
 import { onLoad } from "./js/onLoad"
+import './js/theme';
 import { activateScrollButton } from './js/btnScrollUp'
+
 
 const refs = getRefs();
 onLoad(refs); //функция загружает все что необходимо сделать при запуске
