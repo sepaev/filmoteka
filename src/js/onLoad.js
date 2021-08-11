@@ -21,7 +21,7 @@ export const onLoad = refs => {
 
 export const loadListnersForHome = (refs) => {
   //добавление обработчика событий инпута
-    refs.searchBox.addEventListener('input',
+    refs.searchBox.addEventListener('keydown',
         debounce(consts.DEBOUNCE_DELAY, (e) => {
         onSearchBoxChange(e); //from "./js/searchBox" все что происходит во время ввода + debounce
     }))
