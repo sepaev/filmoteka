@@ -7,16 +7,18 @@ import {parseFilmsData} from './parseApiData'
 export const showPageHome = (pageNumber) => {
     Notiflix.Loading.pulse();
     const refs = getRefs();
-    console.log(refs.searchBox.value);
-    getMoviesPagination(refs.searchBox.value, pageNumber)
+    getMoviesPagination(refs.searchBox.value, pageNumber) //async
     .then(data => {
         Notiflix.Loading.remove();
+
         return data.results;
     })
         .then(films => {
-            const a = parseFilmsData(films);
-        return a;
-    })
+           const filmData = parseFilmsData(films);
+           const string = JSON.stringify(filmData);
+           localStorage.setItem('tempQuery', string);
+           return filmData;
+        })
     .then(films => {
         refs.galleryItems.innerHTML = '';
         films.forEach(film => renderGallery(film));
