@@ -1,16 +1,11 @@
 
 const checkTappedBtn = (event, instance) => {
-    // тут будет функция которая работает от слушателя событий
-    // функция должна принимать  в себя instance
-    // проверка на кнопку.. если еск - то instance.close() и + убрать слушателя событий что подключается ниже
-    
+    if (event.code === 'Escape') { 
+        instance.close();
+        window.removeEventListener('keydown', (event) => checkTappedBtn(event, instance));
+    }    
 }
 
 export const loadEscListner = (instance) => {
-    alert(' В этот момент будет подключен слушатель на esc на окно браузера');
-    // Сюда добавить слушателя событий на window(нажатие кнопкии)
-    // gj нажатию кнопки вызывать проверку например checkTappedBtn(event, instance)
-    // instance - это функция в которой находится библиотека basicLightbox на нужную рефу
-    // для вызова закрытия использовать instance.close();
-    
+    window.addEventListener('keydown', (event) => checkTappedBtn(event, instance)) 
 }
