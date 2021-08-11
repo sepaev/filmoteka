@@ -94,19 +94,21 @@ p {
   width: 280px;
   transition: $transition-body-card;
   padding: 6px;
-  &:hover {
-    transform: scale(1.03);
-    border-radius: $main-border-radius;
-    box-shadow: 0px 5px 10px 2px rgba(54, 54, 54, 0.8);
+  transform: scale(1);
+  @media (min-width: $min-desktop) {
+    &:hover .film-overlay,
+    &:focus .film-overlay {
+      opacity: 1;
+      transform: translateX(0);
+      z-index: 2;
+    }
+    &:hover {
+      transform: scale(1.03);
+      border-radius: $main-border-radius;
+      box-shadow: 0px 5px 10px 2px rgba(54, 54, 54, 0.8);
+    }
   }
 
-  &:hover .film-overlay,
-  &:focus .film-overlay {
-    opacity: 1;
-    transform: translateX(0);
-    z-index: 2;
-    // transition: var(--transition-function);
-  }
   @media (max-width: $max-mobile) {
     &:not(:last-child) {
       margin-bottom: 30px;
@@ -133,6 +135,7 @@ p {
     display: block;
     max-width: 100%;
     height: auto;
+    border-radius: $main-border-radius;
   }
 
   &__info {
@@ -164,11 +167,15 @@ p {
   height: 25px;
   right: 9px;
   bottom: 60px;
-
-  opacity: 0;
-  transition: $transition-body-card;
-  transform: translateX(10%);
-  z-index: 1;
+  @media (min-width: $min-tablet) and (max-width: $max-tablet) {
+    right: 18px;
+  }
+  @media (min-width: $min-desktop) {
+    opacity: 0;
+    transition: $transition-body-card;
+    transform: translateX(10%);
+    z-index: 1;
+  }
 
   &__link {
     display: flex;
@@ -181,19 +188,23 @@ p {
     border-radius: 10px;
     width: 144px;
     height: 100%;
-    // background-color: rgb(208, 255, 0);
 
     align-items: center;
     justify-content: center;
     border-color: #c7c5c469;
-    background-image: -webkit-linear-gradient(45deg, #c7c5c469 50%, transparent 50%);
-    background-image: linear-gradient(45deg, #c7c5c469 50%, transparent 50%);
+    background-image: -webkit-linear-gradient(45deg, #c7c5c469 100%, transparent 100%);
+    background-image: linear-gradient(45deg, #c7c5c469 100%, transparent 100%);
     background-position: 100%;
-    background-size: 400%;
-    background: 1000ms ease-in-out;
-    transition: background 1000ms ease-in-out;
-    &:hover {
-      background-position: 0;
+
+    @media (min-width: $min-desktop) {
+      background-image: -webkit-linear-gradient(45deg, #c7c5c469 50%, transparent 50%);
+      background-image: linear-gradient(45deg, #c7c5c469 50%, transparent 50%);
+      background-size: 400%;
+      background: 1000ms ease-in-out;
+      transition: background 1000ms ease-in-out;
+      &:hover {
+        background-position: 0;
+      }
     }
   }
   &__img {
@@ -352,10 +363,10 @@ p {
 
 // ScrollUP копка для возврата к верху страницы
 .scroll__top {
-  display: flex; //ВАЖНО изменить параметр путем добавления класа .active-scroll!!!!!!!!!
+  display: none; //ВАЖНО изменить параметр путем добавления класа .active-scroll!!!!!!!!!
   position: fixed;
-  bottom: 25px;
-  right: 55px;
+  bottom: 1px;
+  right: 1px;
   width: 50px;
   height: 50px;
   border-radius: 50%;
@@ -365,9 +376,12 @@ p {
     // цвет иконки всредине при наведении
     background-color: #ff6b081c;
   }
+  @media screen and (max-width: 480px) {
+    right: 40px;
+  }
   @media screen and (max-width: $min-mobile) {
     bottom: 50px;
-    right: 50px;
+    right: 6px;
     width: 35px;
     height: 35px;
   }

@@ -4,12 +4,20 @@ import { consts } from "./consts";
 import { onSearchBoxChange, onSearchBoxFocus } from "./searchBox"
 import { onWatchedButtonClick, onQueueButtonClick } from "./libraryButtons"
 import { onSearchButtonClick } from "./searchButton"
+import { renderGallery } from "../js/renderGallery"
+
+
+
+
+
+
+
+
 
 // функция по загрузке
 export const onLoad = refs => {
     changeHeader('HOME', refs.headerDivToChange)
 }
-
 
 export const loadListnersForHome = (refs) => {
   //добавление обработчика событий инпута
