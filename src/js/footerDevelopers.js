@@ -1,8 +1,8 @@
 import * as basicLightbox from 'basiclightbox';
-import { getRefs } from './refs'
-import { loadEscListner } from './escClose'
-const refs = getRefs();
+import { getRefs } from './refs';
+import { loadEscListner } from './escClose';
 
+const refs = getRefs();
 const instance = basicLightbox.create(refs.modalDevs);
 
 export const onDevLinkClick = () => {
@@ -21,3 +21,5 @@ export const onDevLinkClick = () => {
 const onDevCloseClick = () => {
     instance.close();
 }
+
+
