@@ -42,15 +42,17 @@ refs.paginationNav.addEventListener('click', e => {
   e.preventDefault;
   if (e.target.nodeName === "A") { onPaginationNavClick(e.target.textContent) };
 });
+
 // обработка клика по header developer link
 refs.devLink.addEventListener('click', e => {
     e.preventDefault;
     onDevLinkClick(e); //from "./js/footerDevelopers"  клик по ссылке разработчиков
 });
+
 // обработка клика по scroll UP
 window.addEventListener('scroll',
   debounce(consts.DEBOUNCE_DELAY, (e) => {
-     activateScrollButton(e);//from "./js/footerDevelopers"  клик кнопке вверх
+     activateScrollButton(e);//from "./js/btnScrollUp"  клик по ссылке подняться вверх встраницы
    }));
 
 
