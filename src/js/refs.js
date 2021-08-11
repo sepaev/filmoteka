@@ -4,7 +4,7 @@ export const getRefs = () => {
     searchButton: document.querySelector('.header-search__button'),
     filmsSection: document.querySelector('.filmoteka'),
     headerNav: document.querySelector('.header-nav__list'),
-    headerLogo: document.querySelector('.header__logo-icon'),
+    headerLogo: document.querySelector('.header__logo'),
     headerDivToChange: document.querySelector('.header-search'),
     headerContainer: document.querySelector('.header__container'),
     prevButton: document.querySelector('.filmoteka-nav__left'),
