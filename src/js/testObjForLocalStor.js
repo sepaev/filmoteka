@@ -10,6 +10,8 @@ export const moviesForWatched = [
         title: "The Matrix",
         vote_average: 8.2,
         vote_count: 19600,
+        genres: "Action, Science Fiction",
+        year: "1999",
     },
     {
         backdrop_path: "https://image.tmdb.org/t/p/original/sDxCd4nt3eR4qOCW1GoD0RabQtq.jpg",
@@ -22,6 +24,8 @@ export const moviesForWatched = [
         title: "The Matrix Reloaded",
         vote_average: 7,
         vote_count: 8009,
+        genres: "Adventure, Action, Thriller, Science Fiction",
+        year: "2003",
     },
     {
         backdrop_path: "https://image.tmdb.org/t/p/original/t9dumNakkt6yL9wreEp35T4Lwny.jpg",
@@ -34,6 +38,8 @@ export const moviesForWatched = [
         title: "The Matrix Revolutions",
         vote_average: 6.7,
         vote_count: 7171,
+        genres: "Adventure, Action, Thriller, Science Fiction",
+        year: "2003",
     },
     {
         backdrop_path: "https://image.tmdb.org/t/p/originalnull",
@@ -46,6 +52,8 @@ export const moviesForWatched = [
         title: "The Matrix Resurrections",
         vote_average: 0,
         vote_count: 0,
+        genres: "Action, Science Fiction, Adventure",
+        year: "2021",
     },
     {
         backdrop_path: "https://image.tmdb.org/t/p/original/lBdXACywnLwKUZmZkZ87djDQBeV.jpg",
@@ -58,6 +66,8 @@ export const moviesForWatched = [
         title: "The Matrix Revisited",
         vote_average: 6.9,
         vote_count: 142,
+        genres: "Documentary",
+        year: "2001",
     },
     {
         backdrop_path: "https://image.tmdb.org/t/p/originalnull",
@@ -70,6 +80,8 @@ export const moviesForWatched = [
         title: "Sexual Matrix",
         vote_average: 6.2,
         vote_count: 9,
+        genres: "Science Fiction",
+        year: "2000",
     },
 ];
 export const moviesForQueue = [
@@ -83,7 +95,9 @@ export const moviesForQueue = [
         release_date: "2012-08-09",
         title: "The Dinosaur Project",
         vote_average: 4.7,
-        vote_count: 131
+        vote_count: 131,
+        genres: "Adventure, Action",
+        year: "2012",
     },
     {
         backdrop_path: "https://image.tmdb.org/t/p/original/dEIsdH9vVj6aIvP9uLMZmA3NJxH.jpg",
@@ -95,7 +109,9 @@ export const moviesForQueue = [
         release_date: "2017-09-21",
         title: "Mountain Miracle",
         vote_average: 6.3,
-        vote_count: 39
+        vote_count: 39,
+        genres: "Family, Adventure",
+        year: "2017",
     },
     {
         backdrop_path: "https://image.tmdb.org/t/p/original/rFzedAcbusHXdAJxJf6t523mqFk.jpg",
@@ -108,6 +124,8 @@ export const moviesForQueue = [
         title: "The Mask",
         vote_average: 6.9,
         vote_count: 7756,
+        genres: "Romance, Comedy, Crime, Fantasy",
+        year: "1994",
     },
     {
         backdrop_path: "https://image.tmdb.org/t/p/original/bMZyC1XXHgcrrjpCQWKfUxhQ8PR.jpg",
@@ -120,7 +138,8 @@ export const moviesForQueue = [
         title: "Road Trip",
         vote_average: 6.1,
         vote_count: 1383,
-
+        genres: "Comedy, Adventure",
+        year: "2000",
     },
     {
         backdrop_path: "https://image.tmdb.org/t/p/original/eWZhoFrE5UtqSxApCO76ChoGQpW.jpg",
@@ -133,5 +152,7 @@ export const moviesForQueue = [
         title: "Commando",
         vote_average: 6.6,
         vote_count: 1940,
+        genres: "Action, Adventure, Thriller",
+        year: "1985",
     },
 ]
