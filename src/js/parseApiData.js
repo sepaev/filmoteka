@@ -19,12 +19,12 @@ export const getGenres = (genresIdsFromAPI) => {
 export const parseFilmsData = (films) => {
     return films.map(film => {
         return {
-            backdrop_path: 'https://image.tmdb.org/t/p/original' + film['backdrop_path'],
+            backdrop_path: film['backdrop_path'],
             id: film['id'],
             original_title: film['original_title'],
             overview: film['overview'],
             popularity: film['popularity'],
-            poster_path: 'https://image.tmdb.org/t/p/original' + film['poster_path'],
+            poster_path: film['poster_path'],
             release_date: film['release_date'],
             title: film['title'],
             vote_average: film['vote_average'],

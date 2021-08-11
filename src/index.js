@@ -7,8 +7,8 @@ import { changeHeader } from "./js/changeHeader"
 import { onPaginationNavClick } from "./js/paginationNav"
 import { onDevLinkClick } from "./js/footerDevelopers"
 import { onLoad } from "./js/onLoad"
-import './js/theme';
 import { activateScrollButton } from './js/btnScrollUp'
+import './js/theme';
 
 
 const refs = getRefs();
