@@ -5,10 +5,9 @@ import { getRefs } from '../js/refs';
 const refs = getRefs();
 
 export const renderGallery = function (objects) {
-    // refs.galleryItems.innerHTML = '';
-    // if (objects.id) {
-        refs.galleryItems.insertAdjacentHTML('afterbegin', galleryMovies(objects));
-    // } else {
-        // refs.galleryItems.insertAdjacentHTML('afterbegin', galleryMovies(objects));
-    // }
-  };
+   refs.galleryItems.insertAdjacentHTML('beforeend', galleryMovies(objects));
+};
+
+export const renderMovie = function (object) {
+    refs.modalFilm.insertAdjacentHTML('beforeend', oneMovie(object)) 
+}

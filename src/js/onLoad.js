@@ -6,6 +6,8 @@ import { onWatchedButtonClick, onQueueButtonClick } from "./libraryButtons"
 import { onSearchButtonClick } from "./searchButton"
 import {showPageHome} from './showPage'
 
+
+
 const showDefaultHome = () => {
     showPageHome(1);
 }

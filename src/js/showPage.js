@@ -3,6 +3,7 @@ import Notiflix from "notiflix";
 import { renderGallery } from "../js/renderGallery"
 import { getRefs } from "./refs";
 import {parseFilmsData} from './parseApiData'
+import { renderListSearch, deleteListSearch } from './searchList'
 
 export const showPageHome = (pageNumber) => {
     Notiflix.Loading.pulse();
@@ -16,6 +17,7 @@ export const showPageHome = (pageNumber) => {
            const filmData = parseFilmsData(films);
            const string = JSON.stringify(filmData);
            localStorage.setItem('tempQuery', string);
+           //renderListSearch(refs.searchBox.value, filmData);
            return filmData;
         })
     .then(films => {
