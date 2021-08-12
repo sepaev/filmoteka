@@ -17,7 +17,7 @@ export const showPageHome = (pageNumber) => {
            const filmData = parseFilmsData(films);
            const string = JSON.stringify(filmData);
            localStorage.setItem('tempQuery', string);
-           //renderListSearch(refs.searchBox.value, filmData);
+           renderListSearch(refs.searchBox.value, filmData);
            return filmData;
         })
     .then(films => {

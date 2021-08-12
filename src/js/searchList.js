@@ -27,7 +27,7 @@ function renderListSearch(searchValue, objects) {
     searchListRef.classList.remove('open');
     document.removeEventListener('click', handlerCloseList);
     window.removeEventListener('keydown', hendlerEscCloseList);
-    makeCardsActive();
+    // makeCardsActive();
   }
   
   function sortByRating(array) {

@@ -25,7 +25,8 @@ export const onFilmClick = (e) => {
     if (targetCard.className === "film") { // проверка на клик (нужно тестить. может нужно менять)
         // 1 тут получить id фильма
         instance.show(() => {
-            fetchGetMovieById(targetCardId).then(data => renderMovie(data))
+            fetchGetMovieById(targetCardId)
+                .then(data => renderMovie(data))
             //refs.modalCard.innerHTML = 'id ' + targetCardId;
         
         });// 2 открывает модалку фильма         

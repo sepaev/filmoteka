@@ -9,5 +9,8 @@ export const renderGallery = function (objects) {
 };
 
 export const renderMovie = function (object) {
-    refs.modalFilm.insertAdjacentHTML('beforeend', oneMovie(object)) 
+    const refs = getRefs();
+    console.log(object);
+    // refs.modalFilm.insertAdjacentHTML('beforeend', oneMovie(object)) 
+    refs.modalCard.innerHTML = oneMovie(object);
 }

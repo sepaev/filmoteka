@@ -28,8 +28,9 @@ export const fetchGetSearchMovie = async (valueSearch, pageValue) => {
 // get Movies by ID
 
 export const fetchGetMovieById = async (id) => {
-    const { data } = await axios.get(`/movie/${id}?api_key=${API_KEY}`);
-    return data;
+  const { data } = await axios.get(`/movie/${id}?api_key=${API_KEY}`);
+  console.log(data);
+  return data;
 }
 
 // function to get movies for landing page - trending or on Search
