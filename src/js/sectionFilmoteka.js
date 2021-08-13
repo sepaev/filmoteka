@@ -15,13 +15,13 @@ const body = document.querySelector('body');
 export const onFilmClick = e => {
   // body.style.overflow = 'hidden';
 
-  const targetCard = e.target.parentNode.parentNode;
-  console.dir(e.target);
+  let targetCard = e.target.parentNode.parentNode;
+  targetCard = targetCard.className === 'film' ?  targetCard : targetCard.parentNode
   const targetCardId = targetCard.dataset.id;
   if (targetCard.className === 'film') {
     // проверка на клик (нужно тестить. может нужно менять)
     // 1 тут получить id фильма
-    instance.show(() => {
+    instance.show(() => { 
       // берет данные по фильмам из временного хранилища и парсит их в переменную
       const currentArray = JSON.parse(localStorage.getItem('tempQuery'));
       // находит объект по айди
