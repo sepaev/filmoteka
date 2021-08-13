@@ -4,6 +4,7 @@ import { renderAllGallery } from "../js/renderGallery"
 import { getRefs } from "./refs";
 import { parseFilmsData } from './parseApiData'
 import { loadDataFromLS } from './localStoragе'
+import { renderPaginationBtn } from './paginationNav'
 
 
 export const showPageHome = (pageNumber) => {
@@ -12,6 +13,8 @@ export const showPageHome = (pageNumber) => {
     getMoviesPagination(refs.searchBox.value, pageNumber) //async
     .then(data => {
         Notiflix.Loading.remove();
+        console.dir(data.total_pages);
+        renderPaginationBtn(data.total_pages, pageNumber)
         return data.results;
     })
         .then(films => {
