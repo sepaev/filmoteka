@@ -19,8 +19,8 @@ export const getRefs = () => {
     watchedBtn: document.querySelector('.my-library__watched-btn'),
     queueBtn: document.querySelector('.my-library__queue-btn'),
     galleryItems: document.querySelector('.filmoteka__set'),
-    //кнопка ADD TO WATCHED
-    //кнопка ADD TO QUEUE
+    modalWatchedBtn: document.querySelector('.modal-film__btn-watched'),
+    modalQueueBtn: document.querySelector('.modal-film__btn-queque'),
     scrollTopBtn: document.querySelector('.scroll__top'),
   };
 };
