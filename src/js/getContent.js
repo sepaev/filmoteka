@@ -85,3 +85,4 @@ export const getMoviesPagination = async (searchValue, pageValue = 1) => {
 // }
 // Пример ссылки
 // https://api.themoviedb.org/3/search/movie?api_key=<<api_key>>&language=en-US&page=1&include_adult=false
+
