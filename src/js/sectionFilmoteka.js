@@ -14,18 +14,20 @@ const instance = basicLightbox.create(refs.modalFilm);
 let currentItem = null;
 
 // const body = document.querySelector('body');
-refs.modalWatchedBtn.addEventListener('click', addFilmInterface);
+refs.modalWatchedBtn.addEventListener('click', onAddToWatched);
+refs.modalQueueBtn.addEventListener('click', onAddToQueue);
+
 // console.log(refs.modalWatchedBtn);
 
 export const onFilmClick = e => {
   // body.style.overflow = 'hidden';
   let targetCard = e.target.parentNode.parentNode;
-  targetCard = targetCard.className === 'film' ?  targetCard : targetCard.parentNode
+  targetCard = targetCard.className === 'film' ? targetCard : targetCard.parentNode;
   const targetCardId = targetCard.dataset.id;
   if (targetCard.className === 'film') {
     // проверка на клик (нужно тестить. может нужно менять)
     // 1 тут получить id фильма
-    instance.show(() => { 
+    instance.show(() => {
       // берет данные по фильмам из временного хранилища и парсит их в переменную
       const currentArray = JSON.parse(localStorage.getItem('tempQuery'));
       // находит объект по айди, проверка на наличие фильма в временном хранилище
@@ -56,7 +58,6 @@ export const onFilmClick = e => {
         renderFilmCard(currentItem);
         return;
       });
-
     });
 
     // обработка клика по esc
@@ -75,12 +76,36 @@ const onFilmCloseClick = () => {
   instance.close();
 };
 
-function addFilmInterface() {
-  // добавляет в 'watched';
-
-  localStorageApi.addMovie('watched', currentItem);
-}
-
 function renderFilmCard(filmCard) {
+  isAddedtoWatched(filmCard);
+  isAddedtoQueue(filmCard);
   refs.modalCard.innerHTML = modalFilmCardTpl(filmCard);
 }
+
+function onAddToWatched() {
+  if (!localStorageApi.getMovies('watched').some(film => film.id === currentItem.id)) {
+    localStorageApi.addMovie('watched', currentItem);
+    isAddedtoWatched(currentItem);
+  }
+}
+
+function onAddToQueue() {
+  // console.log(localStorageApi.getMovies('queue').some(film => film.id === currentItem.id));
+  if (!localStorageApi.getMovies('queue').some(film => film.id === currentItem.id)) {
+    localStorageApi.addMovie('queue', currentItem);
+    isAddedtoQueue(currentItem);
+  }
+}
+
+function isAddedtoWatched(currentItem) {
+  if (localStorageApi.getMovies('watched').some(film => film.id === currentItem.id)) {
+    refs.modalWatchedBtn.textContent = 'Already in watched!';
+  } else refs.modalWatchedBtn.textContent = 'add to watched';
+}
+
+function isAddedtoQueue(currentItem) {
+  if (localStorageApi.getMovies('queue').some(film => film.id === currentItem.id)) {
+    refs.modalQueueBtn.textContent = 'Already in Queue!';
+  } else refs.modalQueueBtn.textContent = 'add to Queue';
+}
+

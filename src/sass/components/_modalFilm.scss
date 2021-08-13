@@ -75,27 +75,28 @@
   // }
 
   &__btn-watched {
+    // тут значение top/bottom уменьшено до 0, чтобы надписи не выходили за пределы кнопки
     @media (max-width: $max-mobile) {
-      // тут значение уменьшено на 2 половины размера шрифта, чтобы надпись не выходила за пределы
-      padding: 6px 8px;
+      padding: 0px 8px;
     }
     @media (min-width: $min-tablet) and (max-width: $max-tablet) {
-      padding: 14px 9px;
+      padding: 0px 9px;
     }
     @media (min-width: $min-desktop) {
-      padding: 14px 10px;
+      padding: 0px 10px;
     }
   }
 
   &__btn-queque {
+    // тут значение top/bottom уменьшено до 0, чтобы надписи не выходили за пределы кнопки
     @media (max-width: $max-mobile) {
-      padding: 14px 7px;
+      padding: 0px 7px;
     }
     @media (min-width: $min-tablet) and (max-width: $max-tablet) {
-      padding: 14px 7px;
+      padding: 0px 7px;
     }
     @media (min-width: $min-desktop) {
-      padding: 14px 8px;
+      padding: 0px 8px;
     }
   }
 
