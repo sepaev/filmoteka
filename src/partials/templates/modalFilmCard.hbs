@@ -1,32 +1,39 @@
-{{!-- {{#each this}} --}}
-<div class="modal-card__img-thumb">
-  <img class="modal-card__image"  src="https://image.tmdb.org/t/p/original/{{poster_path}}" alt="Film {{title}} poster"/ >
+<div class='modal-card__img-thumb'>
+  <img
+    class='modal-card__image'
+    src='https://image.tmdb.org/t/p/original/{{poster_path}}'
+    alt='Film {{title}} poster'
+  />
 </div>
-<div class="modal-card__data">
-  <h2 class="modal-card__data-heading">{{original_title}}</h2>
-  <ul class="modal-card__list">
-    <li class="modal-card__list-item">
-      <p>Vote / Votes</p>
-      <p class="modal-card__list-value">
-        <b><span class="modal__card-list-rate">{{vote_average}}</span> / {{vote_count}}</b>
+
+<div class='modal-card__data'>
+
+  <h2 class='modal-card__data-heading'>{{original_title}}</h2>
+
+  <ul class='modal-card__list'>
+    <li class='modal-card__list-item'>
+      <p class="modal-card__list-votes">Vote / Votes</p>
+      <p class='modal-card__list-value'>
+        <b><span class='modal-card__list-rate'>{{vote_average}}</span> / {{vote_count}}</b>
       </p>
     </li>
-    <li class="modal-card__list-item">
-      <p>Popularity</p>
-      <p class="modal-card__list-value"><b>{{popularity}}</b></p>
+    <li class='modal-card__list-item'>
+      <p class="modal-card__list-popularity">Popularity</p>
+      <p class='modal-card__list-value'><b>{{popularity}}</b></p>
     </li>
-    <li class="modal-card__list-item">
-      <p>Original Title</p>
-      <p class="modal-card__list-value"><b>{{original_title}}</b></p>
+    <li class='modal-card__list-item'>
+      <p class="modal-card__list-title">Original Title</p>
+      <p class='modal-card__list-value'><b>{{original_title}}</b></p>
     </li>
-    <li class="modal-card__list-item">
-      <p>Genre</p>
-      <p class="modal-card__list-value"><b>{{genres_names}}</b></p>
+    <li class='modal-card__list-item'>
+      <p class="modal-card__list-genre">Genre</p>
+      <p class='modal-card__list-value'><b>{{genres}}</b></p>
     </li>
   </ul>
-  <h3 class="modal-card__description-heading">About</h3>
-  <p class="modal-card__description">
+
+  <h3 class='modal-card__description-heading'>About</h3>
+  <p class='modal-card__description'>
     {{overview}}
   </p>
+
 </div>
-{{!-- {{/each}} --}}
