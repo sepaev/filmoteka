@@ -1,7 +1,7 @@
 import * as basicLightbox from 'basiclightbox';
 import { getRefs } from './refs';
 import { loadEscListner } from './escClose';
-import localStorageApi from './localStoragе';
+import {addMovieToLocalStorage, removeMovieFromLocalStorage} from './localStoragе';
 
 import { fetchGetMovieById } from './getContent';
 import modalFilmCardTpl from '../partials/templates/modalFilmCard.hbs';
@@ -77,35 +77,37 @@ const onFilmCloseClick = () => {
 };
 
 function renderFilmCard(filmCard) {
-  isAddedtoWatched(filmCard);
-  isAddedtoQueue(filmCard);
+  // isAddedtoWatched(filmCard);
+  // isAddedtoQueue(filmCard);
   refs.modalCard.innerHTML = modalFilmCardTpl(filmCard);
 }
 
-function onAddToWatched() {
-  if (!localStorageApi.getMovies('watched').some(film => film.id === currentItem.id)) {
-    localStorageApi.addMovie('watched', currentItem);
-    isAddedtoWatched(currentItem);
-  }
+function onAddToWatched(currentItem) {
+  addMovieToLocalStorage('watced', currentItem )
+  // isAddedtoWatched(currentItem);
+  // if (!localStorageApi.getMovies('watched').some(film => film.id === currentItem.id)) {
+  //   localStorageApi.addMovie('watched', currentItem);
+  // }
 }
 
-function onAddToQueue() {
+function onAddToQueue(currentItem) {
+    addMovieToLocalStorage('queue', currentItem )
+    // isAddedtoQueue(currentItem);
   // console.log(localStorageApi.getMovies('queue').some(film => film.id === currentItem.id));
-  if (!localStorageApi.getMovies('queue').some(film => film.id === currentItem.id)) {
-    localStorageApi.addMovie('queue', currentItem);
-    isAddedtoQueue(currentItem);
-  }
+  // if (!localStorageApi.getMovies('queue').some(film => film.id === currentItem.id)) {
+  //   localStorageApi.addMovie('queue', currentItem);
+  // }
 }
 
-function isAddedtoWatched(currentItem) {
-  if (localStorageApi.getMovies('watched').some(film => film.id === currentItem.id)) {
-    refs.modalWatchedBtn.textContent = 'Already in watched!';
-  } else refs.modalWatchedBtn.textContent = 'add to watched';
-}
+// function isAddedtoWatched(currentItem) {
+//   if (localStorageApi.getMovies('watched').some(film => film.id === currentItem.id)) {
+//     refs.modalWatchedBtn.textContent = 'Already in watched!';
+//   } else refs.modalWatchedBtn.textContent = 'add to watched';
+// }
 
-function isAddedtoQueue(currentItem) {
-  if (localStorageApi.getMovies('queue').some(film => film.id === currentItem.id)) {
-    refs.modalQueueBtn.textContent = 'Already in Queue!';
-  } else refs.modalQueueBtn.textContent = 'add to Queue';
-}
+// function isAddedtoQueue(currentItem) {
+//   if (localStorageApi.getMovies('queue').some(film => film.id === currentItem.id)) {
+//     refs.modalQueueBtn.textContent = 'Already in Queue!';
+//   } else refs.modalQueueBtn.textContent = 'add to Queue';
+// }
 
