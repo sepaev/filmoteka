@@ -3,7 +3,7 @@ import myLibrary from '../partials/templates/myLibrary.hbs';
 import { changeClasses } from './classWork';
 import { loadListnersForHome, removeListnersForHome, loadListnersForMyLibrary, removeListnersForMyLibrary } from "./onLoad"
 import { getRefs } from './refs';
-import {showPageHome, showPageMyLibrary} from './showPage'
+import {showPageHome, showPageMyLibrary, hidePagination, showPagination} from './showPage'
 
 
 export const changeHeader = (pageName, target) => {
@@ -19,6 +19,7 @@ export const changeHeader = (pageName, target) => {
         loadListnersForHome(newRefs);
         changeClasses(newRefs.headerNav.children[1].children[0], 'my-library', newRefs.headerNav.children[0].children[0], 'home');
         showPageHome(1);
+        showPagination(refs);
     };
     
     if (pageName === 'MY LIBRARY') {
@@ -30,5 +31,6 @@ export const changeHeader = (pageName, target) => {
         loadListnersForMyLibrary(newRefs);
         changeClasses(newRefs.headerNav.children[0].children[0], 'home', newRefs.headerNav.children[1].children[0], 'my-library');
         showPageMyLibrary('watched');
+        hidePagination(refs);
     };
 }
