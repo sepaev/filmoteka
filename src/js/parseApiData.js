@@ -1,7 +1,7 @@
 import { genres } from "./consts";
 
 //обрезаю дату
-const trimYear = (fullDate) => {
+export const trimYear = (fullDate) => {
     if (!fullDate) return ''
     return fullDate.slice(0, 4);
 }
