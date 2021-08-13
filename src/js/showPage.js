@@ -1,8 +1,10 @@
 import {getMoviesPagination } from "./getContent"
 import Notiflix from "notiflix";
-import { renderGallery } from "../js/renderGallery"
+import { renderAllGallery } from "../js/renderGallery"
 import { getRefs } from "./refs";
-import {parseFilmsData} from './parseApiData'
+import { parseFilmsData } from './parseApiData'
+import { loadDataFromLS } from './localStoragе'
+
 
 export const showPageHome = (pageNumber) => {
     Notiflix.Loading.pulse();
@@ -18,12 +20,19 @@ export const showPageHome = (pageNumber) => {
            localStorage.setItem('tempQuery', string);
            return filmData;
         })
-    .then(films => {
-        refs.galleryItems.innerHTML = '';
-        films.forEach(film => renderGallery(film));
+        .then(films => {
+            renderAllGallery(films);// перебирает обьект и выводит карточки фильмов
     })
       .catch(error => {
        Notiflix.Loading.remove();
        console.log(error);
    });
+}
+
+export const showPageMyLibrary = (keyName) => {
+    Notiflix.Loading.pulse();
+    window.setTimeout(Notiflix.Loading.remove, 500);// для красоты
+    const watchedArr = loadDataFromLS(keyName);
+    renderAllGallery(watchedArr);// перебирает обьект и выводит карточки фильмов
+
 }
