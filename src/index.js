@@ -8,7 +8,9 @@ import { onPaginationNavClick } from "./js/paginationNav"
 import { onDevLinkClick } from "./js/footerDevelopers"
 import { onLoad } from "./js/onLoad"
 import { activateScrollButton } from './js/btnScrollUp'
+import { activPageButton } from './js/paginationNav'
 import './js/theme';
+
 
 
 const refs = getRefs();

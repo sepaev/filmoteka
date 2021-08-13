@@ -8,7 +8,7 @@ const instance = basicLightbox.create(refs.modalFilm);
 
 export const onFilmClick = (e) => {
     const targetCard = e.target.parentNode.parentNode;
-    console.dir(e.target);
+    // console.dir(e.target);
     const targetCardId = targetCard.dataset.id;
     if (targetCard.className === "film") { // проверка на клик (нужно тестить. может нужно менять)
         // 1 тут получить id фильма
