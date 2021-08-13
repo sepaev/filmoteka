@@ -1,6 +1,44 @@
-.modal-film {
-  opacity: 0;
+.basicLightbox {
+  overflow-y: auto;
 
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.basicLightbox__placeholder {
+  @media (max-width: $max-mobile) {
+    margin: 20px auto;
+  }
+  @media (min-width: $min-tablet) {
+    margin: auto;
+  }
+}
+
+// @media (max-width: $max-mobile) {
+// }
+// @media (min-width: $min-tablet) and (max-width: $max-tablet) {
+// }
+// @media (min-width: $min-desktop) {
+// }
+
+.modal-film__overlay {
+  margin: auto;
+
+  position: relative;
+
+  // top: 0;
+  // right: 0;
+  // bottom: 0;
+  // left: 0;
+}
+
+.modal-film {
+  // этот класс ни на что не влияет, т.к. секция стоит отдельно от всего остального
+
+  // opacity: 0;
+  // position: relative;
+  // display: flex;
+  // justify-content: flex-start;
   // кнопки сделаны пока не полностью, но я не уверен, что они хорошо там стоят, но геометрия самих кнопок и цвет как надо вроде
   &__close {
     position: absolute;
@@ -9,35 +47,136 @@
 
     top: 18px;
     right: 18px;
+
+    background-image: url('/images/svg/close.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    // outline: none;
+
+    padding: 8px;
+    border: none;
+    border-radius: 50%;
+    background-color: transparent;
+  }
+
+  &__btn-watched {
+    margin-right: 15px;
+    overflow: visible;
+  }
+  // &__btn-queque {
+
+  // }
+
+  // @media (max-width: $max-mobile) {
+  // }
+  // @media (min-width: $min-tablet) and (max-width: $max-tablet) {
+  // }
+  // @media (min-width: $min-desktop) {
+  // }
+
+  &__btn-watched {
+    @media (max-width: $max-mobile) {
+      // тут значение уменьшено на 2 половины размера шрифта, чтобы надпись не выходила за пределы
+      padding: 6px 8px;
+    }
+    @media (min-width: $min-tablet) and (max-width: $max-tablet) {
+      padding: 14px 9px;
+    }
+    @media (min-width: $min-desktop) {
+      padding: 14px 10px;
+    }
+  }
+
+  &__btn-queque {
+    @media (max-width: $max-mobile) {
+      padding: 14px 7px;
+    }
+    @media (min-width: $min-tablet) and (max-width: $max-tablet) {
+      padding: 14px 7px;
+    }
+    @media (min-width: $min-desktop) {
+      padding: 14px 8px;
+    }
   }
 
   &__btn-watched,
   &__btn-queque {
-    padding: 14px 0px 12px 0px;
-    width: 112px;
+    // padding: 14px 0px 12px 0px;
+    height: 44px;
 
+    border: 1px solid $black-color;
     border-radius: 5px;
+    background-color: transparent;
+    text-transform: uppercase;
+
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 1.33;
+    text-transform: uppercase;
+
+    color: $black-color;
+
+    @media (max-width: $max-mobile) {
+      width: 113px;
+    }
+    @media (min-width: $min-tablet) and (max-width: $max-tablet) {
+      width: 125px;
+    }
+    @media (min-width: $min-desktop) {
+      width: 136px;
+    }
   }
 
-  &__btn-watched {
-    background-color: #ff6b01;
-    color: #fff;
+  &__btn-watched:hover,
+  &__btn-watched:focus {
+    background-color: $orange-color;
+    color: $white-color;
+  }
+
+  &__btn-queque:hover,
+  &__btn-queque:focus {
+    background-color: $orange-color;
+    color: $white-color;
   }
 
   &__buttons {
+    position: absolute;
     display: flex;
-    justify-content: space-between;
+    // justify-content: center;
+
+    bottom: 0;
+
+    @media (max-width: $max-mobile) {
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    @media (min-width: $min-tablet) and (max-width: $max-tablet) {
+      bottom: 40px;
+      right: 29px;
+    }
+    @media (min-width: $min-desktop) {
+      bottom: 102px;
+      right: 139px;
+    }
   }
 
   &__overlay {
-    position: relative;
+    background-color: #fff;
+
+    // top: 0;
+    // right: 0;
+    // bottom: 0;
+    // left: 0;
+    // overflow-x: hidden;
+    // overflow-y: auto;
+    // padding: ;
   }
 }
 
 .modal-card {
   color: white; // потом убрать
   @media (max-width: $max-mobile) {
-    padding: 48px 21px 20px 20px;
+    padding: 48px 20px 106px 20px;
     // outline: 1px solid black;
     // position: relative;
 
@@ -48,40 +187,51 @@
   @media (min-width: $min-tablet) and (max-width: $max-tablet) {
     display: flex;
     justify-content: space-between;
-    padding: 42px 30px 20px 28px;
+
+    padding: 42px 30px 104px 28px;
     max-width: 618px;
     // outline: 1px solid blue;
   }
   @media (min-width: $min-desktop) {
     display: flex;
     justify-content: space-between;
+
     padding: 48px 30px 42px 24px;
     max-width: 882px;
     // outline: 1px solid greenyellow;
   }
 
   &__image {
+    display: block;
+    object-fit: cover;
+    max-height: 100%;
+    max-width: 100%;
+
+    // border: 1px;
+    border-radius: 5px;
+
     @media (max-width: $max-mobile) {
       background-color: #eab4a9;
-      width: 396px;
-      height: 478px;
     }
     @media (min-width: $min-tablet) and (max-width: $max-tablet) {
       background-color: #ff6b01;
-      width: 264px;
-      height: 374px;
+      max-width: 264px;
+      max-height: 374px;
     }
     @media (min-width: $min-desktop) {
       background-color: #ff6b01;
 
-      width: 396px;
-      height: 478px;
+      max-width: 396px;
+      max-height: 478px;
     }
   }
 
   // общие стили
 
   &__img-thumb {
+    // border: 1px;
+    // border-radius: 5px;
+
     @media (max-width: $max-mobile) {
       margin-bottom: 30px;
       display: flex;
@@ -90,14 +240,29 @@
 
     @media (min-width: $min-tablet) and (max-width: $max-tablet) {
       margin-right: 32px;
+      max-width: 264px;
+      max-height: 374px;
     }
     @media (min-width: $min-desktop) {
       margin-right: 36px;
-      width: 396px;
-      height: 478px;
+      max-width: 396px;
+      max-height: 478px;
     }
   }
+
+  &__data {
+    @media (min-width: $min-tablet) and (max-width: $max-tablet) {
+      width: 264px;
+    }
+    @media (min-width: $min-desktop) {
+      width: 396px;
+      padding-bottom: 127px;
+    }
+  }
+
   &__data-heading {
+    color: $black-color;
+
     margin-bottom: 20px;
     font-size: 30px;
     line-height: 1.17;
@@ -111,7 +276,7 @@
 
   &__list-item {
     display: flex;
-    justify-content: space-between;
+    // justify-content: space-between;
 
     margin-bottom: 10px;
 
@@ -143,6 +308,31 @@
     }
   }
 
+  &__list-votes {
+    margin-right: 41px;
+    @media (min-width: $min-desktop) {
+      margin-right: 85px;
+    }
+  }
+  &__list-popularity {
+    margin-right: 53px;
+    @media (min-width: $min-desktop) {
+      margin-right: 97px;
+    }
+  }
+  &__list-title {
+    margin-right: 39px;
+    @media (min-width: $min-desktop) {
+      margin-right: 83px;
+    }
+  }
+  &__list-genre {
+    margin-right: 76px;
+    @media (min-width: $min-desktop) {
+      margin-right: 120px;
+    }
+  }
+
   &__list-rate {
     background-color: #ff6b01;
     color: #fff;
@@ -158,12 +348,14 @@
   }
 
   &__description-heading {
+    color: $black-color;
+
     font-size: 12px;
     line-height: 1.33;
     font-weight: 500;
 
     margin-top: 20px;
-    margin-bottom: 10px;
+    // margin-bottom: 10px;
 
     @media (max-width: $max-mobile) {
       font-size: 12px;
@@ -178,12 +370,14 @@
   &__description {
     margin-bottom: 20px;
 
+    color: $black-color;
     font-size: 12px;
     line-height: 1.67;
     font-weight: 500;
 
     @media (max-width: $max-mobile) {
       margin-bottom: 20px;
+
       font-size: 12px;
       line-height: 1.67;
       font-weight: 500;
@@ -197,19 +391,19 @@
     }
   }
 
-  &__list {
-    @media (max-width: $max-mobile) {
-      padding-right: 25px;
-    }
-    @media (min-width: $min-tablet) and (max-width: $max-tablet) {
-      padding-right: 50px;
-    }
-    @media (min-width: $min-desktop) {
-      padding-right: 137px;
-    }
-  }
+  // &__list {
+  //   @media (max-width: $max-mobile) {
+  //     padding-right: 25px;
+  //   }
+  //   @media (min-width: $min-tablet) and (max-width: $max-tablet) {
+  //     padding-right: 50px;
+  //   }
+  //   @media (min-width: $min-desktop) {
+  //     padding-right: 137px;
+  //   }
+  // }
 
-  &__wrapper {
-    margin: auto;
-  }
+  // &__wrapper {
+  //   margin: auto;
+  // }
 }
