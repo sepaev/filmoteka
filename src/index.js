@@ -8,6 +8,8 @@ import { onPaginationNavClick } from "./js/paginationNav"
 import { onDevLinkClick } from "./js/footerDevelopers"
 import { onLoad } from "./js/onLoad"
 import { activateScrollButton } from './js/btnScrollUp'
+import { changeLanguage, doLocalisation } from './js/localization'
+
 import './js/theme';
 import './js/filmoptim';
 
@@ -28,6 +30,16 @@ refs.headerNav.addEventListener('click', e => {
   e.preventDefault;
   if (e.target.nodeName === "A") {
     changeHeader(e.target.textContent, refs.headerDivToChange); //from "./js/headerNav" меняет шапку HOME/MY LIBRARY
+  };
+});
+
+// обработка клика по control language
+refs.languageLinks.addEventListener('click', e => {
+  e.preventDefault;
+  if (e.target.nodeName === "A") {
+    console.dir(e.target.dataset);
+    changeLanguage(e.target.dataset.set); //from "./js/localization" меняет язык сайта
+
   };
 });
 
