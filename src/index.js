@@ -9,6 +9,8 @@ import { onDevLinkClick } from "./js/footerDevelopers"
 import { onLoad } from "./js/onLoad"
 import { activateScrollButton } from './js/btnScrollUp'
 import './js/theme';
+import './js/filmoptim';
+
 
 
 

@@ -113,6 +113,9 @@
     @media (max-width: $max-mobile) {
       display: none;
     }
+    &:hover {
+      color: $orange-color;
+    }
   }
 
   &__logo-icon {
@@ -121,6 +124,7 @@
     // align-self: center;
     @media (max-width: $max-mobile) {
       vertical-align: baseline;
+      margin-top: 8px;
       padding: 0;
     }
     @media (min-width: $min-tablet) and (max-width: $max-tablet) {
