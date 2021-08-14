@@ -1,6 +1,5 @@
 import LocalizedStrings from 'localized-strings';
 import { getRefsLocals } from "./refs"
-
 export const getLang = () => {
     const lang = localStorage.getItem('language');
     if (lang) {
@@ -82,28 +81,24 @@ export const getLocalsStrings = () => {
     },
     {
         customLanguageInterface: getCustomInterfaceLanguage,
-    },);
+    });
 
     return strings;
 };
 
+let strings = getLocalsStrings();
+
 export const doLocalisation = () => {
     const localRefs = getRefsLocals();
-    let strings = getLocalsStrings();
-    console.dir(strings);
     for (let i = 0; i < Object.keys(localRefs).length; i++) {
         const ref = localRefs[Object.keys(localRefs)[i]];
         const name = Object.keys(localRefs)[i].split('_ref')[0]
-        console.log(name);
         if (ref) {
-            if (ref.nodeName === 'A' || ref.nodeName === 'SPAN'|| ref.nodeName === 'H2') {
-                ref.textContent = strings.getString(name+'_text');
-            }
             if (ref.nodeName === 'INPUT') {
                 ref.placeholder = strings.getString(name+'_text');
-            }
-            if (ref.nodeName === 'BUTTON') {
-                ref.value = strings.getString(name+'_text');
+                console.log(2);
+            } else {
+                ref.textContent = strings.getString(name+'_text');
             }
         };
     };

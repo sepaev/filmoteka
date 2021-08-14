@@ -59,8 +59,9 @@ export const onFilmClick = e => {
         };
         renderFilmCard(currentItem);
         doLocalisation();
+        // window.setTimeout(doLocalisation, 100);
         return;
-      });
+      }); 
     });
 
     // обработка клика по esc
@@ -83,6 +84,7 @@ function renderFilmCard(filmCard) {
   // isAddedtoWatched(filmCard);
   // isAddedtoQueue(filmCard);
   refs.modalCard.innerHTML = modalFilmCardTpl(filmCard);
+  doLocalisation();
 }
 
 function onAddToWatched(currentItem) {
