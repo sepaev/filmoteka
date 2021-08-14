@@ -280,3 +280,23 @@
     background-color: $orange-color;
   }
 }
+.control {
+  &__panel {
+    display: flex;
+    align-items: center;
+    padding: 20px 20px 20px 0;
+    position: absolute;
+    background-color: $orange_color;
+    border-radius: 20px 0 0 20px;
+    right: -210px;
+    opacity: 0.5;
+    &:hover {
+      right: 0px;
+      opacity: 0.9;
+    }
+  }
+
+  &__info {
+    transform: rotate(-90deg);
+  }
+}

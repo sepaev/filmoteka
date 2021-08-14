@@ -2,12 +2,25 @@
   <div class="header__container home">
     <div class="header__nav-block">
       <div class="header__logo">
-        <svg width="24" height="24" fill="none" id="filmoptim" xmlns="http://www.w3.org/2000/svg" data-llp-composed="true"
-          class="lazy-line-painter header__logo-icon">
+        <svg
+          width="24"
+          height="24"
+          fill="none"
+          id="filmoptim"
+          xmlns="http://www.w3.org/2000/svg"
+          data-llp-composed="true"
+          class="lazy-line-painter header__logo-icon"
+        >
           <path
             d="M19.82 2H4.18A2.18 2.18 0 002 4.18v15.64A2.18 2.18 0 004.18 22h15.64A2.18 2.18 0 0022 19.82V4.18A2.18 2.18 0 0019.82 2zM7 2v20M17 2v20M2 12h20M2 7h5M2 17h5M17 17h5M17 7h5"
-            data-llp-id="filmoptim-0" data-llp-duration="1700" data-llp-delay="0" fill-opacity="0"
-            style="stroke-linecap: square;" data-llp-stroke-join="" data-llp-stroke-cap="square" />
+            data-llp-id="filmoptim-0"
+            data-llp-duration="1700"
+            data-llp-delay="0"
+            fill-opacity="0"
+            style="stroke-linecap: square"
+            data-llp-stroke-join=""
+            data-llp-stroke-cap="square"
+          />
         </svg>
         <!-- <svg class="header__logo-icon" width="24" height="24">
           <use href="./images/svg/sprite.svg#icon-film"></use>
@@ -20,16 +33,40 @@
           <li><a class="header-nav__link" id="myLibraryLink" href="#">MY LIBRARY</a></li>
         </ul>
         <!-- <button class="btn__theme" id="toggleThemeBtn">Theme</button> -->
+      </nav>
+      <div class="control__panel">
+        <h6 class="control__info">Controls</h6>
         <div class="theme-switch">
           <div class="theme-switch__control">
-            <input class="theme-switch__toggle" type="checkbox" name="theme" id="toggleThemeBtn"
-              aria-label="light-dark theme switcher" />
-            <label aria-hidden="true" class="theme-switch__track" for="toggleThemeBtn">
-            </label>
+            <input
+              class="theme-switch__toggle"
+              type="checkbox"
+              name="theme"
+              id="toggleThemeBtn"
+              aria-label="light-dark theme switcher"
+            />
+            <label aria-hidden="true" class="theme-switch__track" for="toggleThemeBtn"> </label>
             <div aria-hidden="true" class="theme-switch__marker"></div>
           </div>
         </div>
-      </nav>
+        <ul class="control__languages">
+          <li class="control__languages-item">
+            <a href="#" class="control__languages-link" id="englishLink" data-set="eu-US"
+              >English</a
+            >
+          </li>
+          <li class="control__languages-item">
+            <a href="#" class="control__languages-link" id="russianLink" data-set="ru-RU"
+              >Русский</a
+            >
+          </li>
+          <li class="control__languages-item">
+            <a href="#" class="control__languages-link" id="ukrainianLink" data-set="uk-UA"
+              >Українська</a
+            >
+          </li>
+        </ul>
+      </div>
     </div>
 
     <div class="header-search my-library">
