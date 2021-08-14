@@ -8,6 +8,7 @@ export const getRefs = () => {
     headerDivToChange:  document.querySelector('.header-search'),
     headerError:        document.querySelector('.header-search__error'),
     headerContainer:    document.querySelector('.header__container'),
+    languageLinks:      document.querySelector('.control__languages-item'),
     _________FILMOTEKA: null,
     filmsSection:       document.querySelector('.filmoteka'),
     galleryItems:       document.querySelector('.filmoteka__set'),
