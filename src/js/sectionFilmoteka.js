@@ -8,6 +8,7 @@ import modalFilmCardTpl from '../partials/templates/modalFilmCard.hbs';
 
 // import * as parseApiData from './parseApiData';
 import { getGenres, checkPoster, trimYear } from './parseApiData';
+import { doLocalisation } from './localization';
 
 const refs = getRefs();
 const instance = basicLightbox.create(refs.modalFilm);
@@ -35,6 +36,7 @@ export const onFilmClick = e => {
 
       if (currentItem !== undefined) {
         renderFilmCard(currentItem);
+        doLocalisation();
         return;
       }
 
@@ -56,6 +58,7 @@ export const onFilmClick = e => {
           year: trimYear(data['release_date']),
         };
         renderFilmCard(currentItem);
+        doLocalisation();
         return;
       });
     });
