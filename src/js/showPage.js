@@ -6,6 +6,11 @@ import { parseFilmsData } from './parseApiData'
 import { loadDataFromLS } from './localStoragе'
 import { renderPaginationBtn } from './paginationNav'
 
+Notiflix.Notify.init({
+    position: 'center-top',
+    distance: '180px',
+}); 
+
 export const hidePagination = (refs) => {
     refs.paginationNav.style.display = 'none';
     refs.footer.style.position = 'absolute';
@@ -20,9 +25,12 @@ export const showPagination = (refs) => {
     refs.footer.style.top = 'inherit';
 }
 
-const doOnSuccess = (totalResults, totslPages) => {
+const doOnSuccess = (totalResults, totalPages, pageNumber) => {
     const refs = getRefs();
-    Notiflix.Notify.success('Found ' + totalResults + ' results. Total ' + totslPages + ' pages');
+    pageNumber > 1?
+    Notiflix.Notify.success('You are watching ' + pageNumber + ' page of total ' + totalPages + ' pages')
+    :
+    Notiflix.Notify.success('Found ' + totalResults + ' results. Total ' + totalPages + ' pages');
     showPagination(refs);
     refs.headerError.style.display = 'none';
     if (totalResults < 20) {
@@ -44,7 +52,7 @@ export const showPageHome = (pageNumber) => {
     .then(data => {
         Notiflix.Loading.remove();
         if (data.total_results) {
-            doOnSuccess(data.total_results, data.total_pages);
+            doOnSuccess(data.total_results, data.total_pages, pageNumber);
         } else {
             doOnFailure();
         }
@@ -71,5 +79,10 @@ export const showPageMyLibrary = (keyName) => {
     window.setTimeout(Notiflix.Loading.remove, 200);// для красоты
     const watchedArr = loadDataFromLS(keyName);
     renderAllGallery(watchedArr);// перебирает обьект и выводит карточки фильмов
-
+    
+    Notiflix.Notify.init({
+        position: 'center-top',
+        distance: '195px',
+    }); 
+Notiflix.Notify.success('You have ' +watchedArr.length + ' films in your library "' +keyName + '"');
 }
