@@ -5,6 +5,7 @@ import { getRefs } from "./refs";
 import { parseFilmsData } from './parseApiData'
 import { loadDataFromLS } from './localStoragе'
 import { renderPaginationBtn } from './paginationNav'
+import { makeButtonActiv } from './paginationNav'
 
 Notiflix.Notify.init({
     position: 'center-top',
@@ -57,6 +58,7 @@ export const showPageHome = (pageNumber) => {
             doOnFailure();
         }
         renderPaginationBtn(data.total_pages, pageNumber)
+        makeButtonActiv(pageNumber)
         return data.results;
     })
         .then(films => {

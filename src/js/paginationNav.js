@@ -1,7 +1,7 @@
 import { showPageHome } from './showPage'
 import { getRefs } from "./refs";
 
-   const refs = getRefs();   
+//    const refs = getRefs();   
 
 let buttons = {
     leftArrow: null,
@@ -16,30 +16,46 @@ let buttons = {
 
 const checkElement = (elem, ref) => {
     if (!elem) {
-        console.dir('RETURN!!!!!  - ' + ref);
-        console.dir(ref);
         return;
     };
-    console.log(elem);
-    console.dir(elem);
-    if (elem.length > 1) { // если ...
+    if (elem.length > 1) {
         if (elem[0] !== 'x') {
-            ref.textContent = ref.textContent;
-            ref.dataset.number = elem[1]
+            ref.textContent = elem[0];
+            ref.dataset.number = elem[1];
+            ref.style.display = 'block';
+        } else {
+            ref.style.display = 'none';
+            ref.dataset.number = '';
+        };
+    } else {
+        if (elem !== 'x') {
+            ref.textContent = elem;
+            ref.dataset.number = elem;
+            ref.style.display = 'block';
+        } else {
+            ref.style.display = 'none';
+            ref.dataset.number = '';
+        };
+    }
+}
+
+const checkElementForArrow = (elem, ref) => {
+     if (elem.length > 1) { 
+        if (elem[0] !== 'x') {
+            ref.dataset.number = elem[1];
             ref.style.display = 'block';
         } else {
             ref.style.display = 'none';
         };
     } else {
         if (elem !== 'x') {
-            ref.textContent = ref.textContent;
             ref.dataset.number = elem;
             ref.style.display = 'block';
         } else {
             ref.style.display = 'none';
         };
     }
-} 
+}
 
 const writeButtons = buttonsObj => {
     const refs = getRefs();
@@ -47,8 +63,10 @@ const writeButtons = buttonsObj => {
         refs.pagesButton.children[i].children[0].textContent = buttonsObj.centralPages[i];
         refs.pagesButton.children[i].children[0].dataset.number = buttonsObj.centralPages[i];
     }
-    checkElement(buttonsObj.leftArrow, refs.leftButton);
-    checkElement(buttonsObj.rightArrow, refs.rightButton);
+    checkElementForArrow(buttonsObj.leftArrow, refs.leftButton);
+    checkElementForArrow(buttonsObj.rightArrow, refs.rightButton);
+
+
     checkElement(buttonsObj.prev, refs.prevButton);
     checkElement(buttonsObj.next, refs.nextButton);
     checkElement(buttonsObj.firstButton, refs.firstButton);
@@ -56,11 +74,13 @@ const writeButtons = buttonsObj => {
 };
 
 export const renderPaginationBtn = (totalPages, currentPage) => {
+
+    
     if (currentPage > totalPages) {
         currentPage = 1;
     }
     
-    if (currentPage <= 3) {//не нужна первая стрелка и prev, pages рисует 12345
+    if (currentPage <= 3) { // промежуток до 3 страницы
         buttons = {
             leftArrow: 'x',
             prev: ['x', 0],
@@ -74,9 +94,7 @@ export const renderPaginationBtn = (totalPages, currentPage) => {
         writeButtons(buttons);
     }
 
-    if (currentPage > 3 && currentPage <= totalPages - 3) {
-
-
+    if (currentPage > 3 && currentPage <= totalPages - 3) { // промежуток от 3 до (последней - 3);
         buttons = {
             leftArrow: currentPage-1,
             prev: ['...', currentPage - 3],
@@ -90,7 +108,7 @@ export const renderPaginationBtn = (totalPages, currentPage) => {
         writeButtons(buttons);
     }
 
-    if (currentPage > totalPages - 3 && currentPage <= totalPages) {
+    if (currentPage > totalPages - 3 && currentPage <= totalPages) { //промежуток от (последней - 3) до последней
         buttons = {
             leftArrow: currentPage-1,
             prev: ['...', totalPages - 5],
@@ -102,15 +120,24 @@ export const renderPaginationBtn = (totalPages, currentPage) => {
             lastButton: 'x',
         };
         writeButtons(buttons);
-    }//не нужна вторая стрелка и next,  последние 5цифр
+    }
     
 };
 
 
 export const onPaginationNavClick = page => {
     showPageHome(parseInt(page));
-    console.log('Загружаю страницу' + page);
+
+    // console.log('Загружаю страницу' + page);
    
 };
 
+export const makeButtonActiv = (currentPage) => {
+    const currentButton = document.querySelector(`a[data-number='${currentPage}'`);
+        let activButton = document.querySelector('.filmoteka-nav__pages--link_current');
+    if (activButton) {
+        activButton.classList.remove('filmoteka-nav__pages--link_current')
+    }
+    currentButton.classList.add('filmoteka-nav__pages--link_current') 
+}
 
