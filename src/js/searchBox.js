@@ -5,7 +5,7 @@ export const onSearchBoxChange = e => {
     if (e.key === 'Enter') {
         showPageHome(1);
     }
-}
+ }
 export const onSearchBoxFocus = e => {
     console.log('Фокус searchBox');
     console.log(e);
