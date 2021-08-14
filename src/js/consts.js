@@ -1,8 +1,13 @@
+import { getLocalsStrings, getLang } from './localization';
+
 export const consts = {
     DEBOUNCE_DELAY: 300,
     API_KEY: "8948cf34f147d17edd39edcb74badce4",
     API_URL: "https://api.themoviedb.org/3/",
-}
+    LANGUAGE: getLang(),
+    // LANGUAGE: 'ru-RU',
+    // LANGUAGE: 'uk-UA',
+};
 
 export const genres = [
     { id: 28, name: "Action" },
@@ -25,4 +30,7 @@ export const genres = [
     { id: 10752, name: "War" },
     { id: 37, name: "Western" },
 ];
+
+export const locals = getLocalsStrings();
+
 

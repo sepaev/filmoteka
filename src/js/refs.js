@@ -39,3 +39,26 @@ export const getRefs = () => {
     scrollTopBtn:       document.querySelector('.scroll__top'),
   };
 };
+
+export const getRefsLocals = () => {
+  return {
+    filmoteka_ref:       document.querySelector('.header__logo-name'),
+    search_films_ref:    document.querySelector('.header-search__input'),
+    home_ref:            document.querySelector('#homeLink'),
+    my_library_ref:      document.querySelector('#myLibraryLink'),
+    rights_ref:          document.querySelector('.lang__rights_text'),
+    devs_ref:            document.querySelector('.lang__devs_text'),
+    by_ref:              document.querySelector('.lang__by_text'),
+    watched_ref:         document.querySelector('.my-library__watched-btn'),
+    queue_ref:           document.querySelector('.my-library__queue-btn'),
+    vote_ref:            document.querySelector('.modal-card__list-votes'),
+    popularity_ref:      document.querySelector('.modal-card__list-popularity'),
+    title_orign_ref:     document.querySelector('.modal-card__list-title'),
+    genre_ref:           document.querySelector('.modal-card__list-genre'),
+    about_ref:           document.querySelector('.modal-card__description-heading'),
+    add_to_watched_ref:  document.querySelector('.modal-film__btn-watched'),
+    add_to_queue_ref:    document.querySelector('.modal-film__btn-queque'),
+    close_devs_ref:      document.querySelector('.modal-devs__close-btn'),
+    team_devs_ref:       document.querySelector('.team__heading'),
+  };
+};

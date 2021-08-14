@@ -4,10 +4,14 @@ import { consts } from "./consts";
 import { onSearchBoxChange, onSearchBoxFocus } from "./searchBox"
 import { onWatchedButtonClick, onQueueButtonClick } from "./libraryButtons"
 import { onSearchButtonClick } from "./searchButton"
+import { doLocalisation } from "./localization"
+
+
 
 // функция по загрузке
 export const onLoad = refs => {
-    changeHeader('HOME', refs.headerDivToChange)
+    changeHeader('HOME', refs.headerDivToChange);
+    doLocalisation();
 }
 
 export const loadListnersForHome = (refs) => {

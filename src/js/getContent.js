@@ -19,7 +19,7 @@ export const fetchGetTrending = async (pageValue) => {
 
 export const fetchGetSearchMovie = async (valueSearch, pageValue) => {
     const { data } = await axios.get(
-      `/search/movie?api_key=${API_KEY}&page=${pageValue}&query=${valueSearch}`,
+      `/search/movie?api_key=${API_KEY}&page=${pageValue}&query=${valueSearch}&language=${consts.LANGUAGE}`,
     );
     const { results, total_pages, page, total_results } = data;
     return { results, total_pages, page, total_results };
@@ -84,5 +84,5 @@ export const getMoviesPagination = async (searchValue, pageValue = 1) => {
 //     return opt.type+"/"+opt.what+"?api_key="+API_KEY+"&query="+opt.query+"&language="+opt.language+"&page="+opt.page+"&include_adult="+opt.adault
 // }
 // Пример ссылки
-// https://api.themoviedb.org/3/search/movie?api_key=<<api_key>>&language=en-US&page=1&include_adult=false
+// https://api.themoviedb.org/3/search/movie?api_key=8948cf34f147d17edd39edcb74badce4&language=en-US&page=1&include_adult=false
 
