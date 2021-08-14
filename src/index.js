@@ -37,7 +37,10 @@ refs.headerLogo.addEventListener('click', e => {
 // обработка клика по header pagination nav
 refs.paginationNav.addEventListener('click', e => {
   e.preventDefault;
-  if (e.target.nodeName === "A") { onPaginationNavClick(e.target.textContent) };
+
+  if (e.target.nodeName === "A") {
+    onPaginationNavClick(e.target.dataset.number);
+  };
 });
 
 // обработка клика по header developer link

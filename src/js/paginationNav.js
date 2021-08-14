@@ -1,96 +1,106 @@
 import { showPageHome } from './showPage'
 import { getRefs } from "./refs";
 
-   const refs = getRefs();   
+//    const refs = getRefs();   
 
 let buttons = {
     leftArrow: null,
-    prev: null,
+    prev: [null, 0],
     centralPages: [],
-    next: null,
+    next: [null, 0],
     rightArrow: null,
     current: null,
     firstButton: null,
     lastButton: null,
 };
 
+const checkElement = (elem, ref) => {
+    if (!elem) {
+        return;
+    };
+    if (elem.length > 1) {
+        if (elem[0] !== 'x') {
+            ref.textContent = elem[0];
+            ref.dataset.number = elem[1];
+            ref.style.display = 'block';
+        } else {
+            ref.style.display = 'none';
+            ref.dataset.number = '';
+        };
+    } else {
+        if (elem !== 'x') {
+            ref.textContent = elem;
+            ref.dataset.number = elem;
+            ref.style.display = 'block';
+        } else {
+            ref.style.display = 'none';
+            ref.dataset.number = '';
+        };
+    }
+}
 
+const checkElementForArrow = (elem, ref) => {
+     if (elem.length > 1) { 
+        if (elem[0] !== 'x') {
+            ref.dataset.number = elem[1];
+            ref.style.display = 'block';
+        } else {
+            ref.style.display = 'none';
+        };
+    } else {
+        if (elem !== 'x') {
+            ref.dataset.number = elem;
+            ref.style.display = 'block';
+        } else {
+            ref.style.display = 'none';
+        };
+    }
+}
 
 const writeButtons = buttonsObj => {
-    refs.pagesButton.children[0].children[0].textContent = buttonsObj.centralPages[0];
-    refs.pagesButton.children[1].children[0].textContent = buttonsObj.centralPages[1];
-    refs.pagesButton.children[2].children[0].textContent = buttonsObj.centralPages[2];
-    refs.pagesButton.children[3].children[0].textContent = buttonsObj.centralPages[3];
-    refs.pagesButton.children[4].children[0].textContent = buttonsObj.centralPages[4];
+    const refs = getRefs();
+    for (let i = 0; i < 5; i++){
+        refs.pagesButton.children[i].children[0].textContent = buttonsObj.centralPages[i];
+        refs.pagesButton.children[i].children[0].dataset.number = buttonsObj.centralPages[i];
+    }
+    checkElementForArrow(buttonsObj.leftArrow, refs.leftButton);
+    checkElementForArrow(buttonsObj.rightArrow, refs.rightButton);
 
-    if (buttonsObj.leftArrow !== null) {
-        refs.leftButton.style.display = 'block';
-      
-    } else {
-        refs.leftButton.style.display = 'none';
-    }
 
-    if (buttonsObj.rightArrow !== null) {
-        refs.rightButton.style.display = 'block';
-    } else {
-        refs.rightButton.style.display = 'none';
-    }
-    if (buttonsObj.prev !== null) {
-        refs.prevButton.textContent = buttonsObj.prev;
-        refs.prevButton.style.display = 'inherit';
-    } else {
-        refs.prevButton.style.display = 'none';
-    };
-    if (buttonsObj.next !== null) {
-        refs.nextButton.textContent = buttonsObj.next;
-        refs.nextButton.style.display = 'inherit';
-    } else {
-        refs.nextButton.style.display = 'none';
-    }
-    if (buttonsObj.firstButton !== null) {
-        refs.firstButton.textContent = buttonsObj.firstButton;
-        refs.firstButton.style.display = 'inherit';
-    } else {
-        refs.firstButton.style.display = 'none';
-    }
-    if (buttonsObj.lastButton !== null) {
-        refs.lastButton.textContent = buttonsObj.lastButton;
-        refs.lastButton.style.display = 'inherit';
-    } else {
-        refs.lastButton.style.display = 'none';
-    }
-    
-
+    checkElement(buttonsObj.prev, refs.prevButton);
+    checkElement(buttonsObj.next, refs.nextButton);
+    checkElement(buttonsObj.firstButton, refs.firstButton);
+    checkElement(buttonsObj.lastButton, refs.lastButton);
 };
 
 export const renderPaginationBtn = (totalPages, currentPage) => {
+
+    
     if (currentPage > totalPages) {
         currentPage = 1;
     }
     
-    if (currentPage <= 3) {//не нужна первая стрелка и prev, pages рисует 12345
+    if (currentPage <= 3) { // промежуток до 3 страницы
         buttons = {
-            leftArrow: null,
-            prev: null,
+            leftArrow: 'x',
+            prev: ['x', 0],
             centralPages: [1, 2, 3, 4, 5],
-            next: '...',
-            rightArrow: '',
+            next: ['...', 6],
+            rightArrow: currentPage+1,
             current: currentPage,
-            firstButton: null,
+            firstButton: 'x',
             lastButton: totalPages,
         };
         writeButtons(buttons);
     }
 
-    if (currentPage > 3 && currentPage <= totalPages - 3) {
-
-
+    if (currentPage > 3 && currentPage <= totalPages - 3) { // промежуток от 3 до (последней - 3);
         buttons = {
-            leftArrow: '',
-            prev: '...',
+            leftArrow: currentPage-1,
+            prev: ['...', currentPage - 3],
             centralPages: [currentPage - 2, currentPage - 1, currentPage, currentPage + 1, currentPage + 2],
-            next: '...',
-            rightArrow: '',
+            next: ['...', currentPage + 3],
+            rightArrow: currentPage+1,
             current: currentPage,
             firstButton: 1,
             lastButton: totalPages,
@@ -98,30 +108,36 @@ export const renderPaginationBtn = (totalPages, currentPage) => {
         writeButtons(buttons);
     }
 
-    if (currentPage > totalPages - 3 && currentPage <= totalPages) {
+    if (currentPage > totalPages - 3 && currentPage <= totalPages) { //промежуток от (последней - 3) до последней
         buttons = {
-            leftArrow: '',
-            prev: '...',
+            leftArrow: currentPage-1,
+            prev: ['...', totalPages - 5],
             centralPages: [totalPages - 4, totalPages - 3, totalPages - 2, totalPages - 1, totalPages],
-            next: null,
-            rightArrow: null,
+            next: ['x', 0],
+            rightArrow: 'x',
             current: currentPage,
             firstButton: 1,
-            lastButton: null,
+            lastButton: 'x',
         };
         writeButtons(buttons);
-    }//не нужна вторая стрелка и next,  последние 5цифр
+    }
     
 };
 
 
 export const onPaginationNavClick = page => {
-    showPageHome(page);
-    let totalPages = 20;
-    const currentPage = parseInt(page);
+    showPageHome(parseInt(page));
 
-    renderPaginationBtn(totalPages, currentPage);
-    
+    // console.log('Загружаю страницу' + page);
+   
 };
 
+export const makeButtonActiv = (currentPage) => {
+    const currentButton = document.querySelector(`a[data-number='${currentPage}'`);
+        let activButton = document.querySelector('.filmoteka-nav__pages--link_current');
+    if (activButton) {
+        activButton.classList.remove('filmoteka-nav__pages--link_current')
+    }
+    currentButton.classList.add('filmoteka-nav__pages--link_current') 
+}
 

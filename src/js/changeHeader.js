@@ -1,38 +1,34 @@
 import home from '../partials/templates/home.hbs';
 import myLibrary from '../partials/templates/myLibrary.hbs';
-import { addClass, removeClass } from './classWork';
+import { changeClasses } from './classWork';
 import { loadListnersForHome, removeListnersForHome, loadListnersForMyLibrary, removeListnersForMyLibrary } from "./onLoad"
 import { getRefs } from './refs';
-
+import {showPageHome, showPageMyLibrary} from './showPage'
 
 
 export const changeHeader = (pageName, target) => {
     target.innerHTML = home() + myLibrary(); //добавляю контент, чтоб получить отсутствующие рефы
     const refs = getRefs();
-
+    
     if (pageName === 'HOME') {
-        removeListnersForMyLibrary(refs)
+        removeListnersForMyLibrary(refs);
         removeListnersForHome(refs);
         target.innerHTML = home(); //меняю шапку
-        
-        const newRefs = getRefs();
+        const newRefs = getRefs(); //подгружаю новые рефы
+
         loadListnersForHome(newRefs);
-        addClass(newRefs.headerContainer, 'home');
-        addClass(newRefs.headerNav.children[0].children[0], 'current');
-        removeClass(newRefs.headerContainer, 'my-library');
-        removeClass(newRefs.headerNav.children[1].children[0], 'current');
+        changeClasses(newRefs.headerNav.children[1].children[0], 'my-library', newRefs.headerNav.children[0].children[0], 'home');
+        showPageHome(1);
     };
     
     if (pageName === 'MY LIBRARY') {
+        // refs.galleryItems.innerHTML = '';
         removeListnersForHome(refs);
         target.innerHTML = myLibrary(); //меняю шапку
-        
-        const newRefs = getRefs();
+        const newRefs = getRefs(); //подгружаю новые рефы
+
         loadListnersForMyLibrary(newRefs);
-        addClass(newRefs.headerContainer, 'my-library');
-        addClass(newRefs.headerNav.children[1].children[0], 'current');
-        removeClass(newRefs.headerContainer, 'home');
-        removeClass(newRefs.headerNav.children[0].children[0], 'current');
+        changeClasses(newRefs.headerNav.children[0].children[0], 'home', newRefs.headerNav.children[1].children[0], 'my-library');
+        showPageMyLibrary('watched');
     };
-    console.log('Переключаем шапку на ' + pageName);
 }

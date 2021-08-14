@@ -3,6 +3,7 @@ export const getRefs = () => {
     searchBox: document.querySelector('.header-search__input'),
     searchButton: document.querySelector('.header-search__button'),
     filmsSection: document.querySelector('.filmoteka'),
+    galleryItems: document.querySelector('.filmoteka__set'),
     headerNav: document.querySelector('.header-nav__list'),
     headerLogo: document.querySelector('.header__logo'),
     headerDivToChange: document.querySelector('.header-search'),
@@ -23,9 +24,8 @@ export const getRefs = () => {
     devCloseBtn: document.querySelector('.modal-devs__close-btn'),
     watchedBtn: document.querySelector('.my-library__watched-btn'),
     queueBtn: document.querySelector('.my-library__queue-btn'),
-    galleryItems: document.querySelector('.filmoteka__set'),
-    //кнопка ADD TO WATCHED
-    //кнопка ADD TO QUEUE
+    modalWatchedBtn: document.querySelector('.modal-film__btn-watched'),
+    modalQueueBtn: document.querySelector('.modal-film__btn-queque'),
     scrollTopBtn: document.querySelector('.scroll__top'),
   };
 };
