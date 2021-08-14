@@ -7,7 +7,6 @@ import { loadDataFromLS } from './localStoragе'
 import { renderPaginationBtn } from './paginationNav'
 import { makeButtonActiv } from './paginationNav'
 
-
 Notiflix.Notify.init({
     position: 'center-top',
     distance: '180px',
