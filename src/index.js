@@ -54,17 +54,3 @@ window.addEventListener('scroll',
   debounce(consts.DEBOUNCE_DELAY, (e) => {
      activateScrollButton(e);//from "./js/btnScrollUp"  клик по ссылке подняться вверх встраницы
    }));
-
-
-
-
-
-
-// пример дебаунса и троттла из нод модулей БУДЬТЕ ВНИМАТЕЛЬНЫ!!!! 
-// В ЭТОМ НПМ ПАКЕТЕ ВНАЧАЛЕ DELAY ПОТОМ ФУНКЦИЯ
-
-// import { debounce } from 'throttle-debounce';
-// import { throttle } from 'throttle-debounce';
-
-// const debounceFunc = debounce(DELAY, CALLBACK);
-// const throttleFunc = debounce(DELAY, CALLBACK);
