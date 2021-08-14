@@ -9,7 +9,7 @@ import { makeButtonActiv } from './paginationNav'
 
 Notiflix.Notify.init({
     position: 'center-top',
-    distance: '180px',
+    distance: '155px',
 }); 
 
 export const hidePagination = (refs) => {
@@ -84,7 +84,7 @@ export const showPageMyLibrary = (keyName) => {
     
     Notiflix.Notify.init({
         position: 'center-top',
-        distance: '195px',
+        distance: '165px',
     }); 
 Notiflix.Notify.success('You have ' +watchedArr.length + ' films in your library "' +keyName + '"');
 }

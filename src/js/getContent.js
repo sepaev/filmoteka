@@ -8,7 +8,7 @@ axios.defaults.baseURL = `${API_URL}`;
 
 export const fetchGetTrending = async (pageValue) => {
     const { data } = await axios.get(
-      `/trending/movie/week?api_key=${API_KEY}&page=${pageValue}`,
+      `/trending/movie/week?api_key=${API_KEY}&page=${pageValue}&language=${consts.LANGUAGE}`,
     );
     console.dir(data)
     const { results, total_pages, page, total_results } = data;
