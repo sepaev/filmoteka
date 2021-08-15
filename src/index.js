@@ -12,6 +12,11 @@ import { changeLanguage, doLocalisation } from './js/localization'
 
 import './js/theme';
 import './js/animationSVG';
+import './js/signUP';
+
+
+// import './js/ajax';
+
 
 
 
