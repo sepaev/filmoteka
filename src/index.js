@@ -9,17 +9,11 @@ import { onDevLinkClick } from "./js/footerDevelopers"
 import { onLoad } from "./js/onLoad"
 import { activateScrollButton } from './js/btnScrollUp'
 import { changeLanguage, doLocalisation } from './js/localization'
-
 import './js/theme';
 import './js/animationSVG';
 import './js/signUP';
-
-
 // import './js/ajax';
-
-
-
-
+import './js/videoTrailer';
 
 const refs = getRefs();
 onLoad(refs); //функция загружает все что необходимо сделать при запуске
@@ -41,9 +35,9 @@ refs.headerNav.addEventListener('click', e => {
 // обработка клика по control language
 refs.languageLinks.addEventListener('click', e => {
   e.preventDefault;
-  if (e.target.nodeName === "A") {
-    console.dir(e.target.dataset);
-    changeLanguage(e.target.dataset.set); //from "./js/localization" меняет язык сайта
+  if (e.target.nodeName === "use") {
+    const lang = e.target.parentNode.parentNode.dataset.set;
+    changeLanguage(lang); //from "./js/localization" меняет язык сайта
 
   };
 });

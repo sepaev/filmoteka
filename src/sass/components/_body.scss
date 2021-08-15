@@ -130,11 +130,16 @@ p {
   }
   &__thumb {
     max-width: 100%;
+    position: relative;
+  }
+  &__picture {
+    //pict
   }
   &__img {
+    // position: relative;
     display: block;
     max-width: 100%;
-    height: auto;
+    // height: 398px;
     border-radius: $main-border-radius;
   }
 
@@ -165,10 +170,12 @@ p {
   content: '';
   width: 144px;
   height: 25px;
-  right: 9px;
-  bottom: 60px;
+  right: 5px;
+    bottom: 10px;
+    cursor: pointer;
   @media (min-width: $min-tablet) and (max-width: $max-tablet) {
-    right: 18px;
+    right: 10px;
+    bottom: 12px;
   }
   @media (min-width: $min-desktop) {
     opacity: 0;
@@ -239,8 +246,8 @@ p {
     margin-bottom: 60px;
   }
 
-  &__left {
-    //__left
+  &__left,
+  &__right {
     font-family: $main-font;
     font-style: normal;
     font-weight: 500;
@@ -249,21 +256,20 @@ p {
 
     display: flex;
     align-items: center;
-
-    color: $black-color;
+    color: transparent;
+    padding: 12px;
+    width: 40px;
+    height: 40px;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  &__left {
+    //__left
+    background-image: url('../images/svg/arrow-left-icon.svg');
   }
   &__right {
     //__right
-    font-family: $main-font;
-    font-style: normal;
-    font-weight: 500;
-    font-size: $main-font-size;
-    line-height: 1.33;
-
-    display: flex;
-    align-items: center;
-
-    color: $black-color;
+    background-image: url('../images/svg/arrow-right-icon.svg');
   }
   &__first {
     //__first
@@ -408,4 +414,16 @@ p {
 }
 .active-scroll {
   display: flex;
+}
+
+.modal-trailer__close-btn {
+  margin-top: 10px;
+  background-color: $black-color;
+  color: $orange-color;
+  border-style: solid;
+  border-radius: 10%;
+  border-color: $orange-color;
+  position: absolute;
+  right: 6%;
+  top: 2%;
 }

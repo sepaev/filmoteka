@@ -3,6 +3,7 @@ import axios from 'axios';
 import { getRefsLocals } from "./refs";
 import { getRefs } from "./refs";
 import { renderGallery } from "../js/renderGallery";
+import { parseFilmsData } from './parseApiData';
 
 
 const refs = getRefsLocals();
@@ -86,7 +87,7 @@ export const fetchGetSearchMovie = async (valueSearch, pageValue) => {
 // get Movies by ID
 
 export const fetchGetMovieById = async (id) => {
-    const { data } = await axios.get(`/movie/${id}?api_key=${API_KEY}`);
+    const { data } = await axios.get(`/movie/${id}?api_key=${API_KEY}&language=${consts.LANGUAGE}`);
     return data;
 }
 
@@ -149,9 +150,10 @@ films.results.forEach(film => renderGallery(film));
 } 
   
 else if (e.target.dataset.set === "upcoming") {
-fetchUpcoming(1).then(films => {
-mainRefs.galleryItems.innerHTML = '';
-films.results.forEach(film => renderGallery(film));
+  fetchUpcoming(1).then(films => parseFilmsData(films.results))
+    .then(films => {
+      mainRefs.galleryItems.innerHTML = '';
+      films.forEach(film => renderGallery(film));
 }).catch(err => console.log(err))
 } 
   
