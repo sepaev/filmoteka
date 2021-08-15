@@ -1,4 +1,5 @@
 import LocalizedStrings from 'localized-strings';
+// import Notiflix from "notiflix";
 import { getRefsLocals } from "./refs"
 export const getLang = () => {
     const lang = localStorage.getItem('language');
@@ -114,10 +115,17 @@ export const doLocalisation = () => {
         if (ref) {
             if (ref.nodeName === 'INPUT') {
                 ref.placeholder = strings.getString(name+'_text');
-                console.log(2);
             } else {
                 ref.textContent = strings.getString(name+'_text');
             }
         };
     };
 };
+
+export const changeLanguage = (newLang) => {
+    const currentLang = localStorage.getItem('language');
+    if (currentLang !== newLang) {
+        localStorage.setItem('language', newLang);
+        location.reload();
+    }
+}
