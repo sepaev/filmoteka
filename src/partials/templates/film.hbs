@@ -1,12 +1,12 @@
 <li class="film" data-id="{{id}}">
     <div class="film__thumb">
-            <picture class="film__img" >
-                <source media="(min-width:1024px)" srcset="https://image.tmdb.org/t/p/w500{{poster_path}}">
-                <source media="(min-width:768px)" srcset="https://image.tmdb.org/t/p/w400{{poster_path}}">
-                <img src="https://image.tmdb.org/t/p/w300{{poster_path}}" alt="{{title}}" loading="lazy" style="width:auto;">
+            <picture class="film__img">
+                <source media="(min-width:1024px)"  srcset="https://image.tmdb.org/t/p/w500{{poster_path}}">
+                <source media="(min-width:768px)"  srcset="https://image.tmdb.org/t/p/w400{{poster_path}}">
+                <img src="https://image.tmdb.org/t/p/w300{{poster_path}}" alt="{{title}}" loading="lazy">
             </picture>
         <div class="film-overlay">
-            <a href="film-overlay__link">
+            <a class="film-overlay__link">
                 <p class="film-overlay__text">
                     Watch trailer
                     <img class="film-overlay__img" height="30px" width="30px" src="https://cdn.icon-icons.com/icons2/1584/PNG/512/3721679-youtube_108064.png" alt="trailer" />
