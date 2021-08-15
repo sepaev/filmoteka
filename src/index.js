@@ -11,8 +11,8 @@ import { activateScrollButton } from './js/btnScrollUp'
 import { changeLanguage, doLocalisation } from './js/localization'
 import './js/theme';
 import './js/animationSVG';
-import './js/signUP';
-// import './js/ajax';
+
+
 import './js/videoTrailer';
 import './js/signIN';
 import './js/sign_IN';
