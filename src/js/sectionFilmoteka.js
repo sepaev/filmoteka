@@ -7,7 +7,7 @@ import { fetchGetMovieById } from './getContent';
 import modalFilmCardTpl from '../partials/templates/modalFilmCard.hbs';
 
 // import * as parseApiData from './parseApiData';
-import { getGenres, checkPoster, trimYear } from './parseApiData';
+import { getGenres, checkPoster, trimYear, parseFilmsData } from './parseApiData';
 import { doLocalisation } from './localization';
 
 const refs = getRefs();
@@ -43,20 +43,7 @@ export const onFilmClick = e => {
       fetchGetMovieById(targetCardId).then(data => {
         const genre_ids = data.genres.map(genre => genre.id);
 
-        currentItem = {
-          backdrop_path: data['backdrop_path'],
-          id: data['id'],
-          original_title: data['original_title'],
-          overview: data['overview'],
-          popularity: data['popularity'],
-          poster_path: checkPoster(data['poster_path'], data['backdrop_path']),
-          release_date: data['release_date'],
-          title: data['title'],
-          vote_average: data['vote_average'],
-          vote_count: data['vote_count'],
-          genres: getGenres(genre_ids),
-          year: trimYear(data['release_date']),
-        };
+        currentItem = parseFilmsData(data);
         renderFilmCard(currentItem);
         doLocalisation();
         // window.setTimeout(doLocalisation, 100);

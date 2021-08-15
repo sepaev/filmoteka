@@ -25,6 +25,7 @@ export const checkPoster = (poster, reserve) => {
 }
 
 export const parseFilmsData = (films) => {
+        console.dir(films);
     return films.map(film => {
         return {
             backdrop_path: film['backdrop_path'],
