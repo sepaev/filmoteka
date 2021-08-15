@@ -4,7 +4,7 @@ import { getRefsLocals } from "./refs"
 export const getLang = () => {
     const lang = localStorage.getItem('language');
     if (lang) {
-        document.scrollingElement.lang = (lang[3]+lang[4]).toLowerCase();
+        document.scrollingElement.lang = (lang[3] + lang[4]).toLowerCase();
         return lang;
     } else {
         localStorage.setItem('language', 'en-US');

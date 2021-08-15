@@ -4,14 +4,19 @@ import { consts } from "./consts";
 import { onSearchBoxChange, onSearchBoxFocus } from "./searchBox"
 import { onWatchedButtonClick, onQueueButtonClick } from "./libraryButtons"
 import { onSearchButtonClick } from "./searchButton"
-import { doLocalisation } from "./localization"
-
+import { doLocalisation, getLang } from "./localization"
+import { addClass } from "./classWork";
 
 
 // функция по загрузке
 export const onLoad = refs => {
     changeHeader('HOME', refs.headerDivToChange);
     doLocalisation();
+    const currentLang = getLang();
+    const target = currentLang === 'eu-US' ? refs.engFlag.children[0] : currentLang === 'ru-RU' ? refs.rusFlag.children[0] : refs.ukrFlag.children[0];
+    console.dir(target);
+    addClass(target, 'current');
+    // control__languages-icon current
 }
 
 export const loadListnersForHome = (refs) => {

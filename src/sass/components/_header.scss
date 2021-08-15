@@ -3,6 +3,7 @@
   text-decoration: none;
   -webkit-appearance: none;
   height: 230px;
+  overflow: hidden;
   //header специально внизу контейнер для изменений на всю шапку
   &__container {
     justify-content: space-between;
@@ -286,18 +287,38 @@
     display: flex;
     align-items: center;
     padding: 20px 20px 20px 0;
-    position: absolute;
+    position: relative;
     background-color: $orange_color;
     border-radius: 20px 0 0 20px;
     right: -210px;
     opacity: 0.5;
     &:hover {
-      right: 0px;
+      right: -71px;
       opacity: 0.9;
     }
   }
 
   &__info {
     transform: rotate(-90deg);
+  }
+  &__languages {
+    display: flex;
+    &:hover &-icon {
+      width: 30px;
+      height: 30px;
+      padding: 5px;
+    }
+  }
+  &__languages-icon {
+    width: 30px;
+    height: 30px;
+    padding: 5px;
+    &.current,
+    &:hover {
+      width: 30px;
+      height: 30px;
+      padding: 0;
+      filter: drop-shadow(3px 3px 1px rgba(0, 0, 0, 0.6));
+    }
   }
 }
