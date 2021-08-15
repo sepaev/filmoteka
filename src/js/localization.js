@@ -44,6 +44,7 @@ export const getLocalsStrings = () => {
             add_to_queue_text: "add to queue",
             close_devs_text: "close",
             team_devs_text: 'Team "ReacTeam"',
+            control_info_text: 'Controls',
         },
         'ru-RU': {
             trending_text: "В Тренде",
@@ -70,6 +71,7 @@ export const getLocalsStrings = () => {
             add_to_queue_text: "смотреть позже",
             close_devs_text: "закрыть",
             team_devs_text: 'Команда "ReacTeam"',
+            control_info_text: 'Управление',
         },
         'uk-UA': {
             trending_text: "В Тренді",
@@ -96,6 +98,7 @@ export const getLocalsStrings = () => {
             add_to_queue_text: "дивитися потім",
             close_devs_text: "закрити",
             team_devs_text: 'Команда "ReacTeam"',
+            control_info_text: 'Керування',
         },
     },
     {

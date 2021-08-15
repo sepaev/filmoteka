@@ -69,5 +69,6 @@ export const getRefsLocals = () => {
     popular_ref:         document.querySelector('[data-set="popular"]'),
     top_rated_ref:       document.querySelector('[data-set="top_rated"]'),
     upcoming_ref:        document.querySelector('[data-set="upcoming"]'),
+    control_info_ref:    document.querySelector('.control__info'),
   };
 };
