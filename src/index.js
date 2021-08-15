@@ -13,6 +13,8 @@ import { changeLanguage, doLocalisation } from './js/localization'
 import './js/theme';
 import './js/animationSVG';
 import './js/videoTrailer';
+import './js/signIN';
+import './js/sign_IN';
 
 
 
