@@ -8,8 +8,8 @@ export const getRefs = () => {
     headerDivToChange:  document.querySelector('.header-search'),
     headerError:        document.querySelector('.header-search__error'),
     headerContainer:    document.querySelector('.header__container'),
-    filter__list:       document.querySelector('.filter__list'),
-    filter__button:     document.querySelector('.filter__button'),
+    filterList:         document.querySelector('.filter__list'),
+    filterButton:       document.querySelector('.filter__button'),
     languageLinks:      document.querySelector('.control__languages'),
     _________FILMOTEKA: null,
     filmsSection:       document.querySelector('.filmoteka'),
@@ -45,8 +45,8 @@ export const getRefs = () => {
 
 export const getRefsLocals = () => {
   return {
-    filmoteka_ref:        document.querySelector('.header__logo-name'),
-    search_films_ref:     document.querySelector('.header-search__input'),
+    filmoteka_ref:       document.querySelector('.header__logo-name'),
+    search_films_ref:    document.querySelector('.header-search__input'),
     home_ref:            document.querySelector('#homeLink'),
     my_library_ref:      document.querySelector('#myLibraryLink'),
     rights_ref:          document.querySelector('.lang__rights_text'),
@@ -64,7 +64,7 @@ export const getRefsLocals = () => {
     close_devs_ref:      document.querySelector('.modal-devs__close-btn'),
     team_devs_ref:       document.querySelector('.team__heading'),
     trending_ref:        document.querySelector('[data-set="trending"]'),
-    latest_ref:          document.querySelector('.filter__button-latest'),
+    latest_ref:          document.querySelector('[data-set="latest"]'),
     now_playing_ref:     document.querySelector('[data-set="now_playing"]'),
     popular_ref:         document.querySelector('[data-set="popular"]'),
     top_rated_ref:       document.querySelector('[data-set="top_rated"]'),

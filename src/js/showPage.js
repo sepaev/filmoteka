@@ -11,7 +11,12 @@ Notiflix.Notify.init({
     position: 'center-top',
     distance: '155px',
 }); 
-
+export const showFilters = (refs) => {
+    refs.filterList.style.display = 'flex';
+}
+export const hideFilters = (refs) => {
+    refs.filterList.style.display = 'none';
+}
 export const hidePagination = (refs) => {
     refs.paginationNav.style.display = 'none';
     refs.footer.style.position = 'absolute';

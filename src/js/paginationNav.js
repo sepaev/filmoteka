@@ -4,14 +4,14 @@ import { getRefs } from "./refs";
 //    const refs = getRefs();   
 
 let buttons = {
-    leftArrow: null,
-    prev: [null, 0],
+    leftArrow: 'x',
+    prev: ['x', 0],
     centralPages: [],
-    next: [null, 0],
-    rightArrow: null,
-    current: null,
-    firstButton: null,
-    lastButton: null,
+    next: ['x', 0],
+    rightArrow: 'x',
+    current: 'x',
+    firstButton: 'x',
+    lastButton: 'x',
 };
 
 const checkElement = (elem, ref) => {
@@ -91,7 +91,14 @@ export const renderPaginationBtn = (totalPages, currentPage) => {
             firstButton: 'x',
             lastButton: totalPages,
         };
+        if (totalPages <= 5) {
+            buttons.centralPages = [1, 2, 3, 4, 5].slice(0, totalPages);
+            buttons.next = ['x', 0];
+            buttons.rightArrow = 'x';
+            buttons.lastButton = 'x';
+        }
         writeButtons(buttons);
+        return;
     }
 
     if (currentPage > 3 && currentPage <= totalPages - 3) { // промежуток от 3 до (последней - 3);
@@ -106,6 +113,7 @@ export const renderPaginationBtn = (totalPages, currentPage) => {
             lastButton: totalPages,
         };
         writeButtons(buttons);
+        return;
     }
 
     if (currentPage > totalPages - 3 && currentPage <= totalPages) { //промежуток от (последней - 3) до последней
@@ -120,6 +128,7 @@ export const renderPaginationBtn = (totalPages, currentPage) => {
             lastButton: 'x',
         };
         writeButtons(buttons);
+        return;
     }
     
 };
@@ -136,8 +145,8 @@ export const makeButtonActiv = (currentPage) => {
     const currentButton = document.querySelector(`a[data-number='${currentPage}'`);
         let activButton = document.querySelector('.filmoteka-nav__pages--link_current');
     if (activButton) {
-        activButton.classList.remove('filmoteka-nav__pages--link_current')
+        activButton.classList.remove('filmoteka-nav__pages--link_current');
     }
-    currentButton.classList.add('filmoteka-nav__pages--link_current') 
+    currentButton.classList.add('filmoteka-nav__pages--link_current');
 }
 
