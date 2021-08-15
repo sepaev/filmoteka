@@ -23,10 +23,10 @@
             </path>
         </symbol>
         <symbol id="icon-arrow-left" viewBox="0 0 16 16">
-            <path fill="none" stroke="#fff" style="stroke: var(--color3, #fff)" stroke-linejoin="round" <path
-                d="M3.333 8h9.334M8 12.667L12.667 8 8 3.333" stroke="#000" stroke-width="1.333" stroke-linecap="round"
+            <path d="M3.33335 8H12.6667" stroke="black" stroke-width="1.33333" stroke-linecap="round"
                 stroke-linejoin="round" />
-            </path>
+            <path d="M8.00002 12.6667L12.6667 8.00004L8.00002 3.33337" stroke="black" stroke-width="1.33333"
+                stroke-linecap="round" stroke-linejoin="round" />
         </symbol>
         <symbol id="icon-lang-rus" viewBox="0 0 512 512">
             <circle cx="256" cy="256" r="256" fill="#f0f0f0" />

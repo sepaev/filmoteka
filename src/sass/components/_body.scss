@@ -239,8 +239,8 @@ p {
     margin-bottom: 60px;
   }
 
-  &__left {
-    //__left
+  &__left,
+  &__right {
     font-family: $main-font;
     font-style: normal;
     font-weight: 500;
@@ -249,21 +249,20 @@ p {
 
     display: flex;
     align-items: center;
-
-    color: $black-color;
+    color: transparent;
+    padding: 12px;
+    width: 40px;
+    height: 40px;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  &__left {
+    //__left
+    background-image: url('../images/svg/arrow-left-icon.svg');
   }
   &__right {
     //__right
-    font-family: $main-font;
-    font-style: normal;
-    font-weight: 500;
-    font-size: $main-font-size;
-    line-height: 1.33;
-
-    display: flex;
-    align-items: center;
-
-    color: $black-color;
+    background-image: url('../images/svg/arrow-right-icon.svg');
   }
   &__first {
     //__first
