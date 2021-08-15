@@ -9,13 +9,11 @@ import { onDevLinkClick } from "./js/footerDevelopers"
 import { onLoad } from "./js/onLoad"
 import { activateScrollButton } from './js/btnScrollUp'
 import { changeLanguage, doLocalisation } from './js/localization'
-
 import './js/theme';
 import './js/animationSVG';
+import './js/signUP';
+// import './js/ajax';
 import './js/videoTrailer';
-
-
-
 
 const refs = getRefs();
 onLoad(refs); //функция загружает все что необходимо сделать при запуске

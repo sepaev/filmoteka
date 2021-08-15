@@ -28,6 +28,7 @@
   "dependencies": {
     "axios": "^0.21.1",
     "basiclightbox": "^5.0.4",
+    "firebase": "^8.9.1",
     "lazy-line-painter": "^1.9.6",
     "localized-strings": "^0.2.4",
     "modern-normalize": "^1.1.0",
