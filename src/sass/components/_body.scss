@@ -415,3 +415,15 @@ p {
 .active-scroll {
   display: flex;
 }
+
+.modal-trailer__close-btn {
+  margin-top: 10px;
+  background-color: $black-color;
+  color: $orange-color;
+  border-style: solid;
+  border-radius: 10%;
+  border-color: $orange-color;
+  position: absolute;
+  right: 6%;
+  top: 2%;
+}
