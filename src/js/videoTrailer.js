@@ -19,7 +19,9 @@ refs.galleryItems.addEventListener('click', e => {
     else {
         e.preventDefault;
     //   console.log('2222');
-      const targetCardId = e.target.parentNode.parentNode.parentNode.parentNode.dataset.id;
+      const targetCardId = (e.target.parentNode.parentNode.parentNode.parentNode.parentNode.dataset.id || e.target.parentNode.parentNode.parentNode.parentNode.dataset.id);
+      // console.dir(e.target.parentNode.parentNode.parentNode.parentNode);
+      // alert(e.target.parentNode.parentNode.parentNode.parentNode);
 
     //   console.log(targetCardId);
       openModalVideoTrailer(targetCardId);
