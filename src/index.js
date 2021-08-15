@@ -14,6 +14,8 @@ import './js/animationSVG';
 import './js/signUP';
 // import './js/ajax';
 import './js/videoTrailer';
+import './js/signIN';
+import './js/sign_IN';
 
 const refs = getRefs();
 onLoad(refs); //функция загружает все что необходимо сделать при запуске
