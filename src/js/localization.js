@@ -20,6 +20,12 @@ function getCustomInterfaceLanguage() {
 export const getLocalsStrings = () => {
     let strings = new LocalizedStrings({
         'en-US': {
+            trending_text: "Trending",
+            latest_text: "Latest",
+            now_playing_text: "Now Playing",
+            popular_text: "Popular",  
+            top_rated_text: "Top Rated",  
+            upcoming_text: "Upcoming",
             filmoteka_text: "Filmoteka",
             search_films_text: "Search films",
             home_text: "HOME",
@@ -40,6 +46,12 @@ export const getLocalsStrings = () => {
             team_devs_text: 'Team "ReacTeam"',
         },
         'ru-RU': {
+            trending_text: "В Тренде",
+            latest_text: "Последние",
+            now_playing_text: "Сейчас в прокате",
+            popular_text: "Популярные",  
+            top_rated_text: "За рейтингом",  
+            upcoming_text: "Скоро в прокате",
             filmoteka_text: "Фильмотека",
             search_films_text: "Поиск фильмов",
             home_text: "ГЛАВНАЯ",
@@ -60,6 +72,12 @@ export const getLocalsStrings = () => {
             team_devs_text: 'Команда "ReacTeam"',
         },
         'uk-UA': {
+            trending_text: "В Тренді",
+            latest_text: "Останні",
+            now_playing_text: "Зараз в прокаті",
+            popular_text: "Популярні",  
+            top_rated_text: "За рейтингом",  
+            upcoming_text: "Скоро в прокаті",
             filmoteka_text: "Фільмотека",
             search_films_text: "Пошук фільмів",
             home_text: "ГОЛОВНА",

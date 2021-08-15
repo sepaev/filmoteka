@@ -1,8 +1,16 @@
 import { consts } from './consts';
 import axios from 'axios';
+import { getRefsLocals } from "./refs";
+import { getRefs } from "./refs";
+import { renderGallery } from "../js/renderGallery";
+
+
+const refs = getRefsLocals();
+const mainRefs = getRefs()
 
 const { API_KEY, API_URL } = consts;
 axios.defaults.baseURL = `${API_URL}`;
+
 
 // landing page movies
 
@@ -12,6 +20,56 @@ export const fetchGetTrending = async (pageValue) => {
     );
     console.dir(data)
     const { results, total_pages, page, total_results } = data;
+    return { results, total_pages, page, total_results };
+}
+
+// get Latest
+
+export const fetchLatest = async (pageValue) => {
+  const {data} = await axios.get(
+    `/movie/latest?api_key=${API_KEY}&page=${pageValue}&language=${consts.LANGUAGE}`,
+  );
+  const { results, total_pages, page, total_results } = data;
+    return { results, total_pages, page, total_results };
+}
+
+// get Now Playing
+
+export const fetchNowPlaying = async (pageValue) => {
+  const {data} = await axios.get(
+    `movie/now_playing?api_key=${API_KEY}&page=${pageValue}&language=${consts.LANGUAGE}`,
+  );
+  const { results, total_pages, page, total_results } = data;
+    return { results, total_pages, page, total_results };
+}
+
+// get Popular
+
+export const fetchPopular = async (pageValue) => {
+  const {data} = await axios.get(
+    `movie/popular?api_key=${API_KEY}&page=${pageValue}&language=${consts.LANGUAGE}`,
+  );
+  const { results, total_pages, page, total_results } = data;
+    return { results, total_pages, page, total_results };
+}
+
+// get Upcoming
+
+export const fetchUpcoming = async (pageValue) => {
+  const {data} = await axios.get(
+    `movie/upcoming?api_key=${API_KEY}&page=${pageValue}&language=${consts.LANGUAGE}`,
+  );
+  const { results, total_pages, page, total_results } = data;
+    return { results, total_pages, page, total_results };
+}
+
+// get Top Rated
+
+export const fetchTopRated = async (pageValue) => {
+  const {data} = await axios.get(
+    `movie/top_rated?api_key=${API_KEY}&page=${pageValue}&language=${consts.LANGUAGE}`,
+  );
+  const { results, total_pages, page, total_results } = data;
     return { results, total_pages, page, total_results };
 }
 
@@ -37,6 +95,7 @@ export const fetchGetMovieById = async (id) => {
 
 export const getMoviesPagination = async (searchValue, pageValue = 1) => {
     if (!searchValue) {
+      refs.trending_ref.classList.add('filter_is_active');
       const data = await fetchGetTrending(pageValue).catch(err =>
         console.log(err),
       );
@@ -54,8 +113,59 @@ export const getMoviesPagination = async (searchValue, pageValue = 1) => {
 // export default {fetchGetTrending, fetchGetSearchMovie, fetchGetMovieById, getMoviesPagination}
 
 
+//refs.latest_ref.addEventListener('click', makeFilterSearch)
+refs.trending_ref.addEventListener('click', makeFilterSearch)
+refs.now_playing_ref.addEventListener('click', makeFilterSearch)
+refs.popular_ref.addEventListener('click', makeFilterSearch)
+refs.top_rated_ref.addEventListener('click', makeFilterSearch)
+refs.upcoming_ref.addEventListener('click', makeFilterSearch)
+
+//const selectedTags = new Set();
+
+function makeFilterSearch (e) {
+  const activeButton = document.querySelector('.filter_is_active');
+  activeButton.classList.remove('filter_is_active');
+  e.target.classList.add('filter_is_active');
+console.log(e.target)
+if (e.target.dataset.set === "now_playing") {
+fetchNowPlaying(1).then(films => {
+mainRefs.galleryItems.innerHTML = '';
+films.results.forEach(film => renderGallery(film));
+}).catch(err => console.log(err))
+} 
+
+else if (e.target.dataset.set === "popular") {
+fetchPopular(1).then(films => {
+mainRefs.galleryItems.innerHTML = '';
+films.results.forEach(film => renderGallery(film));
+}).catch(err => console.log(err))
+} 
+
+else if (e.target.dataset.set === "top_rated") {
+fetchTopRated(1).then(films => {
+mainRefs.galleryItems.innerHTML = '';
+films.results.forEach(film => renderGallery(film));
+}).catch(err => console.log(err))
+} 
+  
+else if (e.target.dataset.set === "upcoming") {
+fetchUpcoming(1).then(films => {
+mainRefs.galleryItems.innerHTML = '';
+films.results.forEach(film => renderGallery(film));
+}).catch(err => console.log(err))
+} 
+  
+else if (e.target.dataset.set === "trending") {
+fetchGetTrending(1).then(films => {
+mainRefs.galleryItems.innerHTML = '';
+films.results.forEach(film => renderGallery(film));
+}).catch(err => console.log(err))
+}
+}
 
 
+
+//console.dir(mainRefs.filterList.map())
 
 
 // let options = {

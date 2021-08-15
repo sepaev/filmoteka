@@ -88,3 +88,5 @@ export const showPageMyLibrary = (keyName) => {
     }); 
 Notiflix.Notify.success('You have ' +watchedArr.length + ' films in your library "' +keyName + '"');
 }
+
+
