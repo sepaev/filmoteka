@@ -42,8 +42,8 @@
   // кнопки сделаны пока не полностью, но я не уверен, что они хорошо там стоят, но геометрия самих кнопок и цвет как надо вроде
   &__close {
     position: absolute;
-    width: 14px;
-    height: 14px;
+    width: 34px;
+    height: 34px;
 
     top: 18px;
     right: 18px;
@@ -53,7 +53,7 @@
     background-repeat: no-repeat;
     // outline: none;
 
-    padding: 8px;
+    padding: 10px;
     border: none;
     border-radius: 50%;
     background-color: transparent;

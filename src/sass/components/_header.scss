@@ -5,6 +5,7 @@
   height: 230px;
   overflow: hidden;
   position: relative;
+  background-color: $black-color;
   //header специально внизу контейнер для изменений на всю шапку
   &__container {
     justify-content: space-between;
@@ -16,15 +17,16 @@
 
     @media (max-width: $max-mobile) {
       padding: 46px 20px 43px 21px;
-      min-width: $min-mobile;
+      max-width: $min-mobile;
     }
     @media (min-width: $min-tablet) and (max-width: $max-tablet) {
       padding: 71px 41px 76px 59px;
       min-width: $min-tablet;
     }
     @media (min-width: $min-desktop) {
-      min-width: $min-desktop;
+      max-width: $min-desktop;
       padding: 46px 71px 65px 71px;
+      margin: auto;
     }
 
     &.home {
@@ -144,8 +146,9 @@
   &__list {
     display: flex;
     justify-content: space-between;
-    padding: 0;
+    padding-top: 10px;
   }
+
   &__link {
     margin-left: 39px;
     font-family: 'Roboto', sans-serif;
@@ -156,6 +159,9 @@
     text-transform: uppercase;
     text-decoration: none;
     color: $white-color;
+    @media (max-width: $max-mobile) {
+      margin-left: 10px;
+    }
   }
 
   &__link.current {
@@ -179,7 +185,7 @@
 
   &__input {
     margin-bottom: 22px;
-    width: 280px;
+    width: 275px;
     display: inline-block;
     background-color: transparent;
     border: transparent;
@@ -195,6 +201,11 @@
       font-weight: normal;
       font-size: 14px;
       line-height: 1.143;
+    }
+    &:hover,
+    :focus {
+      outline: outset;
+      outline-color: $orange-color;
     }
 
     @media (min-width: $min-tablet) and (max-width: $max-tablet) {
@@ -220,8 +231,7 @@
     background-color: transparent;
     background-image: url('../images/svg/search.svg');
     border: none;
-    @media (max-width: $max-mobile) {
-    }
+
     @media (min-width: $min-tablet) and (max-width: $max-tablet) {
       margin-right: 159px;
     }
