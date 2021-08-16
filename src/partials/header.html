@@ -27,6 +27,52 @@
         </svg> -->
         <h2 class="header__logo-name">Library Films</h2>
       </div>
+      <div class="control__panel">
+        <h4 class="control__info">Controls</h4>
+        <div class="control__container">
+          <div class="control__svg">
+            <svg class="control__info-logo" width="24" height="24">
+              <use href="./images/svg/sprite.svg#icon-config"></use>
+            </svg>
+          </div>
+          <div class="theme-switch">
+            <div class="theme-switch__control">
+              <input
+                class="theme-switch__toggle"
+                type="checkbox"
+                name="theme"
+                id="toggleThemeBtn"
+                aria-label="light-dark theme switcher"
+              />
+              <label aria-hidden="true" class="theme-switch__track" for="toggleThemeBtn"> </label>
+              <div aria-hidden="true" class="theme-switch__marker"></div>
+            </div>
+          </div>
+          <ul class="control__languages">
+            <li class="control__languages-item">
+              <a href="#" class="control__languages-link" id="englishLink" data-set="eu-US">
+                <svg class="control__languages-icon" width="12" height="12">
+                  <use href="./images/svg/sprite.svg#icon-lang-usa"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="control__languages-item">
+              <a href="#" class="control__languages-link" id="russianLink" data-set="ru-RU">
+                <svg class="control__languages-icon" width="12" height="12">
+                  <use href="./images/svg/sprite.svg#icon-lang-rus"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="control__languages-item">
+              <a href="#" class="control__languages-link" id="ukrainianLink" data-set="uk-UA">
+                <svg class="control__languages-icon" width="12" height="12">
+                  <use href="./images/svg/sprite.svg#icon-lang-ukr"></use>
+                </svg>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
       <nav class="header-nav">
         <ul class="header-nav__list">
           <li><a class="header-nav__link current" id="homeLink" href="#">HOME</a></li>
@@ -35,45 +81,6 @@
         </ul>
         <!-- <button class="btn__theme" id="toggleThemeBtn">Theme</button> -->
       </nav>
-      <div class="control__panel">
-        <h6 class="control__info">Controls</h6>
-        <div class="theme-switch">
-          <div class="theme-switch__control">
-            <input
-              class="theme-switch__toggle"
-              type="checkbox"
-              name="theme"
-              id="toggleThemeBtn"
-              aria-label="light-dark theme switcher"
-            />
-            <label aria-hidden="true" class="theme-switch__track" for="toggleThemeBtn"> </label>
-            <div aria-hidden="true" class="theme-switch__marker"></div>
-          </div>
-        </div>
-        <ul class="control__languages">
-          <li class="control__languages-item">
-            <a href="#" class="control__languages-link" id="englishLink" data-set="eu-US">
-              <svg class="control__languages-icon" width="12" height="12">
-                <use href="./images/svg/sprite.svg#icon-lang-usa"></use>
-              </svg>
-            </a>
-          </li>
-          <li class="control__languages-item">
-            <a href="#" class="control__languages-link" id="russianLink" data-set="ru-RU">
-              <svg class="control__languages-icon" width="12" height="12">
-                <use href="./images/svg/sprite.svg#icon-lang-rus"></use>
-              </svg>
-            </a>
-          </li>
-          <li class="control__languages-item">
-            <a href="#" class="control__languages-link" id="ukrainianLink" data-set="uk-UA">
-              <svg class="control__languages-icon" width="12" height="12">
-                <use href="./images/svg/sprite.svg#icon-lang-ukr"></use>
-              </svg>
-            </a>
-          </li>
-        </ul>
-      </div>
     </div>
 
     <div class="header-search my-library">

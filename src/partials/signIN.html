@@ -1,54 +1,72 @@
 <div data-modal-window="my_modal1" class="modal__regist">
-    <div class="modal__regist-content">
-        <div class="modal__regist-inner">
-            <div class="modal__regist-title">
-                <div class="modal__regist-closebtn">&times;</div>
+  <div class="modal__regist-content">
+    <div class="modal__regist-inner">
+      <div class="modal__regist-title">
+        <div class="modal__regist-closebtn">&times;</div>
 
+        <form class="modal-form__signup visually-hidden">
+          <label class="modal-form__label"
+            ><span id="signInName">Name</span>
+            <span class="input-wrapper">
+              <input type="text" class="modal-form__input" name="user-name" id="name" required />
+            </span>
+          </label>
+          <label class="modal-form__label"
+            ><span id="signInMail">E-mail</span>
+            <span class="input-wrapper">
+              <input type="email" class="modal-form__input" name="user-email" id="email" required />
+            </span>
+          </label>
 
+          <label class="modal-form__label"
+            ><span id="signInPwd">Password</span>
+            <span class="input-wrapper">
+              <input
+                type="password"
+                class="modal-form__input"
+                name="user-password"
+                id="password"
+                required
+              />
+            </span>
+          </label>
+          <label class="modal-form__label"
+            ><span id="signInPwdConfirm">Confirm password</span>
+            <span class="input-wrapper">
+              <input
+                type="password"
+                class="modal-form__input"
+                name="user-confirm-password"
+                id="password_2"
+                required
+              />
+            </span>
+          </label>
 
-
-
-                <form class="modal-form__signup visually-hidden">
-                    <label class="modal-form__label">Name
-                        <span class="input-wrapper">
-                            <input type="text" class="modal-form__input " name="user-name" id="name" required />
-                        </span>
-                    </label>
-                    <label class="modal-form__label">E-mail
-                        <span class="input-wrapper">
-                            <input type="email" class="modal-form__input " name="user-email" id="email" required />
-                        </span>
-                    </label>
-
-                    <label class="modal-form__label">Password
-                        <span class="input-wrapper">
-                            <input type="password" class="modal-form__input " name="user-password" id="password"
-                                required />
-                        </span>
-                    </label>
-                    <label class="modal-form__label">Confirm password
-                        <span class="input-wrapper">
-                            <input type="password" class="modal-form__input " name="user-confirm-password"
-                                id="password_2" required />
-                        </span>
-                    </label>
-
-                    <div class="sex_container">sex:
-                        <div><input type="radio" value="male" name="sex" checked class="sex">male</div>
-                        <div><input type="radio" value="female" name="sex" class="sex">female</div>
-                        <div><input type="radio" value="other" name="sex" class="sex">other</div>
-                    </div>
-
-                    <button type="submit" class="btn__button" id="submit">Sign up</button>
-                </form>
-                <p class="modal-form__status"></p>
-
-                <div>
-                </div>
-                <!-- </div> -->
+          <div class="sex_container">
+            <span id="signInSex">Sex:</span>
+            <div>
+              <input type="radio" value="male" name="sex" checked class="sex" />
+              <span id="signInMale"> male </span>
             </div>
+            <div>
+              <input type="radio" value="female" name="sex" class="sex" />
+              <span id="signInFemale"> female </span>
+            </div>
+            <div>
+              <input type="radio" value="other" name="sex" class="sex" />
+              <span id="signInOther"> other </span>
+            </div>
+          </div>
 
-        </div>
+          <button type="submit" class="btn__button sign-in__button" id="submit">Sign in</button>
+        </form>
+        <p class="modal-form__status"></p>
+
+        <div></div>
         <!-- </div> -->
+      </div>
     </div>
+    <!-- </div> -->
+  </div>
 </div>
