@@ -45,7 +45,6 @@
     overflow: visible;
   }
 
-
   &__btn-watched {
     // тут значение top/bottom уменьшено до 0, чтобы надписи не выходили за пределы кнопки
     @media (max-width: $max-mobile) {
@@ -74,7 +73,6 @@
 
   &__btn-watched,
   &__btn-queque {
-
     height: 44px;
 
     border: 1px solid $black-color;
@@ -142,7 +140,6 @@
   color: white; // потом убрать
   @media (max-width: $max-mobile) {
     padding: 48px 20px 106px 20px;
-
 
     max-width: 280px;
     margin-left: auto;
@@ -264,6 +261,7 @@
     font-weight: 500;
 
     @media (max-width: $max-mobile) {
+      max-width: 87px;
       font-size: 12px;
       line-height: 1.17;
       font-weight: 500;
