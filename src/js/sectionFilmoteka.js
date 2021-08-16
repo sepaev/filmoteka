@@ -1,12 +1,12 @@
-import * as basicLightbox from 'basiclightbox';
-import { getRefs } from './refs';
-import { loadEscListner } from './escClose';
+import * as basicLightbox   from 'basiclightbox';
+import modalFilmCardTpl     from '../partials/templates/modalFilmCard.hbs';
+import { getRefs }          from './refs';
+import { loadEscListner }   from './escClose';
+import { fetchGetMovieById} from './getContent';
+import { parseOneFilm }     from './parseApiData';
+import { doLocalisation }   from './localization';
+import { locals }           from './consts';
 import { addMovieToLocalStorage, loadDataFromLS, removeMovieFromLocalStorage, } from './localStoragе';
-import { fetchGetMovieById } from './getContent';
-import modalFilmCardTpl from '../partials/templates/modalFilmCard.hbs';
-import { parseOneFilm } from './parseApiData';
-import { doLocalisation } from './localization';
-import { locals } from './consts';
 
 const refs = getRefs();
 const instance = basicLightbox.create(refs.modalFilm);
@@ -28,6 +28,7 @@ export const onFilmClick = e => {
     // 1 тут получить id фильма
     // onAddToLS(e);
     instance.show();
+    refs.body.style.overflow = 'hidden';
     doLocalisation();
 
     // обработка клика по esc
@@ -76,6 +77,7 @@ function findCardItem(targetCardId) {
 
 const onFilmCloseClick = () => {
   instance.close();
+  refs.body.style.overflow = 'inherit';
 
   //убирает инлайн стили на кнопках в модалке и с body по закрытию
   refs.modalWatchedBtn.style.color = '';

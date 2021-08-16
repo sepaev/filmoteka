@@ -8,6 +8,7 @@ const instance = basicLightbox.create(refs.modalDevs);
 
 export const onDevLinkClick = () => {
     instance.show();
+    refs.body.style.overflow = 'hidden';
     doLocalisation();
      
 // обработка клика по esc   
@@ -22,6 +23,7 @@ export const onDevLinkClick = () => {
 
 const onDevCloseClick = () => {
     instance.close();
+    refs.body.style.overflow = 'inherit';
 }
 
 
