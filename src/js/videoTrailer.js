@@ -3,6 +3,7 @@ import * as basicLightbox from 'basiclightbox';
 import { consts } from "./consts";
 import axios from 'axios';
 import { loadEscListner } from './escClose';
+import Notiflix from "notiflix";
 
 
 const refs = getRefs();
@@ -34,20 +35,29 @@ refs.galleryItems.addEventListener('click', e => {
 
 function openModalVideoTrailer(id) {
   
-    const url = `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${API_KEY}&language=en-US`;
-    console.log(id)
+    const url = `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${API_KEY}&language=${consts.LANGUAGE}`;
+  console.log(id)
+  Notiflix.Loading.pulse();
       fetch(url)
         .then(response => response.json())
         .then(data => {
+
           const id = data.results[0].key;
           
           const instance = basicLightbox.create(`
     <iframe width="75%" height="75%" src='https://www.youtube.com/embed/${id}'frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
   `);
           instance.show();
-          
+          let newRef;
+          window.setTimeout(e => {
+            Notiflix.Loading.remove();
+            // newRef = document.querySelector('.basicLightbox__placeholder');
+            // const iframeNodeValue = newRef.children[0].attributes[2]
+            // console.dir(iframeNodeValue);
+          }
+            , 2000);
           modalCloseTrailer(instance);
-          
+          console.dir(instance);
         })
         .catch(() => {
           const instance = basicLightbox.create(`
@@ -56,7 +66,10 @@ function openModalVideoTrailer(id) {
   
           instance.show();
           modalCloseTrailer(instance);
-         
+          window.setTimeout(e => {
+            Notiflix.Loading.remove();
+            Notiflix.Notify.failure('404 Not Found this trailer');
+          }, 1500);
         });
     }
 
