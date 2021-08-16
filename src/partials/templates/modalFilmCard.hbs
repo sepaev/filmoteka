@@ -1,3 +1,4 @@
+
 <div class='modal-card__img-thumb'>
   <img
     class='modal-card__image'
@@ -6,27 +7,27 @@
   />
 </div>
 
-<div class='modal-card__data'>
+<div class='modal-card__data' data-id={{id}}>
 
   <h2 class='modal-card__data-heading'>{{title}}</h2>
 
   <ul class='modal-card__list'>
     <li class='modal-card__list-item'>
-      <p class="modal-card__list-votes">Vote / Votes</p>
+      <p class='modal-card__list-votes'>Vote / Votes</p>
       <p class='modal-card__list-value'>
         <b><span class='modal-card__list-rate'>{{vote_average}}</span> / {{vote_count}}</b>
       </p>
     </li>
     <li class='modal-card__list-item'>
-      <p class="modal-card__list-popularity">Popularity</p>
+      <p class='modal-card__list-popularity'>Popularity</p>
       <p class='modal-card__list-value'><b>{{popularity}}</b></p>
     </li>
     <li class='modal-card__list-item'>
-      <p class="modal-card__list-title">Original Title</p>
+      <p class='modal-card__list-title'>Original Title</p>
       <p class='modal-card__list-value'><b>{{original_title}}</b></p>
     </li>
     <li class='modal-card__list-item'>
-      <p class="modal-card__list-genre">Genre</p>
+      <p class='modal-card__list-genre'>Genre</p>
       <p class='modal-card__list-value'><b>{{genres}}</b></p>
     </li>
   </ul>
