@@ -12,10 +12,18 @@ export const removeClass = (target, className) => {
     }
 };
 
+export const tooggleClassCurrent = (refToAdd, ferToRemove) => {
+    addClass(refToAdd, 'current');
+    removeClass(ferToRemove, 'current');
+}
+export const tooggleRandomClass = (ref, classToAdd, classToRemove) => {
+    addClass(ref, classToAdd);
+    removeClass(ref, classToRemove);
+}
+
 export const changeClasses = (refToRemoveCurrent, classToRemove, refToAddCurrent, classToAdd) => {
-        const refs = getRefs();
-        addClass(refs.headerContainer, classToAdd);
-        addClass(refToAddCurrent, 'current');
-        removeClass(refs.headerContainer, classToRemove);
-        removeClass(refToRemoveCurrent, 'current');
+    const refs = getRefs();
+    const header = refs.headerContainer;
+    tooggleRandomClass(header, classToAdd, classToRemove);
+    tooggleClassCurrent(refToAddCurrent, refToRemoveCurrent);
 }
