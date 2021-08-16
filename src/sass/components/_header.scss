@@ -307,9 +307,11 @@
     letter-spacing: 1px;
     font-size: 20px;
     width: 300px;
+    @include transition(all);
     &:hover {
       right: -10px;
       opacity: 0.9;
+      transition: $transition-body-card;
     }
   }
   &__svg {
