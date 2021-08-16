@@ -1,6 +1,6 @@
 import home from '../partials/templates/home.hbs';
 import myLibrary from '../partials/templates/myLibrary.hbs';
-import { changeClasses } from './classWork';
+import { tooggleClassCurrent, changeClasses } from './classWork';
 import { loadListnersForHome, removeListnersForHome, loadListnersForMyLibrary, removeListnersForMyLibrary } from "./onLoad"
 import { getRefs } from './refs';
 import { showPageHome, showPageMyLibrary, hidePagination, showPagination , showFilters, hideFilters} from './showPage'
@@ -34,8 +34,9 @@ export const changeHeader = (pageName, target) => {
         loadListnersForMyLibrary(newRefs);
         changeClasses(newRefs.headerNav.children[0].children[0], 'home', newRefs.headerNav.children[1].children[0], 'my-library');
         showPageMyLibrary('watched');
+        tooggleClassCurrent(newRefs.watchedBtn, newRefs.queueBtn);
         hidePagination(refs);
         hideFilters(refs);
-        doLocalisation()
+        doLocalisation();
     };
 }
