@@ -31,13 +31,15 @@
   }
   &__info {
     display: block;
+    margin-left: 5px;
+    align-self: flex-end;
+  }
+  #heart {
+    width: 18px;
+    height: 19px;
   }
   &__img {
     display: inline-block;
-
-    margin-left: 10px;
-    margin-right: 10px;
-    // display: flex;
   }
   &__dev--link {
     margin: 0;
