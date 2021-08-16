@@ -1,5 +1,9 @@
 @import '../../node_modules/modern-normalize/modern-normalize.css';
 @import '../../node_modules/basiclightbox/dist/basicLightbox.min.css';
+//for slice slider
+@import "../../node_modules/slick-carousel/slick/slick";
+// @import "../../node_modules/slick-carousel/slick/slick-theme"; НУЖНО ДОБАВИТЬ НО КИДАЕТ В КОНСОЛЬ ОШИБКУ
+
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
 @import './utils/variables';
 @import './utils/placeholder';
@@ -15,3 +19,4 @@
 @import '../sass/components/filterButtons';
 @import './components/signIN';
 @import './components/signUP';
+

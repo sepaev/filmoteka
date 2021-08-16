@@ -16,6 +16,9 @@ import './js/animationSVG';
 import './js/videoTrailer';
 import './js/signIN';
 import './js/sign_IN';
+import '../node_modules/slick-carousel/slick/slick';
+import '../node_modules/jquery/dist/jquery.min'
+import './js/sliderFilmCard'
 
 const refs = getRefs();
 onLoad(refs); //функция загружает все что необходимо сделать при запуске

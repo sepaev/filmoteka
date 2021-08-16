@@ -29,10 +29,12 @@
     "axios": "^0.21.1",
     "basiclightbox": "^5.0.4",
     "firebase": "^8.9.1",
+    "jquery": "^3.6.0",
     "lazy-line-painter": "^1.9.6",
     "localized-strings": "^0.2.4",
     "modern-normalize": "^1.1.0",
     "notiflix": "^3.0.1",
+    "slick-carousel": "^1.8.1",
     "throttle-debounce": "^3.0.1"
   }
 }
