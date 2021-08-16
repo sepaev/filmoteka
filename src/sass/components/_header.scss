@@ -24,7 +24,7 @@
       min-width: $min-tablet;
     }
     @media (min-width: $min-desktop) {
-      max-width: $min-desktop;
+      min-width: $min-desktop;
       padding: 46px 71px 65px 71px;
       margin: auto;
     }
