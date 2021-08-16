@@ -87,12 +87,19 @@
 
     color: $black-color;
 
-    @media (max-width: $max-mobile) {
-      width: 113px;
-    }
-    @media (min-width: $min-tablet) and (max-width: $max-tablet) {
+    // @media (max-width: $max-mobile) {
+    //   width: 113px;
+    // }
+    // @media (min-width: $min-tablet) and (max-width: $max-tablet) {
+    //   width: 125px;
+    // }
+    
+    // слова на кнопке не помещаются в пределы блока, 
+    //убираю отдельные медиаправила для ширины кнопки на моб и таблетки, и меняю на @media (max-width: $max-tablet)
+    @media (max-width: $max-tablet) {
       width: 125px;
     }
+
     @media (min-width: $min-desktop) {
       width: 136px;
     }
