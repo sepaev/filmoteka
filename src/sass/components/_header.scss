@@ -292,9 +292,12 @@
     border-radius: 20px 0 0 20px;
     right: -210px;
     opacity: 0.5;
+    @include transition(all);
+
     &:hover {
       right: -71px;
       opacity: 0.9;
+      transition: $transition-body-card;
     }
   }
 

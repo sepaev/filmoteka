@@ -65,15 +65,17 @@ p {
 .filmoteka {
   padding-top: 20px;
   padding-bottom: 50px;
-  padding-left: 71px;
-  padding-right: 71px;
+  padding: auto;
+  //padding-left: 71px;
+  //padding-right: 71px;
 }
 
 .filmoteka__set {
   padding: 0;
-  margin: 0;
+  margin: auto;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 
   @media (min-width: $min-tablet) and (max-width: $max-tablet) {
     display: flex;
@@ -171,8 +173,8 @@ p {
   width: 144px;
   height: 25px;
   right: 5px;
-    bottom: 10px;
-    cursor: pointer;
+  bottom: 10px;
+  cursor: pointer;
   @media (min-width: $min-tablet) and (max-width: $max-tablet) {
     right: 10px;
     bottom: 12px;
@@ -369,14 +371,19 @@ p {
 
 // ScrollUP копка для возврата к верху страницы
 .scroll__top {
-  display: none; //ВАЖНО изменить параметр путем добавления класа .active-scroll!!!!!!!!!
+  //display: none; //ВАЖНО изменить параметр путем добавления класа .active-scroll!!!!!!!!!
+  opacity: 0;
+  z-index: 1;
+  visibility: hidden;
   position: fixed;
-  bottom: 1px;
-  right: 1px;
+  bottom: 110px;
+  right: -40px;
   width: 50px;
   height: 50px;
   border-radius: 50%;
   justify-content: center;
+  @include transition(all);
+
   &:hover,
   &:focus {
     // цвет иконки всредине при наведении
@@ -414,6 +421,10 @@ p {
 }
 .active-scroll {
   display: flex;
+  @include transition(all);
+  opacity: 1;
+  visibility: visible;
+  right: calc(2.5%);
 }
 
 .modal-trailer__close-btn {

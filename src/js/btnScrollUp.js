@@ -5,7 +5,7 @@ const refs = getRefs();
 
 const scrollToTopOfPage = () => { // используется для поднятия наверх
   if (window.pageYOffset > 0) {
-    window.scrollTo( 0, -80 );
+    window.scrollTo(pageXOffset, 0);
   }
 }
 
