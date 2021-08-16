@@ -1,5 +1,6 @@
-import Notiflix from 'notiflix';
-
+import { locals } from './consts'
+import { doNotification } from './localization';
+  let strings = locals;
 // Принимает имя ключа `localStorageKey` по которому будет произведена выборка.
 export const loadDataFromLS = localStorageKey => {
   try {
@@ -34,16 +35,27 @@ export const setDataToLS = (localStorageKey, object) => {
 
 //Добавляет фильм : пушит переданный 'newFilm' в LocalStorage с ключем 'localStorageKey'
 export const addMovieToLocalStorage = (localStorageKey, newFilm) => {
+
   const currentDataArray = loadDataFromLS(localStorageKey);
   const newDataArray = newFilm;
   if (currentDataArray.find(film => film.id === newFilm.id)) {
-    Notiflix.Notify.failure('Film ' + newFilm.title + ' arledy added to ' + localStorageKey);
+    const alert = {
+      en: newFilm.title + ' arledy added to ' + strings.getString(localStorageKey + '_text'),
+      ru: newFilm.title + ' уже добавлен в ' + strings.getString(localStorageKey + '_text'),
+      ua: newFilm.title + ' вже додано в ' + strings.getString(localStorageKey + '_text'),
+    };
+    doNotification(alert.en, alert.ru, alert.ua, 'faulure');
     return;
   } else {
     // newDataArray.push(currentDataArray);
     currentDataArray.push(newDataArray);
     setDataToLS(localStorageKey, currentDataArray);
-    Notiflix.Notify.success('Film ' + newFilm.title + ' succesfully added to ' + localStorageKey);
+    const alert = {
+      en: newFilm.title + ' succesfully added to ' + strings.getString(localStorageKey + '_text'),
+      ru: newFilm.title + ' успешно добавлен в ' + strings.getString(localStorageKey + '_text'),
+      ua: newFilm.title + ' додано в ' + strings.getString(localStorageKey + '_text'),
+    };
+    doNotification(alert.en, alert.ru, alert.ua, 'success');
   }
 };
 
@@ -55,12 +67,19 @@ export const removeMovieFromLocalStorage = (localStorageKey, newFilm) => {
       if (film.id !== newFilm.id) newDataArray.push(film);
     });
     setDataToLS(localStorageKey, newDataArray);
-    Notiflix.Notify.success(
-      'Film ' + newFilm.title + ' succesfully removed from ' + localStorageKey,
-    );
+    const alert = {
+      en: newFilm.title + ' succesfully removed from ' + strings.getString(localStorageKey + '_text'),
+      ru: newFilm.title + ' успешно удален мз списка ' + strings.getString(localStorageKey + '_text'),
+      ua: newFilm.title + ' видалено зі списка ' + strings.getString(localStorageKey + '_text'),
+    };
+    doNotification(alert.en, alert.ru, alert.ua, 'success');
   } else {
-    Notiflix.Notify.failure(
-      'Not found Film ' + newFilm.title + ' in ' + localStorageKey + ' to remove from it.',
-    );
+    const alert = {
+      en: 'Not found Film ' + newFilm.title + ' in ' + strings.getString(localStorageKey + '_text') + ' list',
+      ru: 'Не найдено фильм  ' + newFilm.title + ' в списке ' + strings.getString(localStorageKey + '_text'),
+      ua: 'Не знайдено фільм  ' + newFilm.title + ' в переліку "' + strings.getString(localStorageKey + '_text') + ' фыльми"',
+      ua: newFilm.title + ' видалено зі списка ' + strings.getString(localStorageKey + '_text'),
+    };
+    doNotification(alert.en, alert.ru, alert.ua, 'failure');
   }
 };

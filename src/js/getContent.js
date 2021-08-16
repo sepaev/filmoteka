@@ -4,7 +4,7 @@ import { getRefsLocals } from "./refs";
 import { getRefs } from "./refs";
 import { renderGallery } from "../js/renderGallery";
 import { parseFilmsData } from './parseApiData';
-
+import { tooggleClassFilterIsActive } from './classWork';
 
 
 const refs = getRefsLocals();
@@ -80,8 +80,7 @@ mainRefs.filterList.addEventListener('click', e => {
 
 function makeFilterSearch (e) {
   const activeButton = document.querySelector('.filter_is_active');
-  activeButton.classList.remove('filter_is_active');
-  e.target.classList.add('filter_is_active');
+  tooggleClassFilterIsActive(e.target, activeButton);
   const queryOption = e.target.dataset.set;
 
   if (e.target.dataset.set === "trending") {

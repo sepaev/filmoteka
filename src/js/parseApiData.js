@@ -24,22 +24,24 @@ export const checkPoster = (poster, reserve) => {
     return '/qpGlfnvynjPqAtqRCyFMFGLAAgW.jpg';
 }
 
+
+export const parseOneFilm = (film) => {
+    return {
+        backdrop_path: film['backdrop_path'],
+        id: film['id'],
+        original_title: film['original_title'],
+        overview: film['overview'],
+        popularity: film['popularity'],
+        poster_path: checkPoster(film['poster_path'],film['backdrop_path']),
+        release_date: film['release_date'],
+        title: film['title'],
+        vote_average: film['vote_average'],
+        vote_count: film['vote_count'],
+        genres: getGenres(film['genre_ids']),
+        year: trimYear(film['release_date']),
+    };
+}
+
 export const parseFilmsData = (films) => {
-        console.dir(films);
-    return films.map(film => {
-        return {
-            backdrop_path: film['backdrop_path'],
-            id: film['id'],
-            original_title: film['original_title'],
-            overview: film['overview'],
-            popularity: film['popularity'],
-            poster_path: checkPoster(film['poster_path'],film['backdrop_path']),
-            release_date: film['release_date'],
-            title: film['title'],
-            vote_average: film['vote_average'],
-            vote_count: film['vote_count'],
-            genres: getGenres(film['genre_ids']),
-            year: trimYear(film['release_date']),
-        };
-    });
+    return films.map(film => parseOneFilm(film));
 };

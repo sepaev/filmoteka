@@ -93,8 +93,8 @@
     // @media (min-width: $min-tablet) and (max-width: $max-tablet) {
     //   width: 125px;
     // }
-    
-    // слова на кнопке не помещаются в пределы блока, 
+
+    // слова на кнопке не помещаются в пределы блока,
     //убираю отдельные медиаправила для ширины кнопки на моб и таблетки, и меняю на @media (max-width: $max-tablet)
     @media (max-width: $max-tablet) {
       width: 125px;
@@ -105,17 +105,17 @@
     }
   }
 
-  &__btn-watched:hover,
-  &__btn-watched:focus {
-    background-color: $orange-color;
-    color: $white-color;
-  }
+  // &__btn-watched:hover,
+  // &__btn-watched:focus {
+  //   background-color: $orange-color;
+  //   color: $white-color;
+  // }
 
-  &__btn-queque:hover,
-  &__btn-queque:focus {
-    background-color: $orange-color;
-    color: $white-color;
-  }
+  // &__btn-queque:hover,
+  // &__btn-queque:focus {
+  //   background-color: $orange-color;
+  //   color: $white-color;
+  // }
 
   &__buttons {
     position: absolute;
