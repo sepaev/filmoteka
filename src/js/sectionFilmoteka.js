@@ -24,7 +24,7 @@ refs.modalWatchedBtn.addEventListener('click', onAddToLS);
 refs.modalQueueBtn.addEventListener('click', onAddToLS);
 
 export const onFilmClick = e => {
-  refs.body.style.overflow = 'hidden';
+  // refs.body.style.overflow = 'hidden';
   let targetCard = e.target.parentNode.parentNode;
   targetCard = targetCard.className === 'film' ? targetCard : targetCard.parentNode;
   const targetCardId = targetCard.dataset.id;
