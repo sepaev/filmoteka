@@ -1,5 +1,7 @@
 export const getRefs = () => {
   return {
+    ____________BODY:   null,
+    body:               document.querySelector('body'),
     ____________HEADER: null,
     searchBox:          document.querySelector('.header-search__input'),
     searchButton:       document.querySelector('.header-search__button'),
