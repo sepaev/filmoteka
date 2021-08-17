@@ -131,7 +131,7 @@ export const getLocalsStrings = () => {
             // sign_up_status_text: '',
         },
         'uk-UA': {
-            trending_text: "В Тренді",
+            trending_text: "У тренді",
             latest_text: "Останні",
             now_playing_text: "Зараз в прокаті",
             popular_text: "Популярні",  

@@ -271,63 +271,62 @@
 }
 
 // ScrollUP копка для возврата к верху страницы
-.scroll__top {
-  //display: none; //ВАЖНО изменить параметр путем добавления класа .active-scroll!!!!!!!!!
-  opacity: 0;
-  z-index: 1;
-  visibility: hidden;
-  position: fixed;
-  bottom: 110px;
-  right: -40px;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  justify-content: center;
-  @include transition(all);
-
-  &:hover,
-  &:focus {
-    // цвет иконки всредине при наведении
-    background-color: #ff6b081c;
-  }
-  @media screen and (max-width: 480px) {
-    right: 40px;
-  }
-  @media screen and (max-width: $min-mobile) {
-    bottom: 50px;
-    right: 6px;
-    width: 35px;
-    height: 35px;
-  }
-  @media screen and (min-width: $max-mobile) {
-    bottom: 130px;
-    right: 24px;
+.scroll {
+  &__top {
+    opacity: 0;
+    z-index: 1;
+    visibility: hidden;
+    position: fixed;
+    bottom: 110px;
+    right: -40px;
     width: 50px;
     height: 50px;
-  }
+    border-radius: 50%;
+    justify-content: center;
+    @include transition(all);
 
-  @media screen and (min-width: $max-tablet) {
-    bottom: 130px;
-    right: 14px;
+    &:hover,
+    &:focus {
+      // цвет иконки всредине при наведении
+      background-color: #ff6b081c;
+    }
+    // @media screen and (max-width: 480px) {
+    //   right: 40px;
+    // }
+    @media (max-width: $max-mobile) {
+      bottom: 50px;
+      right: 6px;
+      width: 35px;
+      height: 35px;
+    }
+    @media (min-width: $min-tablet) and (max-width: $max-tablet) {
+      bottom: 130px;
+      right: 24px;
+      width: 50px;
+      height: 50px;
+    }
+    @media (min-width: $min-desktop) {
+      bottom: 130px;
+      right: 14px;
+    }
+  }
+  &__icon {
+    border-radius: 50%;
+    cursor: pointer;
+    fill: $orange-color;
+    &:hover,
+    &:focus {
+      transform: scale(1.1);
+    }
+  }
+  &__active {
+    display: flex;
+    @include transition(all);
+    opacity: 1;
+    visibility: visible;
+    right: calc(2.5%);
   }
 }
-.scroll__icon {
-  border-radius: 50%;
-  cursor: pointer;
-  fill: $orange-color;
-  &:hover,
-  &:focus {
-    transform: scale(1.1);
-  }
-}
-.active-scroll {
-  display: flex;
-  @include transition(all);
-  opacity: 1;
-  visibility: visible;
-  right: calc(2.5%);
-}
-
 .modal-trailer__close-btn {
   margin-top: 10px;
   background-color: $black-color;

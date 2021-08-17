@@ -26,9 +26,14 @@ export const fetchGetTrending = async (pageValue) => {
 }
 
 export const fetchMovieByModalButton = async (pageValue, queryOption) => {
-  const {data} = await axios.get(
-    `/movie/${queryOption}?api_key=${API_KEY}&page=${pageValue}&language=${consts.LANGUAGE}`,
-  );
+  let string;
+  if (queryOption === 'trending') {
+    string = `/trending/movie/week?api_key=${API_KEY}&page=${pageValue}&language=${consts.LANGUAGE}`;
+  } else {
+    string = `/movie/${queryOption}?api_key=${API_KEY}&page=${pageValue}&language=${consts.LANGUAGE}`;
+  } 
+
+  const { data } = await axios.get(string);
   const { results, total_pages, page, total_results } = data;
     return { results, total_pages, page, total_results };
 }
@@ -95,8 +100,6 @@ export const getMoviesByScroll = async (searchValue, pageValue = 1, genreId) => 
       ).catch(err =>
         console.log(err),
         );
-      // total += 21;
-      console.log(total);
     }
     return { films, pageValue, totalResults };
   }
