@@ -28,7 +28,12 @@
     </li>
     <li class='modal-card__list-item'>
       <p class='modal-card__list-genre'>Genre</p>
-      <p class='modal-card__list-value'><b>{{genres}}</b></p>
+      <p class='modal-card__list-value'><b>
+        {{#each genresArr}}
+      {{#unless @last}}<a href="#" id="{{this.id}}">{{this.name}}</a>,{{/unless}}
+      {{#if @last}}<a href="#" id="{{this.id}}">{{this.name}}</a>{{/if}}
+      {{/each}}
+      </b></p>
     </li>
   </ul>
 

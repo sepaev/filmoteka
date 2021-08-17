@@ -1,4 +1,5 @@
 import { genres } from "./consts";
+import { getLang } from "./localization";
 
 //обрезаю дату
 export const trimYear = (fullDate) => {
@@ -8,13 +9,28 @@ export const trimYear = (fullDate) => {
 // перевожу жанры в строку
 export const getGenres = (genresIdsFromAPI) => {
     if (genresIdsFromAPI.length < 1) return '';
+    const lang = getLang().slice(0, 2);
     let genresString = '';
+    
     genresIdsFromAPI.forEach(genreId => {
-        const genre = genres.find(genre => genre.id === genreId);
+        const genre = genres[lang].find(genre => genre.id === genreId);
         genresString += genre.name+', ';
     });
     return genresString.slice(0, genresString.length - 2);
 }
+
+export const getGenresToArr = (genresIdsFromAPI) => {
+    if (genresIdsFromAPI.length < 1) return '';
+    const lang = getLang().slice(0, 2);
+    let genresArr = [];
+
+    genresIdsFromAPI.forEach(genreId => {
+        const genre = genres[lang].find(genre => genre.id === genreId);
+        genresArr.push({ id: genreId, name: genre.name });
+    });
+    return genresArr;
+}
+
 export const checkPoster = (poster, reserve) => {
     // if (!poster) return '/3UJ3aHkRzpmIM87BWrk72nTN2v8.jpg';
     // if (!poster) return '/a7lscT93aGgvD6W5Po7dTVLdv19.jpg';
@@ -38,6 +54,7 @@ export const parseOneFilm = (film) => {
         vote_average: film['vote_average'],
         vote_count: film['vote_count'],
         genres: getGenres(film['genre_ids']),
+        genresArr: getGenresToArr(film['genre_ids']),
         year: trimYear(film['release_date']),
     };
 }
