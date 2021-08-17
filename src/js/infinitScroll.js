@@ -11,7 +11,7 @@ const isBottom = (height, position) => {
 export const scrollingWindow = async (currentPage, genreId) => {
     const currentPosition = window.scrollY;
     const bottomPosition = getHeightOfDocument();
-    console.log(currentPosition + 1000 +' > '+ bottomPosition + ' = ' +isBottom(bottomPosition, currentPosition));
+    // console.log(currentPosition + 1000 +' > '+ bottomPosition + ' = ' +isBottom(bottomPosition, currentPosition));
     if (isBottom(bottomPosition, currentPosition) && bottomPosition > 1000) {
         return showMorePageHomeGenres(currentPage, genreId)
     };

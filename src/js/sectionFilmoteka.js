@@ -32,9 +32,6 @@ export const onFilmClick = e => {
   }
   
   if (targetCard.className === 'film') {
-    // проверка на клик (нужно тестить. может нужно менять)
-    // 1 тут получить id фильма
-    // onAddToLS(e);
     instance.show();
     doLocalisation();
 
@@ -43,10 +40,8 @@ export const onFilmClick = e => {
 
     refs.modalFilmCloseBtn.addEventListener('click', e => {
       e.preventDefault;
-
       onFilmCloseClick(); //from "./js/footerDevelopers"  клик кнопке закрытия модалки
     });
-    // getFilmData(targetCardId);
     renderFilmCard(getFilmData(targetCardId));
 
     // проверяет, есть ли карточка в ЛС
@@ -54,8 +49,6 @@ export const onFilmClick = e => {
     checkAdd('queue', targetCardId, refs.modalQueueBtn);
     return;
   }
-
-
 };
 
 function findAndAddPrevNext(currentArray, targetCardId) {
@@ -80,7 +73,6 @@ function findAndAddPrevNext(currentArray, targetCardId) {
       i = currentArray.length;
     }
   }
-  // console.log(cardItem);
   return cardItem;
 }
 //ДЛЯ СЛЕДУЮЩЕЙ КАРТОЧКИ!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -138,7 +130,6 @@ function renderFilmCard(filmCard) {
   const refs = getRefs();
   console.dir(filmCard)
   refs.modalCard.innerHTML = modalFilmCardTpl(filmCard);
-  // refs.modalCard.innerHTML = '';
   doLocalisation();
 }
 
