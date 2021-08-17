@@ -62,9 +62,9 @@ function findAndAddPrevNext(currentArray, targetCardId) {
     let cardItem;
     for (let i = 0; i < currentArray.length; i++) {
     if (currentArray[i].id === Number(targetCardId)) {
-      let prev = (i === 0) ? currentArray.length : i - 1;
+      let prev = (i === 0) ? currentArray.length-1 : i - 1;
       let cur = i;
-      let next = (i === currentArray.length) ? 0 : i + 1;
+      let next = (i === currentArray.length-1) ? 0 : i + 1;
 
       cardItem = currentArray[i];
       cardItem.ids = {
