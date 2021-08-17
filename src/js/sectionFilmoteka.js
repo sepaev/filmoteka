@@ -9,7 +9,10 @@ import { locals }           from './consts';
 import { addMovieToLocalStorage, loadDataFromLS, removeMovieFromLocalStorage, } from './localStoragе';
 
 const refs = getRefs();
-const instance = basicLightbox.create(refs.modalFilm);
+const instance = basicLightbox.create(refs.modalFilm, {
+    onShow: (instance) => {refs.body.style.overflow = 'hidden';},
+    onClose: (instance) => {refs.body.style.overflow = 'inherit';}
+});
 let cardItem = null;
 let isAdded = false;
 
@@ -18,7 +21,6 @@ refs.modalWatchedBtn.addEventListener('click', onAddToLS);
 refs.modalQueueBtn.addEventListener('click', onAddToLS);
 
 export const onFilmClick = e => {
-  // refs.body.style.overflow = 'hidden';
   let targetCard = e.target.parentNode.parentNode;
   targetCard = targetCard.className === 'film' ? targetCard : targetCard.parentNode;
   const targetCardId = targetCard.dataset.id;
@@ -28,7 +30,6 @@ export const onFilmClick = e => {
     // 1 тут получить id фильма
     // onAddToLS(e);
     instance.show();
-    refs.body.style.overflow = 'hidden';
     doLocalisation();
 
     // обработка клика по esc
@@ -77,15 +78,14 @@ function findCardItem(targetCardId) {
 
 const onFilmCloseClick = () => {
   instance.close();
-  refs.body.style.overflow = 'inherit';
 
   //убирает инлайн стили на кнопках в модалке и с body по закрытию
-  refs.modalWatchedBtn.style.color = '';
-  refs.modalWatchedBtn.style.backgroundColor = '';
-  refs.modalQueueBtn.style.color = '';
-  refs.modalQueueBtn.style.backgroundColor = '';
+  refs.modalWatchedBtn.style.color = 'inherit';
+  refs.modalWatchedBtn.style.backgroundColor = 'inherit';
+  refs.modalQueueBtn.style.color = 'inherit';
+  refs.modalQueueBtn.style.backgroundColor = 'inherit';
 
-  refs.body.style.overflow = '';
+  refs.body.style.overflow = 'inherit';
 };
 
 function renderFilmCard(filmCard) {

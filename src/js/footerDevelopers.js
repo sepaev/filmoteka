@@ -4,11 +4,14 @@ import { loadEscListner } from './escClose';
 import { doLocalisation } from './localization';
 
 const refs = getRefs();
-const instance = basicLightbox.create(refs.modalDevs);
+const instance = basicLightbox.create(refs.modalDevs, {
+    onShow: (instance) => {refs.body.style.overflow = 'hidden';},
+    onClose: (instance) => {refs.body.style.overflow = 'inherit';}
+});
 
 export const onDevLinkClick = () => {
     instance.show();
-    refs.body.style.overflow = 'hidden';
+    
     doLocalisation();
      
 // обработка клика по esc   
@@ -23,7 +26,6 @@ export const onDevLinkClick = () => {
 
 const onDevCloseClick = () => {
     instance.close();
-    refs.body.style.overflow = 'inherit';
 }
 
 

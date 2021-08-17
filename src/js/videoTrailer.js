@@ -20,16 +20,12 @@ refs.galleryItems.addEventListener('click', e => {
     }
     else {
         e.preventDefault;
-    //   console.log('2222');
-      const targetCardId = (e.target.parentNode.parentNode.parentNode.parentNode.parentNode.dataset.id || e.target.parentNode.parentNode.parentNode.parentNode.dataset.id);
-      // console.dir(e.target.parentNode.parentNode.parentNode.parentNode);
-      // alert(e.target.parentNode.parentNode.parentNode.parentNode);
-
-    //   console.log(targetCardId);
+      const targetCardId = (
+        e.target.parentNode.parentNode.parentNode.parentNode.parentNode.dataset.id
+        ||
+        e.target.parentNode.parentNode.parentNode.parentNode.dataset.id
+      );
       openModalVideoTrailer(targetCardId);
-        
-
-    
   }
 });
 
@@ -46,13 +42,15 @@ function openModalVideoTrailer(id) {
           const id = data.results[0].key;
           
           const instance = basicLightbox.create(`
-            <iframe width="75%" height="75%" src='https://www.youtube.com/embed/${id}'frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-          `);
-          instance.show();
-          refs.body.style.overflow = 'hidden';
-          window.setTimeout(e => {
-            Notiflix.Loading.remove();
-            // newRef = document.querySelector('.basicLightbox__placeholder');
+          <iframe width="75%" height="75%" src='https://www.youtube.com/embed/${id}'frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          `, {
+            onShow: (instance) => {refs.body.style.overflow = 'hidden';},
+            onClose: (instance) => {refs.body.style.overflow = 'inherit';}
+          });
+            instance.show();
+            window.setTimeout(e => {
+              Notiflix.Loading.remove();
+              // newRef = document.querySelector('.basicLightbox__placeholder');
             // const iframeNodeValue = newRef.children[0].attributes[2]
             // console.dir(iframeNodeValue);
           }
@@ -68,10 +66,12 @@ function openModalVideoTrailer(id) {
           doNotification(alert.en, alert.ru, alert.ua, 'failure');
           const instance = basicLightbox.create(`
           <iframe width="75%" height="75%" src='http://www.youtube.com/embed/zwBpUdZ0lrQ' frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-          `);
+          `, {
+            onShow: (instance) => {refs.body.style.overflow = 'hidden';},
+            onClose: (instance) => {refs.body.style.overflow = 'inherit';}
+          });
           
           instance.show();
-          refs.body.style.overflow = 'hidden';
           modalCloseTrailer(instance);
           window.setTimeout(e => {
             Notiflix.Loading.remove();
@@ -99,6 +99,5 @@ function openModalVideoTrailer(id) {
         );
       modalCloseBtn.addEventListener('click', () => {
         instance.close();
-        refs.body.style.overflow = 'inherit';
       })
     }
