@@ -8,7 +8,7 @@ export const trimYear = (fullDate) => {
 }
 // перевожу жанры в строку
 export const getGenres = (genresIdsFromAPI) => {
-    if (genresIdsFromAPI.length < 1) return '';
+    if (genresIdsFromAPI.length < 1 || !genresIdsFromAPI) return '';
     const lang = getLang().slice(0, 2);
     let genresString = '';
     
@@ -20,7 +20,7 @@ export const getGenres = (genresIdsFromAPI) => {
 }
 
 export const getGenresToArr = (genresIdsFromAPI) => {
-    if (genresIdsFromAPI.length < 1) return '';
+    if (genresIdsFromAPI.length < 1 || !genresIdsFromAPI) return '';
     const lang = getLang().slice(0, 2);
     let genresArr = [];
 
@@ -61,4 +61,5 @@ export const parseOneFilm = (film) => {
 
 export const parseFilmsData = (films) => {
     return films.map(film => parseOneFilm(film));
+
 };
