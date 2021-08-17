@@ -26,7 +26,7 @@ export const onFilmClick = e => {
   let targetCard = e.target.parentNode.parentNode;
   targetCard = targetCard.className === 'film' ? targetCard : targetCard.parentNode;
   const targetCardId = targetCard.dataset.id;
-  if (e.target.id) {
+  if (e.target.id) { //проверка клик по жанрам
     doOpenGenre(e.target.id, e.target.textContent, null);
     return;
   }
@@ -85,42 +85,16 @@ function findAndAddPrevNext(currentArray, targetCardId) {
 }
 //ДЛЯ СЛЕДУЮЩЕЙ КАРТОЧКИ!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 refs.modalCard.addEventListener('click', e => { 
-  console.log(e.target.className);
-  if (e.target.className !== 'modal-card__image modal-card__image--next') {
-    return 
-}
-else {
-    e.preventDefault;
-  const targetCardId = e.target.parentNode.previousElementSibling.dataset.id
-  console.log(targetCardId);
-  const currentArray = JSON.parse(localStorage.getItem('tempQuery'));
-  console.log(currentArray);
-  
-  findAndAddPrevNext(currentArray, targetCardId);
-  console.log(findAndAddPrevNext(currentArray, targetCardId));
-    
-      };
+  e.preventDefault;
+  if (e.target.className === 'modal-card__image modal-card__image--next' || e.target.className === 'modal-card__image modal-card__image--prev') {
+
+    const targetCardId = e.target.id
+    const currentArray = JSON.parse(localStorage.getItem('tempQuery'));
+    cardItem = findAndAddPrevNext(currentArray, targetCardId);
+    renderFilmCard(cardItem);
+  }
   });
 
-  //ДЛЯ ПРЕДИДУЩЕЙ КАРТОЧКИ!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  refs.modalCard.addEventListener('click', e => { 
-    // console.log(e.target.className);
-    
-        if (e.target.className !== 'modal-card__image modal-card__image--prev') {
-            return 
-        }
-        else {
-            e.preventDefault;
-          const targetCardId = e.target.parentNode.nextElementSibling.nextElementSibling.dataset.id
-          console.log(targetCardId);
-          const currentArray = JSON.parse(localStorage.getItem('tempQuery'));
-          console.log(currentArray);
-          
-          findAndAddPrevNext(currentArray, targetCardId);
-          console.log(findAndAddPrevNext(currentArray, targetCardId));
-          
-        };
-    });
 
 function getFilmData(targetCardId) {
   const localStorageArray = JSON.parse(localStorage.getItem('tempQuery'));
@@ -161,7 +135,10 @@ const onFilmCloseClick = () => {
 };
 
 function renderFilmCard(filmCard) {
+  const refs = getRefs();
+  console.dir(filmCard)
   refs.modalCard.innerHTML = modalFilmCardTpl(filmCard);
+  // refs.modalCard.innerHTML = '';
   doLocalisation();
 }
 
