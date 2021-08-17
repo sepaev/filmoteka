@@ -26,7 +26,7 @@ export const onFilmClick = e => {
   let targetCard = e.target.parentNode.parentNode;
   targetCard = targetCard.className === 'film' ? targetCard : targetCard.parentNode;
   const targetCardId = targetCard.dataset.id;
-  if (e.target.id) {
+  if (e.target.id) { //проверка клик по жанрам
     doOpenGenre(e.target.id, e.target.textContent, null);
     return;
   }
@@ -62,9 +62,9 @@ function findAndAddPrevNext(currentArray, targetCardId) {
     let cardItem;
     for (let i = 0; i < currentArray.length; i++) {
     if (currentArray[i].id === Number(targetCardId)) {
-      let prev = (i === 0) ? currentArray.lrngth : i - 1;
+      let prev = (i === 0) ? currentArray.length-1 : i - 1;
       let cur = i;
-      let next = (i === currentArray.lrngth) ? 0 : i + 1;
+      let next = (i === currentArray.length-1) ? 0 : i + 1;
 
       cardItem = currentArray[i];
       cardItem.ids = {
@@ -77,11 +77,24 @@ function findAndAddPrevNext(currentArray, targetCardId) {
         cur: currentArray[cur].poster_path,
         next: currentArray[next].poster_path,
       }
-      i = currentArray.lrngth;
+      i = currentArray.length;
     }
   }
+  // console.log(cardItem);
   return cardItem;
 }
+//ДЛЯ СЛЕДУЮЩЕЙ КАРТОЧКИ!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+refs.modalCard.addEventListener('click', e => { 
+  e.preventDefault;
+  if (e.target.className === 'modal-card__image modal-card__image--next' || e.target.className === 'modal-card__image modal-card__image--prev') {
+
+    const targetCardId = e.target.id
+    const currentArray = JSON.parse(localStorage.getItem('tempQuery'));
+    cardItem = findAndAddPrevNext(currentArray, targetCardId);
+    renderFilmCard(cardItem);
+  }
+  });
+
 
 function getFilmData(targetCardId) {
   const localStorageArray = JSON.parse(localStorage.getItem('tempQuery'));
@@ -122,7 +135,10 @@ const onFilmCloseClick = () => {
 };
 
 function renderFilmCard(filmCard) {
+  const refs = getRefs();
+  console.dir(filmCard)
   refs.modalCard.innerHTML = modalFilmCardTpl(filmCard);
+  // refs.modalCard.innerHTML = '';
   doLocalisation();
 }
 
