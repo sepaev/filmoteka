@@ -59,7 +59,6 @@ export const onFilmClick = e => {
 };
 
 function findAndAddPrevNext(currentArray, targetCardId) {
-  console.log('1111');
     let cardItem;
     for (let i = 0; i < currentArray.length; i++) {
     if (currentArray[i].id === Number(targetCardId)) {
@@ -81,25 +80,47 @@ function findAndAddPrevNext(currentArray, targetCardId) {
       i = currentArray.length;
     }
   }
+  // console.log(cardItem);
   return cardItem;
 }
-
+//ДЛЯ СЛЕДУЮЩЕЙ КАРТОЧКИ!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 refs.modalCard.addEventListener('click', e => { 
-  // console.log(e.target.className);
+  console.log(e.target.className);
+  if (e.target.className !== 'modal-card__image modal-card__image--next') {
+    return 
+}
+else {
+    e.preventDefault;
+  const targetCardId = e.target.parentNode.previousElementSibling.dataset.id
+  console.log(targetCardId);
+  const currentArray = JSON.parse(localStorage.getItem('tempQuery'));
+  console.log(currentArray);
   
-      if (e.target.className !== 'modal-card__image modal-card__image--prev') {
-          return 
-      }
-      else {
-          e.preventDefault;
-        const targetCardId = e.target.parentNode.nextElementSibling.nextElementSibling.dataset.id
-        console.log(targetCardId);
-        const currentArray = JSON.parse(localStorage.getItem('tempQuery'));
-        console.log(currentArray);
-        
-        findAndAddPrevNext(currentArray, targetCardId);
+  findAndAddPrevNext(currentArray, targetCardId);
+  console.log(findAndAddPrevNext(currentArray, targetCardId));
+    
       };
   });
+
+  //ДЛЯ ПРЕДИДУЩЕЙ КАРТОЧКИ!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  refs.modalCard.addEventListener('click', e => { 
+    // console.log(e.target.className);
+    
+        if (e.target.className !== 'modal-card__image modal-card__image--prev') {
+            return 
+        }
+        else {
+            e.preventDefault;
+          const targetCardId = e.target.parentNode.nextElementSibling.nextElementSibling.dataset.id
+          console.log(targetCardId);
+          const currentArray = JSON.parse(localStorage.getItem('tempQuery'));
+          console.log(currentArray);
+          
+          findAndAddPrevNext(currentArray, targetCardId);
+          console.log(findAndAddPrevNext(currentArray, targetCardId));
+          
+        };
+    });
 
 function getFilmData(targetCardId) {
   const localStorageArray = JSON.parse(localStorage.getItem('tempQuery'));
