@@ -97,7 +97,7 @@ refs.modalCard.addEventListener('click', e => {
         const currentArray = JSON.parse(localStorage.getItem('tempQuery'));
         console.log(currentArray);
         
-        findAndAddPrevNext(currentArray, targetCardId)
+        findAndAddPrevNext(currentArray, targetCardId);
       };
   });
 
