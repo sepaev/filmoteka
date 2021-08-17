@@ -6,6 +6,8 @@ import { fetchGetMovieById} from './getContent';
 import { parseOneFilm }     from './parseApiData';
 import { doLocalisation }   from './localization';
 import { locals }           from './consts';
+import { doOpenGenre }      from './genresWork';
+
 import { addMovieToLocalStorage, loadDataFromLS, removeMovieFromLocalStorage, } from './localStoragе';
 
 const refs = getRefs();
@@ -24,7 +26,11 @@ export const onFilmClick = e => {
   let targetCard = e.target.parentNode.parentNode;
   targetCard = targetCard.className === 'film' ? targetCard : targetCard.parentNode;
   const targetCardId = targetCard.dataset.id;
-
+  if (e.target.id) {
+    doOpenGenre(e.target.id, e.target.textContent, null);
+    return;
+  }
+  
   if (targetCard.className === 'film') {
     // проверка на клик (нужно тестить. может нужно менять)
     // 1 тут получить id фильма
@@ -47,7 +53,10 @@ export const onFilmClick = e => {
     // проверяет, есть ли карточка в ЛС
     checkAdd('watched', targetCardId, refs.modalWatchedBtn);
     checkAdd('queue', targetCardId, refs.modalQueueBtn);
+    return;
   }
+
+
 };
 
 function getFilmData(targetCardId) {

@@ -71,6 +71,55 @@ export const getMoviesPagination = async (searchValue, pageValue = 1) => {
     }
 }
 
+export const checkDataByGenres = (films, genreId) => {
+  let result = [];
+  films.forEach(film => {
+    if (film.genre_ids.indexOf(parseInt(genreId)) > 0) result.push(film)
+  });
+  return result;
+  
+}
+
+export const getMoviesByScroll = async (searchValue, pageValue = 1, genreId) => {
+  let totalResults = 0;
+  let films = [];
+  if (!searchValue) {
+    refs.trending_ref.classList.add('filter_is_active');
+    for (let total = 0; total <= 20; pageValue++) {
+      await fetchGetTrending(pageValue).then(data => {
+        const filtred = checkDataByGenres(data.results, genreId);
+        films.push(...filtred);
+        totalResults = data.total_results;
+        total += filtred.length;
+      }
+      ).catch(err =>
+        console.log(err),
+        );
+      // total += 21;
+      console.log(total);
+    }
+    return { films, pageValue, totalResults };
+  }
+
+  if (searchValue) {
+    for (let total = 0; total <= 20; pageValue++) {
+      await fetchGetSearchMovie(searchValue, pageValue).then(data => {
+        const filtred = checkDataByGenres(data.results, genreId);
+        films.push(...filtred);
+        totalResults = data.total_results;
+        total += filtred.length;
+      }
+      ).catch(err =>
+        console.log(err),
+        );
+      // total += 21;
+      console.log(total);
+    }
+    return { films, pageValue, totalResults };
+
+  }
+}
+
 mainRefs.filterList.addEventListener('click', e => {
   if (e.target.nodeName !== 'BUTTON') {
     return
@@ -229,4 +278,3 @@ function makeFilterSearch (e) {
 // }
 // Пример ссылки
 // https://api.themoviedb.org/3/search/movie?api_key=8948cf34f147d17edd39edcb74badce4&language=en-US&page=1&include_adult=false
-
