@@ -1,6 +1,6 @@
 import './sass/main.scss';
 import { getRefs } from './js/refs'
-import { debounce } from 'throttle-debounce';
+import { throttle } from 'throttle-debounce';
 import { consts } from "./js/consts";
 import { onFilmClick } from "./js/sectionFilmoteka"
 import { changeHeader } from "./js/changeHeader"
@@ -66,6 +66,6 @@ refs.devLink.addEventListener('click', e => {
 
 // обработка клика по scroll UP
 window.addEventListener('scroll',
-  debounce(consts.DEBOUNCE_DELAY, (e) => {
+  throttle(consts.DEBOUNCE_DELAY, (e) => {
      activateScrollButton(e);//from "./js/btnScrollUp"  клик по ссылке подняться вверх встраницы
    }));

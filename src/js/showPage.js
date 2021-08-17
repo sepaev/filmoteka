@@ -1,13 +1,13 @@
-import     Notiflix             from "notiflix";
-import { getMoviesPagination, getMoviesByScroll }  from "./getContent";
-import { renderAllGallery }     from "./renderGallery";
-import { getRefs }              from "./refs";
-import { parseFilmsData }       from './parseApiData';
-import { loadDataFromLS }       from './localStoragе';
-import { renderPaginationBtn }  from './paginationNav';
-import { makeButtonActiv }      from './paginationNav';
-import { doNotification }       from './localization';
-import { locals }       from './consts';
+import     Notiflix                                 from "notiflix";
+import { getMoviesPagination, getMoviesByScroll }   from "./getContent";
+import { renderAllGallery, renderAddToGallery}      from "./renderGallery";
+import { getRefs }                                  from "./refs";
+import { parseFilmsData }                           from './parseApiData';
+import { loadDataFromLS }                           from './localStoragе';
+import { renderPaginationBtn }                      from './paginationNav';
+import { makeButtonActiv }                          from './paginationNav';
+import { doNotification }                           from './localization';
+import { locals }                                   from './consts';
 
 Notiflix.Notify.init({
     position: 'center-top',
@@ -99,7 +99,7 @@ export const showPageHome = (pageNumber) => {
 export const showPageHomeGenres = (pageNumber, genreId, genreName) => {
     Notiflix.Loading.pulse();
     const refs = getRefs();
-    getMoviesByScroll(refs.searchBox.value, pageNumber, genreId)
+    return getMoviesByScroll(refs.searchBox.value, pageNumber, genreId)
     .then(data => {
         Notiflix.Loading.remove();
         if (data.totalResults) {
@@ -113,18 +113,30 @@ export const showPageHomeGenres = (pageNumber, genreId, genreName) => {
         } else {
             doOnFailure();
         }
-        return data.films;
+        return data;
     })
-    .then(films => {
-       const filmData = parseFilmsData(films);
-       const string = JSON.stringify(filmData);
-       localStorage.setItem('tempQuery', string);
-       return filmData;
+    .then(data => {
+        data.filmData = parseFilmsData(data.films);
+        localStorage.setItem('tempQuery',  JSON.stringify(data.filmData));
+        return data;
     })
-    .then(films => {
-        renderAllGallery(films);// перебирает обьект и выводит карточки фильмов
+    .then(data => {
+        renderAllGallery(data.filmData);// перебирает обьект и выводит карточки фильмов
+        return data.pageValue;
     })
 };
+
+export const showMorePageHomeGenres = (pageNumber, genreId) => {
+    const refs = getRefs();
+    return getMoviesByScroll(refs.searchBox.value, pageNumber, genreId)
+        .then(data => {
+            if (!data.totalResults) doOnFailure();
+            data.filmData = parseFilmsData(data.films);
+            localStorage.setItem('tempQuery', JSON.stringify(data.filmData));
+            renderAddToGallery(data.filmData);// перебирает обьект и выводит карточки фильмов
+            return data.pageValue;
+        })
+}
     
 export const showPageMyLibrary = (keyName) => {
     Notiflix.Loading.pulse();

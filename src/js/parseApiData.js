@@ -48,7 +48,6 @@ export const checkPoster = (poster, reserve) => {
 
 
 export const parseOneFilm = (film) => {
-    console.log(film);
     return {
         backdrop_path: film['backdrop_path'],
         id: film['id'],

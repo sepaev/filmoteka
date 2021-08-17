@@ -13,3 +13,7 @@ export const renderAllGallery = function (object) {
     refs.galleryItems.innerHTML = '';
     object.forEach(film => renderGallery(film));// перебирает обьект и выводит карточки фильмов
 };
+export const renderAddToGallery = function (object) {
+    //добавляет в конец к текущему отображению документа карточки
+    object.forEach(film => renderGallery(film));// перебирает обьект и выводит карточки фильмов
+};
