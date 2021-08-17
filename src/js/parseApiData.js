@@ -30,6 +30,12 @@ export const getGenresToArr = (genresIdsFromAPI) => {
     });
     return genresArr;
 }
+export const getArray = (array, reserv) => {
+    if (array) {
+        return [...array];
+    }
+    return [reserv, reserv, reserv];
+}
 
 export const checkPoster = (poster, reserve) => {
     // if (!poster) return '/3UJ3aHkRzpmIM87BWrk72nTN2v8.jpg';
@@ -42,6 +48,7 @@ export const checkPoster = (poster, reserve) => {
 
 
 export const parseOneFilm = (film) => {
+    console.log(film);
     return {
         backdrop_path: film['backdrop_path'],
         id: film['id'],
@@ -53,6 +60,8 @@ export const parseOneFilm = (film) => {
         title: film['title'],
         vote_average: film['vote_average'],
         vote_count: film['vote_count'],
+        ids: getArray(film['ids'], film['id']),
+        ids: getArray(film['posters'], film['poster_path']),
         genres: getGenres(film['genre_ids']),
         genresArr: getGenresToArr(film['genre_ids']),
         year: trimYear(film['release_date']),

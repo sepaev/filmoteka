@@ -1,13 +1,15 @@
 
+<div class="modal-card__prev">
+  <img class='modal-card__image' src='https://image.tmdb.org/t/p/original/{{posters.prev}}' id='{{ids.prev}}' alt='Film {{title}} poster' />
+</div>
 <div class='modal-card__img-thumb'>
   <img
     class='modal-card__image'
-    src='https://image.tmdb.org/t/p/original/{{poster_path}}'
+    src='https://image.tmdb.org/t/p/original/{{posters.cur}}'
     alt='Film {{title}} poster'
   />
 </div>
-
-<div class='modal-card__data' data-id={{id}}>
+<div class='modal-card__data' data-id={{ids.cur}}>
 
   <h2 class='modal-card__data-heading'>{{title}}</h2>
 
@@ -42,4 +44,9 @@
     {{overview}}
   </p>
 
+</div>
+
+<div class="modal-card__next">
+  <img class='modal-card__image' src='https://image.tmdb.org/t/p/original/{{posters.next}}' id='{{ids.next}}'
+    alt='Film {{title}} poster' />
 </div>

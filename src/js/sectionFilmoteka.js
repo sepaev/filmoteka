@@ -46,9 +46,8 @@ export const onFilmClick = e => {
 
       onFilmCloseClick(); //from "./js/footerDevelopers"  клик кнопке закрытия модалки
     });
-
-    getFilmData(targetCardId);
-    renderFilmCard(cardItem);
+    // getFilmData(targetCardId);
+    renderFilmCard(getFilmData(targetCardId));
 
     // проверяет, есть ли карточка в ЛС
     checkAdd('watched', targetCardId, refs.modalWatchedBtn);
@@ -59,13 +58,37 @@ export const onFilmClick = e => {
 
 };
 
+function findAndAddPrevNext(currentArray, targetCardId) {
+    let cardItem;
+    for (let i = 0; i < currentArray.length; i++) {
+    if (currentArray[i].id === Number(targetCardId)) {
+      let prev = (i === 0) ? currentArray.lrngth : i - 1;
+      let cur = i;
+      let next = (i === currentArray.lrngth) ? 0 : i + 1;
+
+      cardItem = currentArray[i];
+      cardItem.ids = {
+        prev: currentArray[prev].id,
+        cur: currentArray[cur].id,
+        next: currentArray[next].id,
+      }
+      cardItem.posters = {
+        prev: currentArray[prev].poster_path,
+        cur: currentArray[cur].poster_path,
+        next: currentArray[next].poster_path,
+      }
+      i = currentArray.lrngth;
+    }
+  }
+  return cardItem;
+}
+
 function getFilmData(targetCardId) {
-  const currentArray = JSON.parse(localStorage.getItem('tempQuery'));
-
+  const localStorageArray = JSON.parse(localStorage.getItem('tempQuery'));
   // находит объект по айди, проверка на наличие фильма в временном хранилище
-  cardItem = currentArray.find(cardItem => cardItem.id === Number(targetCardId));
-
-  if (cardItem !== null) {
+    cardItem = findAndAddPrevNext(localStorageArray, targetCardId);
+  
+  if (cardItem) {
     // console.log('выполняется, если cardItem НЕ null, фильм есть в временном LS', cardItem);
     isAdded = true;
     return cardItem;
@@ -73,15 +96,16 @@ function getFilmData(targetCardId) {
 
   findCardItem(targetCardId).then(cardItem => {
     // console.log('выполняется, если cardItem null, фильма нет в временном LS', cardItem);
-    renderFilmCard(cardItem);
+    // renderFilmCard(cardItem);
     return cardItem;
   });
 }
 
 function findCardItem(targetCardId) {
   return fetchGetMovieById(targetCardId).then(data => {
-    data.genre_ids = data.genres.map(genre => genre.id);
-    return parseOneFilm(data);
+    cardItem = findAndAddPrevNext(data, targetCardId);
+    cardItem.genre_ids = data.genres.map(genre => genre.id);
+    return parseOneFilm(cardItem);
   });
 }
 
