@@ -59,12 +59,13 @@ export const onFilmClick = e => {
 };
 
 function findAndAddPrevNext(currentArray, targetCardId) {
+  console.log('1111');
     let cardItem;
     for (let i = 0; i < currentArray.length; i++) {
     if (currentArray[i].id === Number(targetCardId)) {
-      let prev = (i === 0) ? currentArray.lrngth : i - 1;
+      let prev = (i === 0) ? currentArray.length : i - 1;
       let cur = i;
-      let next = (i === currentArray.lrngth) ? 0 : i + 1;
+      let next = (i === currentArray.length) ? 0 : i + 1;
 
       cardItem = currentArray[i];
       cardItem.ids = {
@@ -77,11 +78,28 @@ function findAndAddPrevNext(currentArray, targetCardId) {
         cur: currentArray[cur].poster_path,
         next: currentArray[next].poster_path,
       }
-      i = currentArray.lrngth;
+      i = currentArray.length;
     }
   }
   return cardItem;
 }
+
+refs.modalCard.addEventListener('click', e => { 
+  // console.log(e.target.className);
+  
+      if (e.target.className !== 'modal-card__image modal-card__image--prev') {
+          return 
+      }
+      else {
+          e.preventDefault;
+        const targetCardId = e.target.parentNode.nextElementSibling.nextElementSibling.dataset.id
+        console.log(targetCardId);
+        const currentArray = JSON.parse(localStorage.getItem('tempQuery'));
+        console.log(currentArray);
+        
+        findAndAddPrevNext(currentArray, targetCardId)
+      };
+  });
 
 function getFilmData(targetCardId) {
   const localStorageArray = JSON.parse(localStorage.getItem('tempQuery'));
