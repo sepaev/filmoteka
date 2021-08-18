@@ -9,8 +9,9 @@ body.dark {
 }
 
 .theme-switch {
-  display: flex;
+  display: none;
   align-items: center;
+  margin: 10px;
 }
 
 .theme-switch__icon {
