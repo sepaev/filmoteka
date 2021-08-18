@@ -10,7 +10,17 @@ import { doOpenGenre }      from './genresWork';
 
 import { addMovieToLocalStorage, loadDataFromLS, removeMovieFromLocalStorage, } from './localStoragе';
 
-const refs = getRefs();
+const refs = getRefs(); 
+/////////LISTNERS////////////////
+// const body = document.querySelector('body');
+refs.modalWatchedBtn.addEventListener('click', onAddToLS);
+refs.modalQueueBtn.addEventListener('click', onAddToLS);
+
+export const checkTargetModalCard = (e, instance) => {
+  if (e.target.nodeName === 'IMG') slider(e);
+  if (e.target.nodeName === 'A')  doOpenGenre(e.target.id, e.target.textContent, instance);
+}
+/////////END////////////////
 const instance = basicLightbox.create(refs.modalFilm, {
     onShow: (instance) => {refs.body.style.overflow = 'hidden';},
     onClose: (instance) => {refs.body.style.overflow = 'inherit';}
@@ -18,9 +28,14 @@ const instance = basicLightbox.create(refs.modalFilm, {
 let cardItem = null;
 let isAdded = false;
 
-// const body = document.querySelector('body');
-refs.modalWatchedBtn.addEventListener('click', onAddToLS);
-refs.modalQueueBtn.addEventListener('click', onAddToLS);
+
+function addSlsderListners(e) {
+  const refs = getRefs();
+  console.dir(refs.modalPosterNext);
+  console.dir(refs.modalPosterPrev);
+  refs.modalPosterNext.addEventListener('click', slider);
+  refs.modalPosterPrev.addEventListener('click', slider);
+}
 
 export const onFilmClick = e => {
   let targetCard = e.target.parentNode.parentNode;
@@ -32,21 +47,27 @@ export const onFilmClick = e => {
   }
   
   if (targetCard.className === 'film') {
+    // instance.show(() => console.log('lightbox now visible'));
     instance.show();
     doLocalisation();
-
+    // обработка клика по модалке с фильмом
+    refs.modalCard.addEventListener('click', e => {
+      e.preventDefault;
+      checkTargetModalCard(e, instance); //from "./js/sectionFilmoteka"  клик по ссылке разработчиков
+    });  
     // обработка клика по esc
     loadEscListner(instance);
-
+    
     refs.modalFilmCloseBtn.addEventListener('click', e => {
       e.preventDefault;
       onFilmCloseClick(); //from "./js/footerDevelopers"  клик кнопке закрытия модалки
     });
     renderFilmCard(getFilmData(targetCardId));
-
+    
     // проверяет, есть ли карточка в ЛС
     checkAdd('watched', targetCardId, refs.modalWatchedBtn);
     checkAdd('queue', targetCardId, refs.modalQueueBtn);
+    
     return;
   }
 };
@@ -75,18 +96,16 @@ function findAndAddPrevNext(currentArray, targetCardId) {
   }
   return cardItem;
 }
-//ДЛЯ СЛЕДУЮЩЕЙ КАРТОЧКИ!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-refs.modalCard.addEventListener('click', e => { 
+
+function slider(e) {
   e.preventDefault;
   if (e.target.className === 'modal-card__image modal-card__image--next' || e.target.className === 'modal-card__image modal-card__image--prev') {
-
     const targetCardId = e.target.id
     const currentArray = JSON.parse(localStorage.getItem('tempQuery'));
     cardItem = findAndAddPrevNext(currentArray, targetCardId);
     renderFilmCard(cardItem);
   }
-  });
-
+}
 
 function getFilmData(targetCardId) {
   const localStorageArray = JSON.parse(localStorage.getItem('tempQuery'));
@@ -128,7 +147,6 @@ const onFilmCloseClick = () => {
 
 function renderFilmCard(filmCard) {
   const refs = getRefs();
-  console.dir(filmCard)
   refs.modalCard.innerHTML = modalFilmCardTpl(filmCard);
   doLocalisation();
 }
@@ -137,7 +155,7 @@ function renderFilmCard(filmCard) {
 function onAddToLS(e) {
   const targetBtn = e.target;
   const localStorageKey = targetBtn === refs.modalWatchedBtn ? 'watched' : 'queue';
-  const filmId = targetBtn.parentNode.previousElementSibling.lastElementChild.dataset.id;
+  const filmId = targetBtn.parentNode.previousElementSibling.children[2].dataset.id;
   const currentDataArray = loadDataFromLS(localStorageKey);
 
   if (currentDataArray.find(film => film.id === Number(filmId)) !== undefined) {
