@@ -18,7 +18,7 @@
 
     @media (max-width: $max-mobile) {
       padding: 46px 20px 43px 21px;
-      max-width: $min-mobile;
+      min-width: $min-mobile;
     }
     @media (min-width: $min-tablet) and (max-width: $max-tablet) {
       padding: 71px 41px 76px 59px;
@@ -32,66 +32,66 @@
 
     &.home {
       @media (max-width: $max-mobile) {
-        background-image: url(/images/img/mobile/1x/headerHomeBG.jpg);
+        background-image: $header-gradient, url(/images/img/mobile/1x/headerHomeBG.jpg);
         @media screen and (min-device-pixel-ratio: 2),
           screen and (-webkit-min-device-pixel-ratio: 2),
           screen and (-o-min-device-pixel-ratio: 2/1),
           screen and (min-resolution: 192dpi),
           screen and (min-resolution: 2dppx) {
-          background-image: url(/images/img/mobile/2x/headerHomeBG.jpg);
+          background-image: $header-gradient, url(/images/img/mobile/2x/headerHomeBG.jpg);
         }
       }
       @media (min-width: $min-tablet) and (max-width: $max-tablet) {
-        background-image: url(/images/img/tablet/1x/headerHomeBG.jpg);
+        background-image: $header-gradient, url(/images/img/tablet/1x/headerHomeBG.jpg);
         @media screen and (min-device-pixel-ratio: 2),
           screen and (-webkit-min-device-pixel-ratio: 2),
           screen and (-o-min-device-pixel-ratio: 2/1),
           screen and (min-resolution: 192dpi),
           screen and (min-resolution: 2dppx) {
-          background-image: url(/images/img/tablet/2x/headerHomeBG.jpg);
+          background-image: $header-gradient, url(/images/img/tablet/2x/headerHomeBG.jpg);
         }
       }
       @media (min-width: $min-desktop) {
-        background-image: url(/images/img/desktop/1x/headerHomeBG.jpg);
+        background-image: $header-gradient, url(/images/img/desktop/1x/headerHomeBG.jpg);
         @media screen and (min-device-pixel-ratio: 2),
           screen and (-webkit-min-device-pixel-ratio: 2),
           screen and (-o-min-device-pixel-ratio: 2/1),
           screen and (min-resolution: 192dpi),
           screen and (min-resolution: 2dppx) {
-          background-image: url(/images/img/desktop/2x/headerHomeBG.jpg);
+          background-image: $header-gradient, url(/images/img/desktop/2x/headerHomeBG.jpg);
         }
       }
     }
 
     &.my-library {
       @media (max-width: $max-mobile) {
-        background-image: url(/images/img/mobile/1x/headerLibraryBG.jpg);
+        background-image: $header-gradient, url(/images/img/mobile/1x/headerLibraryBG.jpg);
         @media screen and (min-device-pixel-ratio: 2),
           screen and (-webkit-min-device-pixel-ratio: 2),
           screen and (-o-min-device-pixel-ratio: 2/1),
           screen and (min-resolution: 192dpi),
           screen and (min-resolution: 2dppx) {
-          background-image: url(/images/img/mobile/2x/headerLibraryBG.jpg);
+          background-image: $header-gradient, url(/images/img/mobile/2x/headerLibraryBG.jpg);
         }
       }
       @media (min-width: $min-tablet) and (max-width: $max-tablet) {
-        background-image: url(/images/img/tablet/1x/headerLibraryBG.jpg);
+        background-image: $header-gradient, url(/images/img/tablet/1x/headerLibraryBG.jpg);
         @media screen and (min-device-pixel-ratio: 2),
           screen and (-webkit-min-device-pixel-ratio: 2),
           screen and (-o-min-device-pixel-ratio: 2/1),
           screen and (min-resolution: 192dpi),
           screen and (min-resolution: 2dppx) {
-          background-image: url(/images/img/tablet/2x/headerLibraryBG.jpg);
+          background-image: $header-gradient, url(/images/img/tablet/2x/headerLibraryBG.jpg);
         }
       }
       @media (min-width: $min-desktop) {
-        background-image: url(/images/img/desktop/1x/headerLibraryBG.jpg);
+        background-image: $header-gradient, url(/images/img/desktop/1x/headerLibraryBG.jpg);
         @media screen and (min-device-pixel-ratio: 2),
           screen and (-webkit-min-device-pixel-ratio: 2),
           screen and (-o-min-device-pixel-ratio: 2/1),
           screen and (min-resolution: 192dpi),
           screen and (min-resolution: 2dppx) {
-          background-image: url(/images/img/desktop/2x/headerLibraryBG.jpg);
+          background-image: $header-gradient, url(/images/img/desktop/2x/headerLibraryBG.jpg);
         }
       }
     }
@@ -138,7 +138,7 @@
     }
   }
 }
-
+////////////////////////////////////
 .header-nav {
   // display: inline-block;
   // justify-content: flex-end;
@@ -169,7 +169,7 @@
     border-bottom: 3px solid $orange-color;
   }
 }
-
+///////////////////////////////////////////////
 .header-search {
   display: block;
   align-content: center;
@@ -246,6 +246,8 @@
     text-align: center;
   }
 }
+
+///////////////////////////////////////
 .my-library {
   &__btns {
     display: flex;
@@ -278,6 +280,8 @@
     margin-right: 20px;
   }
 }
+
+///////////////////////////////////////
 .control {
   &__panel {
     display: block;
