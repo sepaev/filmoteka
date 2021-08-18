@@ -134,6 +134,7 @@ export const renderPaginationBtn = (totalPages, currentPage) => {
 
 export const onPaginationNavClick = page => {
     showPageHome(parseInt(page));
+    console.log(page)
 
     // console.log('Загружаю страницу' + page);
    
