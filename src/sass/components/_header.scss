@@ -21,11 +21,11 @@
       max-width: $min-mobile;
     }
     @media (min-width: $min-tablet) and (max-width: $max-tablet) {
-      padding: 71px 41px 76px 59px;
+      padding: 41px 76px 37px 71px;
       min-width: $min-tablet;
     }
     @media (min-width: $min-desktop) {
-      min-width: $min-desktop;
+      max-width: $min-desktop;
       padding: 46px 71px 65px 71px;
       margin: auto;
     }
@@ -167,6 +167,10 @@
 
   &__link.current {
     border-bottom: 3px solid $orange-color;
+  }
+
+  &__modal-btn {
+    padding: 0;
   }
 }
 
