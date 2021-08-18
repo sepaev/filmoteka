@@ -48,9 +48,9 @@ export const getRefs = () => {
     scrollTopBtn:       document.querySelector('.scroll__top'),
     _________SEARCH_PAGE: null,
     searchPage:         document.querySelector('.filmoteka-nav__search-page'),
-    inputScs:           document.querySelector('.input-success'),
-    buttonScs:          document.querySelector('.button-success'),
-    containerScs:       document.querySelector('.notify'),
+    inputGoToPage:      document.querySelector('.go-to-page__input'),
+    buttonGoToPage:     document.querySelector('.go-to-page__button'),
+    containerGoToPage:  document.querySelector('.go-to-page'),
   };
 };
 
@@ -103,6 +103,8 @@ export const getRefsLocals = () => {
     popular_ref:          document.querySelector('[data-set="popular"]'),
     top_rated_ref:        document.querySelector('[data-set="top_rated"]'),
     upcoming_ref:         document.querySelector('[data-set="upcoming"]'),
-    control_info_ref:     document.querySelector('.control__info'),
+    control_info_ref: document.querySelector('.control__info'),
+    
+    go_to_page_input_ref: document.querySelector('.go-to-page__input'),
   };  
 };

@@ -67,6 +67,7 @@ const doOnFailure = () => {
 }
 
 export const showPageHome = (pageNumber) => {
+    if (!pageNumber) return;
     Notiflix.Loading.pulse();
     const refs = getRefs();
     getMoviesPagination(refs.searchBox.value, pageNumber) //async
