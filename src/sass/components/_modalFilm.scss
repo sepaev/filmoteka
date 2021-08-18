@@ -183,12 +183,11 @@
     z-index: 10;
     left: -34%;
     top: calc(50% - 170px);
-    opacity: 0.75;
+    filter: blur(2px);
     transform: scale(0.9);
     &:hover {
-      opacity: 1;
+      filter: blur(0px);
       transform: translateX(20px);
-      // transform: scale(1.1);
       
     }
     }
@@ -210,15 +209,14 @@
     z-index: 10;
     right: -34%;
     top: calc(50% - 170px);
-    opacity: 0.75;
     transform: scale(0.9);
+    filter: blur(2px);
     
     
     
     &:hover {
-      opacity: 1;
+      filter: blur(0px);
       transform: translateX(-20px);
-      // transform: scale(1.1);
     }
     }
     
@@ -290,8 +288,6 @@
   // общие стили
 
   &__img-thumb {
-    // border: 1px;
-    // border-radius: 5px;
 
     @media (max-width: $max-mobile) {
       margin-bottom: 30px;
