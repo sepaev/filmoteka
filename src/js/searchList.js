@@ -50,7 +50,5 @@ function renderListSearch(searchValue, objects) {
       deleteListSearch();
     }
   }
-  
-  
-  
+    
   export { renderListSearch, deleteListSearch };
