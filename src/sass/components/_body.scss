@@ -183,7 +183,8 @@
   &__first,
   &__last,
   &__prev,
-  &__next {
+  &__next,
+  &__search-page {
     padding: 10px 8px;
     margin: 0 2px;
     font-family: $main-font;
@@ -217,19 +218,13 @@
   }
 
   &__left {
-    //__left
     background-image: url('../images/svg/arrow-left-icon.svg');
   }
   &__right {
-    //__right
     background-image: url('../images/svg/arrow-right-icon.svg');
   }
 
-  &__pages {
-    //__pages
-  }
   &__pages--list {
-    //__pages--list
     display: flex;
     align-items: center;
   }
@@ -251,16 +246,20 @@
       box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
       border-radius: 5px;
     }
-
-    &.current-page {
-      color: $white-color;
-      background-color: $orange-color;
-      border-radius: $main-border-radius;
-      width: 40px;
-      height: 40px;
-      padding: 0;
-      color: $white-color;
-    }
+  }
+  &__pages--link.current-page,
+  &__search-page {
+    color: $white-color;
+    background-color: $orange-color;
+    border-radius: $main-border-radius;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    color: $white-color;
+  }
+  &__search-page {
+    width: auto;
+    padding: 5px 10px;
   }
 }
 
@@ -281,12 +280,9 @@
 
     &:hover,
     &:focus {
-      // цвет иконки всредине при наведении
       background-color: #ff6b081c;
     }
-    // @media screen and (max-width: 480px) {
-    //   right: 40px;
-    // }
+
     @media (max-width: $max-mobile) {
       bottom: 50px;
       right: 6px;

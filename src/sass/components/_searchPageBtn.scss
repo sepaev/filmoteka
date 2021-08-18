@@ -1,21 +1,3 @@
-.filmoteka-nav__search-page {
-  position: absolute;
-  background-color: $orange-color;
-  color: $white-color;
-  padding: 5px 10px;
-  border-radius: 5px;
-  right: 45%;
-  bottom: 50px;
-  @media (min-width: $max-mobile) {
-    right: 150px;
-    bottom: 117px;
-  }
-
-  @media (min-width: $max-tablet) {
-    right: 30%;
-    bottom: 117px;
-  }
-}
 .go-to-page {
   &__label {
     display: block;
