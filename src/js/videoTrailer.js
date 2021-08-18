@@ -42,7 +42,7 @@ function openModalVideoTrailer(id) {
           const id = data.results[0].key;
           
           const instance = basicLightbox.create(`
-          <iframe width="75%" height="75%" src='https://www.youtube.com/embed/${id}'frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe width="80%" height="80%" src='https://www.youtube.com/embed/${id}'frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           `, {
             onShow: (instance) => {refs.body.style.overflow = 'hidden';},
             onClose: (instance) => {refs.body.style.overflow = 'inherit';}
@@ -65,7 +65,7 @@ function openModalVideoTrailer(id) {
           };  
           doNotification(alert.en, alert.ru, alert.ua, 'failure');
           const instance = basicLightbox.create(`
-          <iframe width="75%" height="75%" src='http://www.youtube.com/embed/zwBpUdZ0lrQ' frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe width="0%" height="0%" src='' frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           `, {
             onShow: (instance) => {refs.body.style.overflow = 'hidden';},
             onClose: (instance) => {refs.body.style.overflow = 'inherit';}

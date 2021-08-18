@@ -21,21 +21,14 @@ export const checkTargetModalCard = (e, instance) => {
   if (e.target.nodeName === 'A')  doOpenGenre(e.target.id, e.target.textContent, instance);
 }
 /////////END////////////////
+
 const instance = basicLightbox.create(refs.modalFilm, {
     onShow: (instance) => {refs.body.style.overflow = 'hidden';},
     onClose: (instance) => {refs.body.style.overflow = 'inherit';}
 });
+
 let cardItem = null;
 let isAdded = false;
-
-
-function addSlsderListners(e) {
-  const refs = getRefs();
-  console.dir(refs.modalPosterNext);
-  console.dir(refs.modalPosterPrev);
-  refs.modalPosterNext.addEventListener('click', slider);
-  refs.modalPosterPrev.addEventListener('click', slider);
-}
 
 export const onFilmClick = e => {
   let targetCard = e.target.parentNode.parentNode;
@@ -74,13 +67,15 @@ export const onFilmClick = e => {
 
 function findAndAddPrevNext(currentArray, targetCardId) {
     let cardItem;
-    for (let i = 0; i < currentArray.length; i++) {
+  for (let i = 0; i < currentArray.length; i++) {
+      // находит целевую карточку фильма в целевом массиве фильмаов
     if (currentArray[i].id === Number(targetCardId)) {
       let prev = (i === 0) ? currentArray.length-1 : i - 1;
       let cur = i;
       let next = (i === currentArray.length-1) ? 0 : i + 1;
 
       cardItem = currentArray[i];
+      //для слайдера
       cardItem.ids = {
         prev: currentArray[prev].id,
         cur: currentArray[cur].id,
@@ -91,7 +86,8 @@ function findAndAddPrevNext(currentArray, targetCardId) {
         cur: currentArray[cur].poster_path,
         next: currentArray[next].poster_path,
       }
-      i = currentArray.length;
+      // end
+      i = currentArray.length; // выходит из цикла
     }
   }
   return cardItem;

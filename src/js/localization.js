@@ -79,6 +79,8 @@ export const getLocalsStrings = () => {
             sign_in_female_text: 'female',
             sign_in_other_text: 'will be a secret',
             sign_in_button_text: 'Sign up',
+            go_to_page_input_text: 'Type page number',
+            go_to_page_button_text: 'Go to',
             // sign_up_status_text: '',
         },
         'ru-RU': {
@@ -128,6 +130,8 @@ export const getLocalsStrings = () => {
             sign_in_female_text: 'женщина',
             sign_in_other_text: 'не важно',
             sign_in_button_text: 'Зарегистрироваться',
+            go_to_page_input_text: 'Введите номер страницы',
+            go_to_page_button_text: 'Перейти',
             // sign_up_status_text: '',
         },
         'uk-UA': {
@@ -177,6 +181,8 @@ export const getLocalsStrings = () => {
             sign_in_female_text: 'жінка',
             sign_in_other_text: 'не важливо',
             sign_in_button_text: 'Зареєструватися',
+            go_to_page_input_text: 'Ввеіть номер сторінки',
+            go_to_page_button_text: 'Перейти',
             // sign_up_status_text: '',
         },
     },

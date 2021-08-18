@@ -1,4 +1,4 @@
-import { showPageHome } from './showPage'
+import { showPageHome } from './showPage';
 import { getRefs } from "./refs";
 
 //    const refs = getRefs();   
@@ -73,9 +73,7 @@ const writeButtons = buttonsObj => {
     checkElement(buttonsObj.lastButton, refs.lastButton);
 };
 
-export const renderPaginationBtn = (totalPages, currentPage) => {
-
-    
+export const renderPaginationBtn = (totalPages, currentPage) => {   
     if (currentPage > totalPages) {
         currentPage = 1;
     }
@@ -143,10 +141,9 @@ export const onPaginationNavClick = page => {
 
 export const makeButtonActiv = (currentPage) => {
     const currentButton = document.querySelector(`a[data-number='${currentPage}'`);
-        let activButton = document.querySelector('.filmoteka-nav__pages--link_current');
-    if (activButton) {
-        activButton.classList.remove('filmoteka-nav__pages--link_current');
-    }
-    currentButton.classList.add('filmoteka-nav__pages--link_current');
-}
+    const activButton = document.querySelector('.current-page');
+    console.dir(activButton);
+    if (activButton) activButton.classList.remove('current-page');
+    currentButton.classList.add('current-page');
+};
 
