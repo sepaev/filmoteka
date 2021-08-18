@@ -1,0 +1,68 @@
+.filmoteka-nav__search-page {
+  position: absolute;
+  background-color: $orange-color;
+  color: $white-color;
+  padding: 5px 10px;
+  border-radius: 5px;
+  right: 45%;
+  bottom: 50px;
+  @media (min-width: $max-mobile) {
+    right: 150px;
+    bottom: 117px;
+  }
+
+  @media (min-width: $max-tablet) {
+    right: 30%;
+    bottom: 117px;
+  }
+}
+
+.notify__label {
+  display: block;
+  font-weight: 500;
+  color: $white-color;
+  float: left;
+  font-size: 12px;
+  line-height: 12px;
+}
+
+.input-success {
+  transition: all 0.15s ease-in-out;
+  float: left;
+  width: 100%;
+  font-size: 15px;
+  line-height: 40px;
+  padding: 0 14px;
+  margin: 0 auto 20px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+}
+.input-success:hover {
+  border-color: $orange-color;
+}
+.input-success::-webkit-outer-spin-button,
+.input-success::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.input-success[type='number'] {
+  -moz-appearance: textfield;
+}
+
+.button-success {
+  display: block;
+  margin: 0 auto;
+  transition: all 0.15s ease-in-out;
+  cursor: pointer;
+  color: #fff;
+  background: $orange-color;
+  border: none;
+  font-size: 18px;
+  padding: 8px 24px;
+  border-radius: 20px;
+  box-shadow: 0 6px 20px -8px #000;
+}
+.button-succes:hover {
+  box-shadow: 0 3px 10px -5px #000;
+}

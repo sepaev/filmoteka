@@ -1,6 +1,12 @@
 .filmoteka {
   padding-top: 20px;
-  padding-bottom: 10px;
+  padding-bottom: 50px;
+  padding: auto;
+  position: relative;
+}
+
+.filmoteka__set {
+  padding: 0;
   margin: auto;
   @media (min-width: $min-desktop) {
     width: 320px;
