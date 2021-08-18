@@ -1,4 +1,7 @@
-import searchListTempl from '../partials/templates/searchListTemplate.hbs';
+import {searchListTempl} from '../partials/templates/searchListTemplate';
+import {getRefs} from './refs';
+
+const refsMain = getRefs();
 
 function renderListSearch(searchValue, objects) {
     if (!searchValue) {
@@ -10,10 +13,9 @@ function renderListSearch(searchValue, objects) {
     if (arrRender.length > 6) {
       arrRender = cloneObjects.slice(0, 5);
     }
-    const searchListRef = document.querySelector("[data-index='card-list']");
-    searchListRef.classList.add('open');
+    refsMain.cardListOnSearch.classList.add('open');
     const markup = searchListTempl(arrRender);
-    searchListRef.innerHTML = markup;
+    refsMain.cardListOnSearch.innerHTML = markup;
   
     document.addEventListener('click', handlerCloseList);
     window.addEventListener('keydown', hendlerEscCloseList);
@@ -22,9 +24,8 @@ function renderListSearch(searchValue, objects) {
     This function deletes a pop-up bar
    */
   function deleteListSearch() {
-    const searchListRef = document.querySelector("[data-index='card-list']");
-    searchListRef.innerHTML = '';
-    searchListRef.classList.remove('open');
+    refsMain.cardListOnSearch.innerHTML = '';
+    refsMain.cardListOnSearch.classList.remove('open');
     document.removeEventListener('click', handlerCloseList);
     window.removeEventListener('keydown', hendlerEscCloseList);
     // makeCardsActive();
@@ -36,11 +37,10 @@ function renderListSearch(searchValue, objects) {
   
   function handlerCloseList(event) {
     event.preventDefault();
-    const searchListRef = document.querySelector("[data-index='card-list']");
-    if (!searchListRef) {
+    if (!refsMain.cardListOnSearch) {
       return;
     }
-    if (!searchListRef.contains(event.target)) {
+    if (!refsMain.cardListOnSearch.contains(event.target)) {
       deleteListSearch();
     }
   }

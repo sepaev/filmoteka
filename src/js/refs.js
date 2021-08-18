@@ -16,6 +16,7 @@ export const getRefs = () => {
     filterList:         document.querySelector('.filter__list'),
     filterButton:       document.querySelector('.filter__button'),
     languageLinks:      document.querySelector('.control__languages'),
+    cardListOnSearch:   document.querySelector('.card-list-on-search'),
     _________FILMOTEKA: null,
     filmsSection:       document.querySelector('.filmoteka'),
     galleryItems:       document.querySelector('.filmoteka__set'),

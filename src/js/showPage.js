@@ -8,6 +8,7 @@ import { renderPaginationBtn }                      from './paginationNav';
 import { makeButtonActiv }                          from './paginationNav';
 import { doNotification }                           from './localization';
 import { locals }                                   from './consts';
+import {renderListSearch, deleteListSearch}         from './searchList';
 
 Notiflix.Notify.init({
     position: 'center-top',
@@ -69,7 +70,10 @@ const doOnFailure = () => {
 export const showPageHome = (pageNumber) => {
     Notiflix.Loading.pulse();
     const refs = getRefs();
-    getMoviesPagination(refs.searchBox.value, pageNumber) //async
+    if (refs.searchBox.value.length > 0 && refs.searchBox.value.trim().length === 0) {
+        //deleteListSearch();
+        return}
+    getMoviesPagination(refs.searchBox.value, pageNumber)//async
     .then(data => {
         Notiflix.Loading.remove();
         if (data.total_results) {
@@ -80,8 +84,10 @@ export const showPageHome = (pageNumber) => {
         renderPaginationBtn(data.total_pages, pageNumber)
         makeButtonActiv(pageNumber)
         return data.results;
+
     })
         .then(films => {
+        //console.log(renderListSearch(refs.searchBox.value, films));
            const filmData = parseFilmsData(films);
            const string = JSON.stringify(filmData);
            localStorage.setItem('tempQuery', string);
@@ -89,6 +95,7 @@ export const showPageHome = (pageNumber) => {
         })
         .then(films => {
             renderAllGallery(films);// перебирает обьект и выводит карточки фильмов
+            
     })
       .catch(error => {
        Notiflix.Loading.remove();

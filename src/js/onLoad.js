@@ -6,6 +6,7 @@ import { onWatchedButtonClick, onQueueButtonClick } from "./libraryButtons"
 import { onSearchButtonClick } from "./searchButton"
 import { doLocalisation, getLang } from "./localization"
 import { addClass } from "./classWork";
+//import {renderListSearch, deleteListSearch}         from './searchList';
 
 
 // функция по загрузке
@@ -21,6 +22,7 @@ export const loadListnersForHome = (refs) => {
   //добавление обработчика событий инпута
     refs.searchBox.addEventListener('keydown', (e) => {
         onSearchBoxChange(e);//from "./js/searchBox" все что происходит во время ввода + debounce
+        //renderListSearch()
     })
   
     refs.searchBox.addEventListener('focus', e => {

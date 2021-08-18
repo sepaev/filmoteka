@@ -75,8 +75,10 @@ p {
   margin: auto;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-
+  //justify-content: center;
+  @media (max-width: $max-tablet) {
+    justify-content: center;
+  }
   @media (min-width: $min-tablet) and (max-width: $max-tablet) {
     display: flex;
     flex-wrap: wrap;
