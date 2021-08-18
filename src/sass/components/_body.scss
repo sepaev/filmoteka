@@ -3,29 +3,18 @@
   padding-bottom: 50px;
   padding: auto;
   position: relative;
-}
-
-.filmoteka__set {
-  padding: 0;
-  margin: auto;
-  @media (min-width: $min-desktop) {
-    width: 320px;
-  }
-  @media (min-width: $min-tablet) and (max-width: $max-tablet) {
-    width: 768px;
-  }
-  @media (min-width: $min-desktop) {
-    width: 1024px;
-  }
 
   &__set {
-    padding: 0;
-    margin: auto;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
 
+    @media (min-width: $min-desktop) {
+      width: 320px;
+    }
+
     @media (min-width: $min-tablet) and (max-width: $max-tablet) {
+      width: 768px;
       display: flex;
       flex-wrap: wrap;
       margin-top: calc(-1 * var(--list-gap));
@@ -33,6 +22,7 @@
     }
 
     @media (min-width: $min-desktop) {
+      width: 1024px;
       margin-left: calc(-1 * var(--list-gap));
       margin-top: calc(-1 * var(--list-gap));
     }
@@ -262,15 +252,13 @@
       border-radius: 5px;
     }
 
-    &.current {
+    &.current-page {
       color: $white-color;
       background-color: $orange-color;
       border-radius: $main-border-radius;
       width: 40px;
       height: 40px;
       padding: 0;
-    }
-    &.current a {
       color: $white-color;
     }
   }
