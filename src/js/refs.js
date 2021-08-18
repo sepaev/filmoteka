@@ -46,6 +46,11 @@ export const getRefs = () => {
     devLink:            document.querySelector('.footer__dev--link'),
     _________SCROLL_UP: null,
     scrollTopBtn:       document.querySelector('.scroll__top'),
+    _________SEARCH_PAGE: null,
+    searchPage:         document.querySelector('.filmoteka-nav__search-page'),
+    inputScs:           document.querySelector('.input-success'),
+    buttonScs:          document.querySelector('.button-success'),
+    containerScs:       document.querySelector('.notify'),
   };
 };
 

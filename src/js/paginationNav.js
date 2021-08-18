@@ -73,9 +73,7 @@ const writeButtons = buttonsObj => {
     checkElement(buttonsObj.lastButton, refs.lastButton);
 };
 
-export const renderPaginationBtn = (totalPages, currentPage) => {
-
-    
+export const renderPaginationBtn = (totalPages, currentPage) => {   
     if (currentPage > totalPages) {
         currentPage = 1;
     }

@@ -79,6 +79,7 @@ export const showPageHome = (pageNumber) => {
         }
         renderPaginationBtn(data.total_pages, pageNumber)
         makeButtonActiv(pageNumber)
+        
         return data.results;
     })
         .then(films => {
