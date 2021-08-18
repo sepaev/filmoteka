@@ -1,5 +1,6 @@
 import LocalizedStrings from 'localized-strings';
-// import Notiflix from "notiflix";
+import Notiflix from "notiflix";
+
 import { getRefsLocals } from "./refs"
 export const getLang = () => {
     const lang = localStorage.getItem('language');
@@ -16,7 +17,19 @@ export const getLang = () => {
 function getCustomInterfaceLanguage() {
   return getLang();
 }
-
+export const doNotification = (en, ru, ua, method) =>{
+    switch (getLang()) {
+        case 'en-US':
+            Notiflix.Notify[method](en);
+            break;
+        case 'ru-RU':
+            Notiflix.Notify[method](ru);
+            break;
+        case 'uk-UA':
+            Notiflix.Notify[method](ua);
+            break;
+    }
+}
 export const getLocalsStrings = () => {
     let strings = new LocalizedStrings({
         'en-US': {
@@ -33,8 +46,8 @@ export const getLocalsStrings = () => {
             rights_text: "All Rights Reserved",
             devs_text: "Developed with",
             by_text: "by",
-            watched_text: "WATCHED",
-            queue_text: "QUEUE",
+            watched_text: "watched",
+            queue_text: "queue",
             vote_text: "Vote / Votes",
             popularity_text: "Popularity",
             title_orign_text: "Original Title",
@@ -42,6 +55,8 @@ export const getLocalsStrings = () => {
             about_text: "About",
             add_to_watched_text: "add to watched",
             add_to_queue_text: "add to queue",
+            remove_from_watched_text: "remove from watched",
+            remove_from_queue_text: "remove from queue",
             close_devs_text: "close",
             team_devs_text: 'Team "ReacTeam"',
             control_info_text: 'Controls',
@@ -80,8 +95,8 @@ export const getLocalsStrings = () => {
             rights_text: "Все права защищены",
             devs_text: "Разработано с",
             by_text: "студентами",
-            watched_text: "ПРОСМОТРЕННЫЕ",
-            queue_text: "ЗАПЛАНИРОВАННЫЕ",
+            watched_text: "просмотренные",
+            queue_text: "запланированные",
             vote_text: "Голосов",
             popularity_text: "Популярность",
             title_orign_text: "Оригинальное название",
@@ -89,6 +104,8 @@ export const getLocalsStrings = () => {
             about_text: "Описание фильма",
             add_to_watched_text: "добавить к просмотренным",
             add_to_queue_text: "смотреть позже",
+            remove_from_watched_text: "удалить из просмотренных",
+            remove_from_queue_text: "удалить из ожидаемых",
             close_devs_text: "закрыть",
             team_devs_text: 'Команда "ReacTeam"',
             control_info_text: 'Управление',
@@ -114,7 +131,7 @@ export const getLocalsStrings = () => {
             // sign_up_status_text: '',
         },
         'uk-UA': {
-            trending_text: "В Тренді",
+            trending_text: "У тренді",
             latest_text: "Останні",
             now_playing_text: "Зараз в прокаті",
             popular_text: "Популярні",  
@@ -127,8 +144,8 @@ export const getLocalsStrings = () => {
             rights_text: "Всі права захищені   ",
             devs_text: "Розроблено з",
             by_text: "студентами",
-            watched_text: "ПЕРЕГЛЯНУТІ",
-            queue_text: "ЗАПЛАНОВАНІ",
+            watched_text: "переглянуті",
+            queue_text: "заплановані",
             vote_text: "Голосів",
             popularity_text: "Вподобань",
             title_orign_text: "Оригінальна назва",
@@ -136,6 +153,8 @@ export const getLocalsStrings = () => {
             about_text: "Про фільм",
             add_to_watched_text: "додати до переглянутих",
             add_to_queue_text: "дивитися потім",
+            remove_from_watched_text: "передивитися знов",
+            remove_from_queue_text: "вже подивився",
             close_devs_text: "закрити",
             team_devs_text: 'Команда "ReacTeam"',
             control_info_text: 'Керування',

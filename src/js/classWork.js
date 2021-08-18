@@ -16,6 +16,12 @@ export const tooggleClassCurrent = (refToAdd, ferToRemove) => {
     addClass(refToAdd, 'current');
     removeClass(ferToRemove, 'current');
 }
+
+export const tooggleClassFilterIsActive = (refToAdd, ferToRemove) => {
+    addClass(refToAdd, 'filter_is_active');
+    removeClass(ferToRemove, 'filter_is_active');
+}
+
 export const tooggleRandomClass = (ref, classToAdd, classToRemove) => {
     addClass(ref, classToAdd);
     removeClass(ref, classToRemove);

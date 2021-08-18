@@ -14,33 +14,15 @@
   }
 }
 
-// @media (max-width: $max-mobile) {
-// }
-// @media (min-width: $min-tablet) and (max-width: $max-tablet) {
-// }
-// @media (min-width: $min-desktop) {
-// }
-
 .modal-film__overlay {
   margin: auto;
 
   position: relative;
-
-  // top: 0;
-  // right: 0;
-  // bottom: 0;
-  // left: 0;
 }
 
 .modal-film {
-  // этот класс ни на что не влияет, т.к. секция стоит отдельно от всего остального
-
-  // opacity: 0;
-  // position: relative;
-  // display: flex;
-  // justify-content: flex-start;
-  // кнопки сделаны пока не полностью, но я не уверен, что они хорошо там стоят, но геометрия самих кнопок и цвет как надо вроде
   &__close {
+    display: block;
     position: absolute;
     width: 34px;
     height: 34px;
@@ -51,9 +33,8 @@
     background-image: url('/images/svg/close.svg');
     background-position: center;
     background-repeat: no-repeat;
-    // outline: none;
 
-    padding: 10px;
+    padding: 8px;
     border: none;
     border-radius: 50%;
     background-color: transparent;
@@ -63,16 +44,6 @@
     margin-right: 15px;
     overflow: visible;
   }
-  // &__btn-queque {
-
-  // }
-
-  // @media (max-width: $max-mobile) {
-  // }
-  // @media (min-width: $min-tablet) and (max-width: $max-tablet) {
-  // }
-  // @media (min-width: $min-desktop) {
-  // }
 
   &__btn-watched {
     // тут значение top/bottom уменьшено до 0, чтобы надписи не выходили за пределы кнопки
@@ -102,7 +73,6 @@
 
   &__btn-watched,
   &__btn-queque {
-    // padding: 14px 0px 12px 0px;
     height: 44px;
 
     border: 1px solid $black-color;
@@ -117,28 +87,35 @@
 
     color: $black-color;
 
-    @media (max-width: $max-mobile) {
-      width: 113px;
-    }
-    @media (min-width: $min-tablet) and (max-width: $max-tablet) {
+    // @media (max-width: $max-mobile) {
+    //   width: 113px;
+    // }
+    // @media (min-width: $min-tablet) and (max-width: $max-tablet) {
+    //   width: 125px;
+    // }
+
+    // слова на кнопке не помещаются в пределы блока,
+    //убираю отдельные медиаправила для ширины кнопки на моб и таблетки, и меняю на @media (max-width: $max-tablet)
+    @media (max-width: $max-tablet) {
       width: 125px;
     }
+
     @media (min-width: $min-desktop) {
       width: 136px;
     }
   }
 
-  &__btn-watched:hover,
-  &__btn-watched:focus {
-    background-color: $orange-color;
-    color: $white-color;
-  }
+  // &__btn-watched:hover,
+  // &__btn-watched:focus {
+  //   background-color: $orange-color;
+  //   color: $white-color;
+  // }
 
-  &__btn-queque:hover,
-  &__btn-queque:focus {
-    background-color: $orange-color;
-    color: $white-color;
-  }
+  // &__btn-queque:hover,
+  // &__btn-queque:focus {
+  //   background-color: $orange-color;
+  //   color: $white-color;
+  // }
 
   &__buttons {
     position: absolute;
@@ -163,14 +140,6 @@
 
   &__overlay {
     background-color: #fff;
-
-    // top: 0;
-    // right: 0;
-    // bottom: 0;
-    // left: 0;
-    // overflow-x: hidden;
-    // overflow-y: auto;
-    // padding: ;
   }
 }
 
@@ -178,8 +147,6 @@
   color: white; // потом убрать
   @media (max-width: $max-mobile) {
     padding: 48px 20px 106px 20px;
-    // outline: 1px solid black;
-    // position: relative;
 
     max-width: 280px;
     margin-left: auto;
@@ -199,7 +166,60 @@
 
     padding: 48px 30px 42px 24px;
     max-width: 882px;
-    // outline: 1px solid greenyellow;
+  }
+  &__prev{
+    @media  (max-width: $max-mobile) {
+      position: sticky;
+      width: 0px;
+      height: 0px;
+      z-index: 10;
+      left: 0px;
+      bottom: 0px;
+      opacity: 0.75;
+    }
+
+    @media (min-width: $min-tablet)  {
+   position: absolute;
+    z-index: 10;
+    left: -34%;
+    top: calc(50% - 170px);
+    filter: blur(2px);
+    transform: scale(0.9);
+    &:hover {
+      filter: blur(0px);
+      transform: translateX(20px);
+      
+    }
+    }
+    
+  }
+  &__next{
+    @media  (max-width: $max-mobile) {
+      position: sticky;
+      width: 0px;
+      height: 0px;
+      z-index: 10;
+      left: -1px;
+      top: 0px;
+      opacity: 0.75;
+    }
+
+    @media (min-width: $min-tablet)  {
+      position: absolute;
+    z-index: 10;
+    right: -34%;
+    top: calc(50% - 170px);
+    transform: scale(0.9);
+    filter: blur(2px);
+    
+    
+    
+    &:hover {
+      filter: blur(0px);
+      transform: translateX(-20px);
+    }
+    }
+    
   }
 
   &__image {
@@ -208,7 +228,6 @@
     max-height: 100%;
     max-width: 100%;
 
-    // border: 1px;
     border-radius: 5px;
 
     @media (max-width: $max-mobile) {
@@ -225,13 +244,50 @@
       max-width: 396px;
       max-height: 478px;
     }
+    &--prev {
+      @media  (max-width: $max-mobile) {
+        position: fixed;
+        right: 288px;
+        top: 125px;
+
+        max-width: calc(264px/2);
+        max-height: calc(374px/2);
+      }
+      
+      @media (min-width: $min-tablet) and (max-width: $max-tablet) {
+        max-width: calc(264px/1.3);
+        max-height: calc(374px/1.3);
+      }
+      @media (min-width: $min-desktop) {
+        max-width: calc(396px/1.3);
+        max-height: calc(478px/1.3);
+    }
+  }
+    &--next {
+      @media  (max-width: $max-mobile) {
+        position: fixed;
+        right: -132px;
+        top: 125px;
+
+        max-width: calc(264px/2);
+        max-height: calc(374px/2);
+      }
+      
+      
+      @media (min-width: $min-tablet) and (max-width: $max-tablet) {background-color: #ff6b01;
+        max-width: calc(264px/1.3);
+        max-height: calc(374px/1.3);
+      }
+      @media (min-width: $min-desktop) {
+        max-width: calc(396px/1.3);
+        max-height: calc(478px/1.3);
+    }
+  }
   }
 
   // общие стили
 
   &__img-thumb {
-    // border: 1px;
-    // border-radius: 5px;
 
     @media (max-width: $max-mobile) {
       margin-bottom: 30px;
@@ -303,6 +359,7 @@
     font-weight: 500;
 
     @media (max-width: $max-mobile) {
+      max-width: 87px;
       font-size: 12px;
       line-height: 1.17;
       font-weight: 500;
@@ -391,6 +448,8 @@
       font-weight: 500;
     }
   }
+  
+  
 
   // &__list {
   //   @media (max-width: $max-mobile) {

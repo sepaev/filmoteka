@@ -16,6 +16,12 @@
     </div>
     <div class="film__info">
         <h3 class="film__heading">{{title}}</h3>
-        <p class="film__description">{{genres}} | <span class="film__year">{{year}}</span></p>
+        <p class="film__description">
+               {{#each genresArr}}
+                {{#unless @last}}<a href="#" id="{{this.id}}" >{{this.name}}</a>,{{/unless}}
+                {{#if @last}}<a href="#" id="{{this.id}}">{{this.name}}</a>{{/if}}
+                {{/each}}
+           
+             | <span class="film__year">{{year}}</span></p>
     </div>
 </li>

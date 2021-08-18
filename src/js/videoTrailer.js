@@ -1,9 +1,10 @@
-import { getRefs } from './refs'
-import * as basicLightbox from 'basiclightbox';
-import { consts } from "./consts";
-import axios from 'axios';
-import { loadEscListner } from './escClose';
-import Notiflix from "notiflix";
+import * as basicLightbox       from 'basiclightbox';
+import axios                    from 'axios';
+import Notiflix                 from "notiflix";
+import { getRefs }              from './refs'
+import { consts }               from "./consts";
+import { loadEscListner }       from './escClose';
+import { doNotification }       from './localization'
 
 
 const refs = getRefs();
@@ -19,16 +20,12 @@ refs.galleryItems.addEventListener('click', e => {
     }
     else {
         e.preventDefault;
-    //   console.log('2222');
-      const targetCardId = (e.target.parentNode.parentNode.parentNode.parentNode.parentNode.dataset.id || e.target.parentNode.parentNode.parentNode.parentNode.dataset.id);
-      // console.dir(e.target.parentNode.parentNode.parentNode.parentNode);
-      // alert(e.target.parentNode.parentNode.parentNode.parentNode);
-
-    //   console.log(targetCardId);
+      const targetCardId = (
+        e.target.parentNode.parentNode.parentNode.parentNode.parentNode.dataset.id
+        ||
+        e.target.parentNode.parentNode.parentNode.parentNode.dataset.id
+      );
       openModalVideoTrailer(targetCardId);
-        
-
-    
   }
 });
 
@@ -45,30 +42,39 @@ function openModalVideoTrailer(id) {
           const id = data.results[0].key;
           
           const instance = basicLightbox.create(`
-    <iframe width="75%" height="75%" src='https://www.youtube.com/embed/${id}'frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-  `);
-          instance.show();
-          let newRef;
-          window.setTimeout(e => {
-            Notiflix.Loading.remove();
-            // newRef = document.querySelector('.basicLightbox__placeholder');
+          <iframe width="80%" height="80%" src='https://www.youtube.com/embed/${id}'frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          `, {
+            onShow: (instance) => {refs.body.style.overflow = 'hidden';},
+            onClose: (instance) => {refs.body.style.overflow = 'inherit';}
+          });
+            instance.show();
+            window.setTimeout(e => {
+              Notiflix.Loading.remove();
+              // newRef = document.querySelector('.basicLightbox__placeholder');
             // const iframeNodeValue = newRef.children[0].attributes[2]
             // console.dir(iframeNodeValue);
           }
             , 2000);
           modalCloseTrailer(instance);
-          console.dir(instance);
         })
         .catch(() => {
+          const alert = {
+            en: '404 Not Found this trailer',
+            ru: '404 Трейлер не найдено',
+            ua: '404 Трейлер не знайдено',
+          };  
+          doNotification(alert.en, alert.ru, alert.ua, 'failure');
           const instance = basicLightbox.create(`
-      <iframe width="75%" height="75%" src='http://www.youtube.com/embed/zwBpUdZ0lrQ' frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        `);
-  
+          <iframe width="0%" height="0%" src='' frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          `, {
+            onShow: (instance) => {refs.body.style.overflow = 'hidden';},
+            onClose: (instance) => {refs.body.style.overflow = 'inherit';}
+          });
+          
           instance.show();
           modalCloseTrailer(instance);
           window.setTimeout(e => {
             Notiflix.Loading.remove();
-            Notiflix.Notify.failure('404 Not Found this trailer');
           }, 1500);
         });
     }
@@ -91,7 +97,7 @@ function openModalVideoTrailer(id) {
         const modalCloseBtn = document.querySelector(
           '[data-action="close-lightbox"]',
         );
-      modalCloseBtn.addEventListener('click', () =>instance.close()
-        
-        )
+      modalCloseBtn.addEventListener('click', () => {
+        instance.close();
+      })
     }

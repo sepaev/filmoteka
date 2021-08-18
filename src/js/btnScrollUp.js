@@ -12,7 +12,7 @@ const scrollToTopOfPage = () => { // используется для подня�
 export const activateScrollButton = (e) => { // проверяет позицию на экране
   const coords = document.documentElement.clientHeight;
   if (window.pageYOffset > coords) {
-    addClass(refs.scrollTopBtn, 'active-scroll');
+    addClass(refs.scrollTopBtn, 'scroll__active');
     refs.scrollTopBtn.addEventListener('click', e => {//добавляем слушателя на кнопку
       e.preventDefault;
       scrollToTopOfPage(e); 
@@ -20,7 +20,7 @@ export const activateScrollButton = (e) => { // проверяет позици�
   }
 
   if (window.pageYOffset < coords) {
-    removeClass(refs.scrollTopBtn, 'active-scroll');
+    removeClass(refs.scrollTopBtn, 'scroll__active');
     refs.scrollTopBtn.removeEventListener('click', e => {//удаляем слушателя с кнопки
       e.preventDefault;
       scrollToTopOfPage(e); 

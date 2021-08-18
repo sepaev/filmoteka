@@ -1,6 +1,6 @@
 import './sass/main.scss';
 import { getRefs } from './js/refs'
-import { debounce } from 'throttle-debounce';
+import { throttle } from 'throttle-debounce';
 import { consts } from "./js/consts";
 import { onFilmClick } from "./js/sectionFilmoteka"
 import { changeHeader } from "./js/changeHeader"
@@ -8,7 +8,7 @@ import { onPaginationNavClick } from "./js/paginationNav"
 import { onDevLinkClick } from "./js/footerDevelopers"
 import { onLoad } from "./js/onLoad"
 import { activateScrollButton } from './js/btnScrollUp'
-import { changeLanguage, doLocalisation } from './js/localization'
+import { changeLanguage } from './js/localization'
 import './js/theme';
 import './js/animationSVG';
 import './js/searchPageOnBtn'
@@ -21,9 +21,10 @@ import './js/sign_IN';
 const refs = getRefs();
 onLoad(refs); //функция загружает все что необходимо сделать при запуске
               // тут находятся слушатели на кнопки и инпуты шапки
+
 // обработка клика по фильму
 refs.filmsSection.addEventListener('click', e => {
-    e.preventDefault;
+  e.preventDefault;
     onFilmClick(e); //from "./js/sectionFilmoteka" клик по любой карточке фильма
 });
 
@@ -67,6 +68,7 @@ refs.devLink.addEventListener('click', e => {
 
 // обработка клика по scroll UP
 window.addEventListener('scroll',
-  debounce(consts.DEBOUNCE_DELAY, (e) => {
+  throttle(consts.DEBOUNCE_DELAY, (e) => {
      activateScrollButton(e);//from "./js/btnScrollUp"  клик по ссылке подняться вверх встраницы
    }));
+

@@ -14,9 +14,7 @@ export const onLoad = refs => {
     doLocalisation();
     const currentLang = getLang();
     const target = currentLang === 'eu-US' ? refs.engFlag.children[0] : currentLang === 'ru-RU' ? refs.rusFlag.children[0] : refs.ukrFlag.children[0];
-    console.dir(target);
     addClass(target, 'current');
-    // control__languages-icon current
 }
 
 export const loadListnersForHome = (refs) => {
