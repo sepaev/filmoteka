@@ -33,7 +33,7 @@ export const showPagination = (refs) => {
     refs.footer.style.top = 'inherit';
 }
 
-const doOnSuccess = (totalResults, totalPages, pageNumber) => {
+export const doOnSuccess = (totalResults, totalPages, pageNumber) => {
     const refs = getRefs();
     const alert = {
       enFirst: 'You are watching ' + pageNumber + ' page of total ' + totalPages + ' pages.',
@@ -66,8 +66,7 @@ const doOnFailure = () => {
     hidePagination(refs);
 }
 
-export const showPageHome = (pageNumber) => {
-    if (!pageNumber) return;
+export const showPageHome = (pageNumber = 1) => {
     Notiflix.Loading.pulse();
     const refs = getRefs();
     getMoviesPagination(refs.searchBox.value, pageNumber) //async
@@ -79,8 +78,8 @@ export const showPageHome = (pageNumber) => {
             doOnFailure();
         }
 
-        renderPaginationBtn(data.total_pages, pageNumber)
-        makeButtonActiv(pageNumber)
+        renderPaginationBtn(data.total_pages, pageNumber);
+        makeButtonActiv(pageNumber);
         return data.results;
     })
     .then(films => {

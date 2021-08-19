@@ -9,6 +9,7 @@ import { onDevLinkClick } from "./js/footerDevelopers"
 import { onLoad } from "./js/onLoad"
 import { activateScrollButton } from './js/btnScrollUp'
 import { changeLanguage } from './js/localization'
+import { makeFilterSearch } from './js/getContent'
 import './js/theme';  //тема
 import './js/animationSVG'; //анимация лого
 import './js/searchPageOnBtn'  //поиск по номеру страницы
@@ -70,3 +71,6 @@ window.addEventListener('scroll',
   throttle(consts.DEBOUNCE_DELAY, (e) => {
      activateScrollButton(e);//from "./js/btnScrollUp"  клик по ссылке подняться вверх встраницы
   }));
+
+  
+refs.filterList.addEventListener('click', makeFilterSearch)

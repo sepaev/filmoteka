@@ -8,6 +8,9 @@ import { parseFilmsData }               from './parseApiData';
 import { tooggleClassFilterIsActive }   from './classWork';
 import { doNotification }               from './localization';
 import { getGenreName }                 from './genresWork';
+import { makeButtonActiv }              from './paginationNav';
+import { showPageHome } from "./showPage";
+
 
 const refs = getRefsLocals();
 const mainRefs = getRefs()
@@ -29,11 +32,10 @@ export const  fetchGetTrending = async (pageValue) => {
 export const fetchMovieByModalButton = async (pageValue, queryOption) => {
   let string;
   if (queryOption === 'trending') {
-    string = `/trending/movie/week?api_key=${API_KEY}&page=${pageValue}&language=${consts.LANGUAGE}`;
+    string = `/trending/movie/week?api_key=${API_KEY}&language=${consts.LANGUAGE}&page=${pageValue}`;
   } else {
-    string = `/movie/${queryOption}?api_key=${API_KEY}&page=${pageValue}&language=${consts.LANGUAGE}`;
+    string = `/movie/${queryOption}?api_key=${API_KEY}&language=${consts.LANGUAGE}&page=${pageValue}`;
   } 
-
   const { data } = await axios.get(string);
   const { results, total_pages, page, total_results } = data;
     return { results, total_pages, page, total_results };
@@ -61,19 +63,23 @@ export const fetchGetMovieById = async (id) => {
 // dynamic page Value with pagination 
 
 export const getMoviesPagination = async (searchValue, pageValue = 1) => {
-  if (!searchValue) {
+  // проверка на выбраный фильтр
+  let data;
+  let target = document.querySelector('.filter_is_active');
+  if (!target) {
     refs.trending_ref.classList.add('filter_is_active');
-    const data = await fetchGetTrending(pageValue)
-    .catch(err =>
-    console.log(err),
-    );
-    return data;
-    }
-  
-    if (searchValue) {
-      const data = await fetchGetSearchMovie(searchValue, pageValue).catch(err =>
-        console.log(err),
-      );
+    target = refs.trending_ref;
+  }
+  // ОТОБРАЖЕНИЕ СТРАНИЦ ---NO SEARCH VALUE---////////////////ФИЛЬТРЫ
+  if (!searchValue) { 
+    const queryOption = target.dataset.set;
+     data = await fetchMovieByModalButton(pageValue, queryOption).catch(err => console.log(err));
+     return data;
+  }
+  // ОТОБРАЖЕНИЕ СТРАНИЦ ---SEARCH VALUE---////////////////ПОИСК ФИЛЬМА
+  if (searchValue) {
+      target.classList.remove('filter_is_active');
+      const data = await fetchGetSearchMovie(searchValue, pageValue).catch(err =>console.log(err));
       return data;
     }
 }
@@ -166,34 +172,41 @@ export const getMoviesByScroll = async (searchValue, pageValue = 1, genreId) => 
   }
 }
 
-mainRefs.filterList.addEventListener('click', e => {
-  if (e.target.nodeName !== 'BUTTON') {
-    return
-  }
-  makeFilterSearch(e)
-})
-
-function makeFilterSearch (e) {
+export const makeFilterSearch = (e) => {
+  if (e.target.nodeName !== 'BUTTON') return;
   const activeButton = document.querySelector('.filter_is_active');
   tooggleClassFilterIsActive(e.target, activeButton);
-  const queryOption = e.target.dataset.set;
+  showPageHome(1);
+  // Notiflix.Loading.pulse();
+  // makeButtonActiv(1);
+  // console.log(e.target);
+  // console.log(activeButton);
+  // const queryOption = e.target.dataset.set;
 
-  if (e.target.dataset.set === "trending") {
-    fetchGetTrending(1).then(films => parseFilmsData(films.results))
-  .then(films => {
-    mainRefs.galleryItems.innerHTML = '';
-    films.forEach(film => renderGallery(film));
-  })
-      .catch(err => console.log(err))
- };
+  // if (e.target.dataset.set === "trending") {
+  //   fetchGetTrending(1).then(films => parseFilmsData(films.results))
+  //     .then(films => {
+  //       Notiflix.Loading.remove();
+  //       mainRefs.galleryItems.innerHTML = '';
+  //       films.forEach(film => renderGallery(film));
+  //     })
+  //     .catch(err => {
+  //       Notiflix.Loading.remove();
+  //       console.log(err);
+  //     });
+  // };
 
-  fetchMovieByModalButton(1, queryOption).then(films => parseFilmsData(films.results))
-  .then(films => {
-    mainRefs.galleryItems.innerHTML = '';
-    films.forEach(film => renderGallery(film));
-  })
-    .catch(err => console.log(err))
-
+  // fetchMovieByModalButton(1, queryOption).then(films => parseFilmsData(films.results))
+  //   .then(films => {
+  //     Notiflix.Loading.remove();
+  //     mainRefs.galleryItems.innerHTML = '';
+  //     films.forEach(film => renderGallery(film));
+  //   })
+  //   .catch(err => {
+  //     Notiflix.Loading.remove();
+  //     console.log(err);
+  //   });
+}
 
 
 // get Latest
@@ -292,7 +305,7 @@ function makeFilterSearch (e) {
 // films.results.forEach(film => renderGallery(film));
 // }).catch(err => console.log(err))
 // }
-}
+
 
 
 

@@ -18,7 +18,7 @@ function requestData (dataArr) {
     for (let key in dataArr) {
         out += `${key}=${dataArr[key]}&`;
     }
-    console.log(out);
+    // console.log(out);
     return out;
 }
 
@@ -46,7 +46,7 @@ document.querySelector('#submit').onclick = function (event) {
     ajax('https://api.themoviedb.org/3/', 'POST', login, data);
 
     function login(result) {
-        console.log(result);
+        // console.log(result);
         if (result == 2) {
             alert('Заполните поля');
         }
