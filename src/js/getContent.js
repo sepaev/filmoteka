@@ -105,16 +105,23 @@ const pushAndCount = (data, total, genreId, films, notified) => {
 }
 
 export const getMoviesByScroll = async (searchValue, pageValue = 1, genreId) => {
+  let data;
+  let target = document.querySelector('.filter_is_active');
+  if (!target) {
+    refs.trending_ref.classList.add('filter_is_active');
+    target = refs.trending_ref;
+  }
   let totalResults = 0;
   let totalAdded = 0;
   let films = [];
   const currentGenres = getGenreName(genreId);
   let notified = false;
   if (!searchValue) {
+    const queryOption = target.dataset.set;
     Notiflix.Loading.hourglass();
     for (let total = 0; total < 20; pageValue++) {
 
-      await fetchGetTrending(pageValue).then(data => {
+      await fetchMovieByModalButton(pageValue, queryOption).then(data => {
         const result = pushAndCount(data, total, genreId, films, true);
         total += result.total;
         totalResults = data.total_results;

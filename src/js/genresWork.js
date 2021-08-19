@@ -30,10 +30,9 @@ const checkNewcurrentPageNumber = (newPageNumber) => {
 }
 
 export const doOpenGenre = (id, name, instance) => {
-    checkNewcurrentPageNumber(1);
-    genreId = id;
-    // genreName = name;
     const refs = getRefs();
+    genreId = id;
+    checkNewcurrentPageNumber(1);
     refs.galleryItems.innerHTML = '';
     hidePagination(refs);
     showPageHomeGenres(currentPageNumber, id, name)
