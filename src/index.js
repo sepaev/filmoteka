@@ -9,12 +9,12 @@ import { onDevLinkClick } from "./js/footerDevelopers"
 import { onLoad } from "./js/onLoad"
 import { activateScrollButton } from './js/btnScrollUp'
 import { changeLanguage } from './js/localization'
-// import './js/theme';
-// import './js/animationSVG';
+import './js/theme';
+import './js/animationSVG';
 // import './js/searchPageOnBtn'
-// import './js/videoTrailer';
-// import './js/signIN';
-// import './js/sign_IN';
+import './js/videoTrailer';
+import './js/signIN';
+import './js/sign_IN';
 
 
 const refs = getRefs();
