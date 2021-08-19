@@ -3,8 +3,8 @@ import { getRefs }              from './refs';
 import { showPageHome }         from './showPage'
 import { doLocalization, doNotification }       from './localization'
 
-let alert = true;
-const turnAlert = (bool) => alert = bool;
+let canAlert = true;
+const turnAlert = (bool) => canAlert = bool;
 
 const refs = getRefs();
 const instanceParameters = {
@@ -18,7 +18,6 @@ const instanceParameters = {
 const instance = basicLightbox.create(refs.containerGoToPage, instanceParameters);
 
 refs.searchPage.addEventListener('click', openSearchModal);
-
 function goToPage() {
     const last = parseInt(refs.lastButton.textContent);
     const target = parseInt(refs.inputGoToPage.value);
@@ -62,7 +61,7 @@ function openSearchModal(event) {
                 if (key >= 96 && key <= 105) return
                 if (key === 8 || key === 9 || key === 46 || key === 144) return;
                 const inf = { en: 'Digits only', ru: 'Допускаются только цыфры', ua: 'Можливо вводити тільки цифри' };
-                if (alert) doNotification(inf.en, inf.ru, inf.ua, 'info');
+                if (canAlert) doNotification(inf.en, inf.ru, inf.ua, 'info');
                 turnAlert(false);
                 window.setTimeout(e => turnAlert(true), 3000);
                 return;
