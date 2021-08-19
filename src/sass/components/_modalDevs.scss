@@ -22,13 +22,13 @@
   &__respect-btn {
     text-decoration: none;
     margin-top: 10px;
+    margin-left: 10px;
+    padding: 2px;
     background-color: $black-color;
     border-style: solid;
     border-radius: 10%;
     border-color: $orange-color;
-    & a {
-      color: teal;
-    }
+    color: teal;
   }
 }
 /////////////////////
