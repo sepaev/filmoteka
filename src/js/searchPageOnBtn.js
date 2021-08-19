@@ -11,7 +11,9 @@ const instanceParameters = {
     onClose: () => {
         turnAlert(true);
         document.onkeypress = null;
+        console.log('remove')
         refs.buttonGoToPage.removeEventListener('click', goToPage);
+        document.onkeydown = null;
     }
 };
 
@@ -34,38 +36,39 @@ function goToPage() {
     instance.close();
 }
 
+function checkTapped (e) {
+    if (e.target === getRefs().searchBox) return;
+    const key = e.keyCode;
+    if (key === 13 && refs.inputGoToPage.value==='') {
+        instance.close();
+        return;
+    }
+    if (key === 13) { // enter
+        goToPage();
+        return;
+    }
+    if (key === 27) { // esc
+        instance.close();
+        return;
+    }
+    if (key < 48 || key > 57) { // все что не цыфры
+        if (key >= 16 && key <= 20) return
+        if (key >= 33 && key <= 36) return
+        if (key >= 96 && key <= 105) return
+        if (key === 8 || key === 9 || key === 46 || key === 144) return;
+        const inf = { en: 'Digits only', ru: 'Допускаются только цыфры', ua: 'Можливо вводити тільки цифри' };
+        if (canAlert) doNotification(inf.en, inf.ru, inf.ua, 'info');
+        turnAlert(false);
+        window.setTimeout(e => turnAlert(true), 3000);
+        return;
+    }   
+}
 function openSearchModal(event) {
     event.preventDefault();
     instance.show(() => {
         doLocalization();
         refs.inputGoToPage.focus();
         refs.buttonGoToPage.addEventListener('click', goToPage);
-        document.onkeydown = (e) => {
-            const key = e.keyCode;
-            console.log(key);
-            if (key === 13 && refs.inputGoToPage.value==='') {
-                instance.close();
-                return;
-            }
-            if (key === 13) { // enter
-                goToPage();
-                return;
-            }
-            if (key === 27) { // esc
-                instance.close();
-                return;
-            }
-            if (key < 48 || key > 57) { // все что не цыфры
-                if (key >= 16 && key <= 20) return
-                if (key >= 33 && key <= 36) return
-                if (key >= 96 && key <= 105) return
-                if (key === 8 || key === 9 || key === 46 || key === 144) return;
-                const inf = { en: 'Digits only', ru: 'Допускаются только цыфры', ua: 'Можливо вводити тільки цифри' };
-                if (canAlert) doNotification(inf.en, inf.ru, inf.ua, 'info');
-                turnAlert(false);
-                window.setTimeout(e => turnAlert(true), 3000);
-                return;
-            }   
-        }
+        document.onkeydown = checkTapped;
     });
 }
