@@ -195,19 +195,21 @@ export const getLocalsStrings = () => {
 
 let strings = getLocalsStrings();
 
-export const doLocalisation = () => {
-    const localRefs = getRefsLocals();
-    for (let i = 0; i < Object.keys(localRefs).length; i++) {
-        const ref = localRefs[Object.keys(localRefs)[i]];
-        const name = Object.keys(localRefs)[i].split('_ref')[0]
-        if (ref) {
-            if (ref.nodeName === 'INPUT') {
-                ref.placeholder = strings.getString(name+'_text');
-            } else {
-                ref.textContent = strings.getString(name+'_text');
-            }
-        };
+export const doLocalization = () => {
+  const localRefs = getRefsLocals();
+  const totalSrtings = Object.keys(localRefs).length;
+  for (let i = 0; i < totalSrtings; i++) {
+    const refName = Object.keys(localRefs)[i];
+    const ref = localRefs[refName];
+    const string = refName.slice(0, length-3) + 'text'; //меняю ref на text например button_ref >> button_text
+    if (ref) {
+      if (ref.nodeName === 'INPUT') {
+          ref.placeholder = strings.getString(string);
+      } else {
+          ref.textContent = strings.getString(string);
+      }
     };
+  };
 };
 
 export const changeLanguage = (newLang) => {

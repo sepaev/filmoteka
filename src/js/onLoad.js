@@ -1,82 +1,44 @@
 import { changeHeader } from "./changeHeader"
-import { debounce } from 'throttle-debounce';
-import { consts } from "./consts";
-import { onSearchBoxChange, onSearchBoxFocus } from "./searchBox"
+import { onSearchBoxChange } from "./searchBox"
 import { onWatchedButtonClick, onQueueButtonClick } from "./libraryButtons"
 import { onSearchButtonClick } from "./searchButton"
-import { doLocalisation, getLang } from "./localization"
+import { doLocalization, getLang } from "./localization"
 import { addClass } from "./classWork";
 
+let loaded = false; //site must be loaded once reload only on change localization
 
 // функция по загрузке
 export const onLoad = refs => {
+
+    if (loaded) return;
     changeHeader('HOME', refs.headerDivToChange);
-    doLocalisation();
+    doLocalization();
     const currentLang = getLang();
-    const target = currentLang === 'eu-US' ? refs.engFlag.children[0] : currentLang === 'ru-RU' ? refs.rusFlag.children[0] : refs.ukrFlag.children[0];
+    const target = currentLang === 'eu-US' ? refs.engFlag : currentLang === 'ru-RU' ? refs.rusFlag : refs.ukrFlag;
     addClass(target, 'current');
+    loaded = true;
 }
 
 export const loadListnersForHome = (refs) => {
-  //добавление обработчика событий инпута
-    refs.searchBox.addEventListener('keydown', (e) => {
-        onSearchBoxChange(e);//from "./js/searchBox" все что происходит во время ввода + debounce
-    })
-  
-    refs.searchBox.addEventListener('focus', e => {
-        onSearchBoxFocus(e); //from "./js/searchBox" все что происходит во время получения фокуса
-    });
-    
-    //добавление обработчика событий кнопки поиска
-    refs.searchButton.addEventListener('click', e => {
-        e.preventDefault;
-        onSearchButtonClick(e); //from "./js/searchButton" все что происходит во время клика по кнопке поиск
-    });
+    //добавление обработчика событий инпута и кнопки поиска
+    refs.searchBox.addEventListener('keydown', onSearchBoxChange);
+    refs.searchButton.addEventListener('click', onSearchButtonClick);
 }
 
 export const removeListnersForHome = (refs) => {
-  //удаление обработчика событий с инпута
-    if (refs.searchBox) {
-        refs.searchBox.removeEventListener('input',
-            debounce(consts.DEBOUNCE_DELAY, (e) => {
-                onSearchBoxChange(e);
-            }))
-        
-        refs.searchBox.removeEventListener('focus', e => {
-              onSearchBoxFocus(e); 
-        });
-    }
-        //удаление обработчика событий кнопки поиска
-    if (refs.searchButton) {
-        refs.searchButton.removeEventListener('click', e => {
-            e.preventDefault;
-            onSearchButtonClick(e);
-        });
-    }
+    //удаление обработчика событий инпута и кнопки поиска
+    if (refs.searchBox) refs.searchBox.removeEventListener('keydown', onSearchBoxChange);
+    if (refs.searchButton) refs.searchButton.removeEventListener('click', onSearchButtonClick);
 }
 
 export const loadListnersForMyLibrary = (refs) => {
-      // добавление обработчиков на кнопки WATCHED и QUEUE
-        refs.watchedBtn.addEventListener('click', e => {
-            e.preventDefault;
-            onWatchedButtonClick(e);
-        });
-        refs.queueBtn.addEventListener('click', e => {
-            e.preventDefault;
-            onQueueButtonClick(e);
-        });
+    // добавление обработчиков на кнопки WATCHED и QUEUE
+    refs.watchedBtn.addEventListener('click', onWatchedButtonClick);
+    refs.queueBtn.addEventListener('click', onQueueButtonClick);
 }
 
 export const removeListnersForMyLibrary = (refs) => {
-      //удаление обработчиков на кнопки WATCHED и QUEUE
-    if (refs.watchedBtn) {
-        refs.watchedBtn.removeEventListener('click', e => {
-            e.preventDefault;
-            onWatchedButtonClick(e);
-        });
-        refs.queueBtn.removeEventListener('click', e => {
-            e.preventDefault;
-            onQueueButtonClick(e);
-        });
-    }
+    //удаление обработчиков на кнопки WATCHED и QUEUE
+    if (refs.watchedBtn) refs.watchedBtn.removeEventListener('click', onWatchedButtonClick);
+    if (refs.queueBtn) refs.queueBtn.removeEventListener('click', onQueueButtonClick);
 }

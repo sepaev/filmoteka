@@ -134,16 +134,11 @@ export const renderPaginationBtn = (totalPages, currentPage) => {
 
 export const onPaginationNavClick = page => {
     showPageHome(parseInt(page));
-    console.log(page)
-
-    // console.log('Загружаю страницу' + page);
-   
 };
 
 export const makeButtonActiv = (currentPage) => {
     const currentButton = document.querySelector(`a[data-number='${currentPage}'`);
     const activButton = document.querySelector('.current-page');
-    console.dir(activButton);
     if (activButton) activButton.classList.remove('current-page');
     currentButton.classList.add('current-page');
 };

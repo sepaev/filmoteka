@@ -4,14 +4,14 @@ import { tooggleClassCurrent, changeClasses } from './classWork';
 import { loadListnersForHome, removeListnersForHome, loadListnersForMyLibrary, removeListnersForMyLibrary } from "./onLoad"
 import { getRefs } from './refs';
 import { showPageHome, showPageMyLibrary, hidePagination, showPagination , showFilters, hideFilters} from './showPage'
-import { doLocalisation } from './localization';
+import { doLocalization } from './localization';
 
 
 export const changeHeader = (pageName, target) => {
-    target.innerHTML = home() + myLibrary(); //добавляю контент, чтоб получить отсутствующие рефы
+    // target.innerHTML = home() + myLibrary(); //добавляю контент, чтоб получить отсутствующие рефы
     const refs = getRefs();
     
-    if (pageName.includes('HOME') || pageName.includes('Г')) {
+    if (pageName.includes('HOME') || pageName.includes('вна')) {
         removeListnersForMyLibrary(refs);
         removeListnersForHome(refs);
         target.innerHTML = home(); //меняю шапку
@@ -22,7 +22,7 @@ export const changeHeader = (pageName, target) => {
         showPageHome(1);
         showPagination(refs);
         showFilters(refs);
-        doLocalisation()
+        doLocalization()
     };
     
     if  (pageName.includes('MY') || pageName.includes('МОЯ')) {
@@ -37,6 +37,6 @@ export const changeHeader = (pageName, target) => {
         tooggleClassCurrent(newRefs.watchedBtn, newRefs.queueBtn);
         hidePagination(refs);
         hideFilters(refs);
-        doLocalisation();
+        doLocalization();
     };
 }

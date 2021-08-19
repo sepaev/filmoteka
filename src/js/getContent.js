@@ -1,11 +1,13 @@
-import { consts } from './consts';
-import axios from 'axios';
-import { getRefsLocals } from "./refs";
-import { getRefs } from "./refs";
-import { renderGallery } from "../js/renderGallery";
-import { parseFilmsData } from './parseApiData';
-import { tooggleClassFilterIsActive } from './classWork';
-
+import  Notiflix                        from "notiflix";
+import { consts }                       from './consts';
+import axios                            from 'axios';
+import { getRefsLocals }                from "./refs";
+import { getRefs }                      from "./refs";
+import { renderGallery }                from "../js/renderGallery";
+import { parseFilmsData }               from './parseApiData';
+import { tooggleClassFilterIsActive }   from './classWork';
+import { doNotification }               from './localization';
+import { getGenreName }                 from './genresWork';
 
 const refs = getRefsLocals();
 const mainRefs = getRefs()
@@ -16,10 +18,11 @@ axios.defaults.baseURL = `${API_URL}`;
 
 // landing page movies
 
-export const fetchGetTrending = async (pageValue) => {
+export const  fetchGetTrending = async (pageValue) => {
     const { data } = await axios.get(
       `/trending/movie/week?api_key=${API_KEY}&page=${pageValue}&language=${consts.LANGUAGE}`,
-    );
+  );
+  // alert(22)
     console.dir(data)
     const { results, total_pages, page, total_results } = data;
     return { results, total_pages, page, total_results };
@@ -77,49 +80,94 @@ export const getMoviesPagination = async (searchValue, pageValue = 1) => {
 }
 
 export const checkDataByGenres = (films, genreId) => {
-  let result = [];
-  films.forEach(film => {
-    if (film.genre_ids.indexOf(parseInt(genreId)) > 0) result.push(film)
-  });
-  return result;
-  
+  return films.filter((film) => film.genre_ids.indexOf(parseInt(genreId)) > 0);
+}
+
+const pushAndCount = (data, total, genreId, films, notified) => {
+  const filtred = checkDataByGenres(data.results, genreId);
+  const timeAlert = {
+    en: "Please wait, it won't last very long.",
+    ru: 'Пожалуйста подождите, это не продлится очень долго.',
+    ua: 'Будь ласа зачекайте, це не займе багато часу.',
+  };
+  films.push(...filtred);
+  total += filtred.length;
+  if (total > 10 && !notified) {
+    doNotification(timeAlert.en, timeAlert.ru, timeAlert.ua, 'info');
+    notified = true;
+  }
+  return { total: filtred.length, totalAdded: total, notified, films }
 }
 
 export const getMoviesByScroll = async (searchValue, pageValue = 1, genreId) => {
   let totalResults = 0;
+  let totalAdded = 0;
   let films = [];
+  const currentGenres = getGenreName(genreId);
+  let notified = false;
+  console.dir(currentGenres);
   if (!searchValue) {
-    refs.trending_ref.classList.add('filter_is_active');
-    for (let total = 0; total <= 20; pageValue++) {
+    Notiflix.Loading.hourglass();
+    for (let total = 0; total < 20; pageValue++) {
+
       await fetchGetTrending(pageValue).then(data => {
-        const filtred = checkDataByGenres(data.results, genreId);
-        films.push(...filtred);
+        const result = pushAndCount(data, total, genreId, films, true);
+        total += result.total;
+        console.log('total - '+total)
         totalResults = data.total_results;
-        total += filtred.length;
+        console.log('totalResults - '+totalResults)
+        totalAdded += result.total;
+        console.log('totalAdded - '+totalAdded)
+        notified = result.notified;
+        console.dir('films - '+films)
+        films = result.films;
+        if (pageValue * 20 >= totalResults - 19) {
+          total = 20;
+          throw new Error('not found');
+        }
+
       }
       ).catch(err =>
         console.log(err),
         );
     }
+    Notiflix.Loading.remove();
+    const alert = {
+      en: 'Also added '+ totalAdded +' trends with genre ' + currentGenres.en.name + '. Total ' + totalResults + ' results.',
+      ru: 'Еще добавлено '+ totalAdded +' трендовых фільмів с жанром ' + currentGenres.ru.name + '. Всего ' + totalResults + ' кино.',
+      ua: 'Ще відображено '+ totalAdded +' трендових фільмів з жанром ' + currentGenres.uk.name + '. Всього ' + totalResults + ' од.',
+    };
+  window.setTimeout(doNotification(alert.en, alert.ru, alert.ua, 'success'),100);
     return { films, pageValue, totalResults };
   }
-
   if (searchValue) {
-    for (let total = 0; total <= 20; pageValue++) {
+    Notiflix.Loading.hourglass();
+    for (let total = 0; total < 10; pageValue++) {
+            console.log(total);
       await fetchGetSearchMovie(searchValue, pageValue).then(data => {
-        const filtred = checkDataByGenres(data.results, genreId);
-        films.push(...filtred);
+        const result = pushAndCount(data, total, genreId, films, notified);
+        total += result.total;
         totalResults = data.total_results;
-        total += filtred.length;
+        totalAdded += result.total;
+        notified = result.notified;
+        films = result.films;
+         if (pageValue * 10 >= totalResults - 9) {
+          total = 10;
+          throw new Error('not found');
+        }
       }
       ).catch(err =>
         console.log(err),
         );
-      // total += 21;
-      console.log(total);
     }
-    return { films, pageValue, totalResults };
-
+    Notiflix.Loading.remove();
+  const alert = {
+    en: 'Added ' + totalAdded +' for search query << '+searchValue+' >> genre <<' + currentGenres.ru.name + '>>. Total ' + totalResults,
+    ru: 'Добавлено ' + totalAdded +' за поиском << '+searchValue+' >> жанр <<' + currentGenres.ru.name + '>>. Всего ' + totalResults,
+    ua: 'Додано ' + totalAdded +' за пошуком << '+searchValue+' >> жанр <<' + currentGenres.ru.name + '>>. Всього ' + totalResults,
+  };
+  window.setTimeout(doNotification(alert.en, alert.ru, alert.ua, 'success'),100);
+  return { films, pageValue, totalResults };
   }
 }
 

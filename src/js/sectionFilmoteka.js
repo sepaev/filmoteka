@@ -4,7 +4,7 @@ import { getRefs }          from './refs';
 import { loadEscListner }   from './escClose';
 import { fetchGetMovieById} from './getContent';
 import { parseOneFilm }     from './parseApiData';
-import { doLocalisation }   from './localization';
+import { doLocalization }   from './localization';
 import { locals }           from './consts';
 import { doOpenGenre }      from './genresWork';
 
@@ -42,7 +42,7 @@ export const onFilmClick = e => {
   if (targetCard.className === 'film') {
     // instance.show(() => console.log('lightbox now visible'));
     instance.show();
-    doLocalisation();
+    doLocalization();
     // обработка клика по модалке с фильмом
     refs.modalCard.addEventListener('click', e => {
       e.preventDefault;
@@ -144,7 +144,7 @@ const onFilmCloseClick = () => {
 function renderFilmCard(filmCard) {
   const refs = getRefs();
   refs.modalCard.innerHTML = modalFilmCardTpl(filmCard);
-  doLocalisation();
+  doLocalization();
 }
 
 // добавляет или удаляет из LS

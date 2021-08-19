@@ -2,52 +2,59 @@ import { getRefs } from "./refs"
 import { scrollingWindow } from "./infinitScroll";
 import { hidePagination, showPageHomeGenres } from "./showPage";
 import { throttle} from "throttle-debounce";
-import { consts } from "./consts";
+import { consts, genres } from "./consts";
 
-let currentPage = 1;
+let currentPageNumber = 1;
 let genreId = 0;
 // let genreName = '';
 
-const checkNewCurrentPage = (newPage) => {
-    if (newPage > currentPage) {
-        currentPage = newPage;
+const checkNewcurrentPageNumber = (newPageNumber) => {
+    if (newPageNumber > currentPageNumber) {
+        currentPageNumber = newPageNumber;
         return;
     }
-    if (newPage === currentPage) {
-        console.log('Current page: '+newPage+' Do nothing and waiting for loading content')
+    if (newPageNumber === currentPageNumber) {
+        console.log('Current page: '+newPageNumber+' Do nothing and waiting for loading content')
         return;
     }
-    if (newPage < currentPage) {
-        currentPage = 1;
+    if (newPageNumber < currentPageNumber) {
+        currentPageNumber = 1;
         genreId = 0;
 
     window.removeEventListener('scroll',
         throttle(consts.DEBOUNCE_DELAY, (e) => {
-        const newCurrentPage = scrollingWindow(currentPage, genreId);//from "./js/infinitScroll"  для отслеживания безконечного скролла
-            checkNewCurrentPage(newCurrentPage);
+        const newcurrentPageNumber = scrollingWindow(currentPageNumber, genreId);//from "./js/infinitScroll"  для отслеживания безконечного скролла
+            checkNewcurrentPageNumber(newcurrentPageNumber);
         }));
     }
 }
 
 export const doOpenGenre = (id, name, instance) => {
-    checkNewCurrentPage(1);
+    checkNewcurrentPageNumber(1);
     genreId = id;
     // genreName = name;
     const refs = getRefs();
     refs.galleryItems.innerHTML = '';
     hidePagination(refs);
-    showPageHomeGenres(currentPage, id, name)
+    showPageHomeGenres(currentPageNumber, id, name)
         .then(page => {
-            currentPage = page;
+            currentPageNumber = page;
         });
     if (instance) instance.close();
 
     window.addEventListener('scroll',
         throttle(consts.DEBOUNCE_DELAY, (e) => {
-            scrollingWindow(currentPage, genreId)//from "./js/infinitScroll"  для отслеживания безконечного скролла
-                .then(newCurrentPage => checkNewCurrentPage(newCurrentPage))
+            scrollingWindow(currentPageNumber, genreId)//from "./js/infinitScroll"  для отслеживания безконечного скролла
+                .then(newcurrentPageNumber => checkNewcurrentPageNumber(newcurrentPageNumber))
                 .catch(error => console.log(error));
         }));
 
 };
 
+export const getGenreName = (genreId) => {
+    let returnGenre = { en: '', ru: '', uk: '' };
+    returnGenre.en = genres.en.find(genre => genre.id == genreId);
+    returnGenre.ru = genres.ru.find(genre => genre.id == genreId);
+    returnGenre.uk = genres.uk.find(genre => genre.id == genreId);
+    return returnGenre;
+}

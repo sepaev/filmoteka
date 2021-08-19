@@ -78,39 +78,39 @@ export const showPageHome = (pageNumber) => {
         } else {
             doOnFailure();
         }
+
         renderPaginationBtn(data.total_pages, pageNumber)
         makeButtonActiv(pageNumber)
-        
         return data.results;
     })
-        .then(films => {
-           const filmData = parseFilmsData(films);
-           const string = JSON.stringify(filmData);
-           localStorage.setItem('tempQuery', string);
-           return filmData;
-        })
-        .then(films => {
-            renderAllGallery(films);// перебирает обьект и выводит карточки фильмов
+    .then(films => {
+        const filmData = parseFilmsData(films);
+        const string = JSON.stringify(filmData);
+        localStorage.setItem('tempQuery', string);
+        return filmData;
     })
-      .catch(error => {
-       Notiflix.Loading.remove();
-       console.log(error);
-   });
+    .then(films => {
+        renderAllGallery(films);// перебирает обьект и выводит карточки фильмов
+    })
+    .catch(error => {
+        Notiflix.Loading.remove();
+        console.log(error);
+    });
 }
 
 export const showPageHomeGenres = (pageNumber, genreId, genreName) => {
-    Notiflix.Loading.pulse();
+
     const refs = getRefs();
     return getMoviesByScroll(refs.searchBox.value, pageNumber, genreId)
     .then(data => {
-        Notiflix.Loading.remove();
+console.dir(data);
         if (data.totalResults) {
-            const alert = {
-            en: 'Films shown by genre ' + genreName + '. Total ' + data.totalResults + ' results',
-            ru: 'Показано фильмы с жанром ' + genreName + '. Total ' + data.totalResults + ' results',
-            ua: 'Показано фільми з жанром ' + genreName + '. Total ' + data.totalResults + ' results',
-            };
-            doNotification(alert.en, alert.ru, alert.ua, 'success');
+            // const alert = {
+            // en: 'Films shown by genre ' + genreName + '. Total ' + data.totalResults + ' results',
+            // ru: 'Показано фильмы с жанром ' + genreName + '. Total ' + data.totalResults + ' results',
+            // ua: 'Показано фільми з жанром ' + genreName + '. Total ' + data.totalResults + ' results',
+            // };
+            // doNotification(alert.en, alert.ru, alert.ua, 'success');
             refs.headerError.style.display = 'none';
         } else {
             doOnFailure();

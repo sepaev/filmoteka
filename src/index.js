@@ -9,19 +9,25 @@ import { onDevLinkClick } from "./js/footerDevelopers"
 import { onLoad } from "./js/onLoad"
 import { activateScrollButton } from './js/btnScrollUp'
 import { changeLanguage } from './js/localization'
-import './js/theme';
-import './js/animationSVG';
-import './js/searchPageOnBtn'
+// import './js/theme';
+// import './js/animationSVG';
+// import './js/searchPageOnBtn'
+// import './js/videoTrailer';
+// import './js/signIN';
+// import './js/sign_IN';
 
-
-import './js/videoTrailer';
-import './js/signIN';
-import './js/sign_IN';
 
 const refs = getRefs();
 onLoad(refs); //функция загружает все что необходимо сделать при запуске
               // тут находятся слушатели на кнопки и инпуты шапки
-
+// window.addEventListener('beforeunload', function (event) {
+//         console.log('I am the 1st one.');
+//       });
+// window.addEventListener('unload', function(e) {
+//         console.log('I am the 3rd one.');
+//         console.dir(e);
+//         alert()
+// });
 // обработка клика по фильму
 refs.filmsSection.addEventListener('click', e => {
   e.preventDefault;
@@ -32,6 +38,7 @@ refs.filmsSection.addEventListener('click', e => {
 refs.headerNav.addEventListener('click', e => {
   e.preventDefault;
   if (e.target.nodeName === "A") {
+    alert;
     changeHeader(e.target.textContent, refs.headerDivToChange); //from "./js/headerNav" меняет шапку HOME/MY LIBRARY
   };
 });
@@ -56,6 +63,7 @@ refs.paginationNav.addEventListener('click', e => {
   e.preventDefault;
 
   if (e.target.nodeName === "A") {
+
     onPaginationNavClick(e.target.dataset.number);
   };
 });
@@ -70,5 +78,4 @@ refs.devLink.addEventListener('click', e => {
 window.addEventListener('scroll',
   throttle(consts.DEBOUNCE_DELAY, (e) => {
      activateScrollButton(e);//from "./js/btnScrollUp"  клик по ссылке подняться вверх встраницы
-   }));
-
+  }));

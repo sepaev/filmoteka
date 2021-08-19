@@ -1,7 +1,7 @@
 import * as basicLightbox       from 'basiclightbox';
 import { getRefs }              from './refs';
 import { showPageHome }         from './showPage'
-import { doLocalisation, doNotification }       from './localization'
+import { doLocalization, doNotification }       from './localization'
 
 let alert = true;
 const turnAlert = (bool) => alert = bool;
@@ -30,6 +30,7 @@ function goToPage() {
 
         return;
     };
+
     showPageHome(target);
     instance.close();
 }
@@ -37,7 +38,7 @@ function goToPage() {
 function openSearchModal(event) {
     event.preventDefault();
     instance.show(() => {
-        doLocalisation();
+        doLocalization();
         refs.inputGoToPage.focus();
         refs.buttonGoToPage.addEventListener('click', goToPage);
         document.onkeydown = (e) => {

@@ -1,7 +1,7 @@
 import * as basicLightbox from 'basiclightbox';
 import { getRefs } from './refs';
 import { loadEscListner } from './escClose';
-import { doLocalisation } from './localization';
+import { doLocalization } from './localization';
 
 const refs = getRefs();
 const instance = basicLightbox.create(refs.modalDevs, {
@@ -12,7 +12,7 @@ const instance = basicLightbox.create(refs.modalDevs, {
 export const onDevLinkClick = () => {
     instance.show();
     
-    doLocalisation();
+    doLocalization();
      
 // обработка клика по esc   
     loadEscListner(instance);
