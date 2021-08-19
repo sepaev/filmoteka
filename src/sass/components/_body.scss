@@ -44,7 +44,7 @@
   // margin-right: auto;
   max-width: 274px;
   transition: $transition-body-card;
-  // padding:;
+  padding: 6px;
   margin-left: 40px;
   transform: scale(1);
   @media (min-width: $min-desktop) {
@@ -91,10 +91,10 @@
   &__img {
     // position: relative;
     display: block;
-    max-width: 100%;
+    // max-width: 100%;
     // height: 398px;
-    // width: 274px;
-    // height: 398px;
+    max-width: 274px;
+    max-height: 398px;
     border-radius: $main-border-radius;
   }
 
@@ -188,8 +188,8 @@
   justify-content: center;
   color: $black-color;
   padding: 50px;
-  @media (max-width: 320px) {
-    min-width: 280px;
+  @media (min-width: 320px) {
+    max-width: 200px;
   }
 
   &__left,

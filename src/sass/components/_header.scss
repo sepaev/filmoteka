@@ -200,6 +200,7 @@
     font-size: 14px;
     line-height: 1.214;
     color: $white-color;
+    outline: unset;
     &::placeholder {
       color: $white-color;
       font-style: normal;
