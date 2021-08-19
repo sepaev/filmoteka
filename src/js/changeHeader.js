@@ -11,7 +11,7 @@ export const changeHeader = (pageName, target) => {
     // target.innerHTML = home() + myLibrary(); //добавляю контент, чтоб получить отсутствующие рефы
     const refs = getRefs();
     
-    if (pageName.includes('HOME') || pageName.includes('вна')) {
+    if (pageName.includes('HOME') || pageName.includes('ВНА')) {
         removeListnersForMyLibrary(refs);
         removeListnersForHome(refs);
         target.innerHTML = home(); //меняю шапку

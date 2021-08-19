@@ -9,12 +9,12 @@ import { onDevLinkClick } from "./js/footerDevelopers"
 import { onLoad } from "./js/onLoad"
 import { activateScrollButton } from './js/btnScrollUp'
 import { changeLanguage } from './js/localization'
-import './js/theme';
-import './js/animationSVG';
-import './js/searchPageOnBtn'
-import './js/videoTrailer';
-import './js/signIN';
-import './js/sign_IN';
+import './js/theme';  //тема
+import './js/animationSVG'; //анимация лого
+import './js/searchPageOnBtn'  //поиск по номеру страницы
+import './js/videoTrailer'; //трейлер
+// import './js/signIN';  //авторизация
+// import './js/sign_IN';  //регистрация
 
 
 const refs = getRefs();
