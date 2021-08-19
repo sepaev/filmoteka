@@ -7,7 +7,7 @@ const scrollToTopOfPage = () => { // используется для подня�
   if (window.pageYOffset > 0) {
     window.scrollTo(pageXOffset, 0);
   }
-}
+};
 
 export const activateScrollButton = (e) => { // проверяет позицию на экране
   const coords = document.documentElement.clientHeight;
@@ -15,7 +15,7 @@ export const activateScrollButton = (e) => { // проверяет позици�
     addClass(refs.scrollTopBtn, 'scroll__active');
     refs.scrollTopBtn.addEventListener('click', e => {//добавляем слушателя на кнопку
       e.preventDefault;
-      scrollToTopOfPage(e); 
+      scrollToTopOfPage(e);   
     });
   }
 
@@ -23,7 +23,17 @@ export const activateScrollButton = (e) => { // проверяет позици�
     removeClass(refs.scrollTopBtn, 'scroll__active');
     refs.scrollTopBtn.removeEventListener('click', e => {//удаляем слушателя с кнопки
       e.preventDefault;
-      scrollToTopOfPage(e); 
+      scrollToTopOfPage(e);
     });
   }
-}
+};
+
+
+// const goUp = () => {
+//   const top = Math.max(document.body.click, document.documentElement.click);
+//   if (top > 0) {
+//     window.scrollBy(0, -100);
+//     timeOut = setTimeout(goUp(), 20);
+//   } else clearTimeout(timeOut);
+// }
+
