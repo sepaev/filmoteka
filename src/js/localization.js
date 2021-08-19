@@ -33,7 +33,7 @@ export const doNotification = (en, ru, ua, method) =>{
 export const getLocalsStrings = () => {
     let strings = new LocalizedStrings({
         'en-US': {
-            trending_text: "Trending",
+            trending_text: "Weekly trending",
             latest_text: "Latest",
             now_playing_text: "Now Playing",
             popular_text: "Popular",  
@@ -84,12 +84,12 @@ export const getLocalsStrings = () => {
             // sign_up_status_text: '',
         },
         'ru-RU': {
-            trending_text: "В Тренде",
-            latest_text: "Последние",
-            now_playing_text: "Сейчас в прокате",
+            trending_text: "В тренде недели",
+            latest_text: "Новинки",
+            now_playing_text: "Премьеры",
             popular_text: "Популярные",  
-            top_rated_text: "За рейтингом",  
-            upcoming_text: "Скоро в прокате",
+            top_rated_text: "Рейтинговые",  
+            upcoming_text: "Ожидаемые",
             filmoteka_text: "Фильмотека",
             search_films_text: "Поиск фильмов",
             home_text: "ГЛАВНАЯ",
@@ -135,12 +135,12 @@ export const getLocalsStrings = () => {
             // sign_up_status_text: '',
         },
         'uk-UA': {
-            trending_text: "У тренді",
+            trending_text: "Щотижневі тренди",
             latest_text: "Останні",
-            now_playing_text: "Зараз в прокаті",
+            now_playing_text: "Прем'ери",
             popular_text: "Популярні",  
-            top_rated_text: "За рейтингом",  
-            upcoming_text: "Скоро в прокаті",
+            top_rated_text: "Рейтингові",  
+            upcoming_text: "Очікувані",
             filmoteka_text: "Фільмотека",
             search_films_text: "Пошук фільмів",
             home_text: "ГОЛОВНА",
