@@ -5,7 +5,10 @@ const refs = getRefs();
 
 const scrollToTopOfPage = () => { // используется для поднятия наверх
   if (window.pageYOffset > 0) {
-    window.scrollTo(pageXOffset, 0);
+    window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+});
   }
 };
 
@@ -29,11 +32,4 @@ export const activateScrollButton = (e) => { // проверяет позици�
 };
 
 
-// const goUp = () => {
-//   const top = Math.max(document.body.click, document.documentElement.click);
-//   if (top > 0) {
-//     window.scrollBy(0, -100);
-//     timeOut = setTimeout(goUp(), 20);
-//   } else clearTimeout(timeOut);
-// }
 
