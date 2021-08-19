@@ -148,10 +148,13 @@
     display: flex;
     justify-content: space-between;
     padding-top: 10px;
+    & li:last-child {
+      margin-left: 39px;
+    }
   }
 
   &__link {
-    margin-left: 39px;
+    // margin-left: 39px;
     font-family: 'Roboto', sans-serif;
     font-style: normal;
     font-weight: 500;
