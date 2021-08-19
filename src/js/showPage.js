@@ -96,6 +96,7 @@ export const showPageHome = (pageNumber) => {
         Notiflix.Loading.remove();
         console.log(error);
     });
+    
 }
 
 export const showPageHomeGenres = (pageNumber, genreId, genreName) => {
@@ -103,7 +104,6 @@ export const showPageHomeGenres = (pageNumber, genreId, genreName) => {
     const refs = getRefs();
     return getMoviesByScroll(refs.searchBox.value, pageNumber, genreId)
     .then(data => {
-console.dir(data);
         if (data.totalResults) {
             // const alert = {
             // en: 'Films shown by genre ' + genreName + '. Total ' + data.totalResults + ' results',

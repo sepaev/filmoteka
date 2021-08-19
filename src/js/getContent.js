@@ -22,8 +22,6 @@ export const  fetchGetTrending = async (pageValue) => {
     const { data } = await axios.get(
       `/trending/movie/week?api_key=${API_KEY}&page=${pageValue}&language=${consts.LANGUAGE}`,
   );
-  // alert(22)
-    console.dir(data)
     const { results, total_pages, page, total_results } = data;
     return { results, total_pages, page, total_results };
 }
@@ -63,12 +61,13 @@ export const fetchGetMovieById = async (id) => {
 // dynamic page Value with pagination 
 
 export const getMoviesPagination = async (searchValue, pageValue = 1) => {
-    if (!searchValue) {
-      refs.trending_ref.classList.add('filter_is_active');
-      const data = await fetchGetTrending(pageValue).catch(err =>
-        console.log(err),
-      );
-      return data;
+  if (!searchValue) {
+    refs.trending_ref.classList.add('filter_is_active');
+    const data = await fetchGetTrending(pageValue)
+    .catch(err =>
+    console.log(err),
+    );
+    return data;
     }
   
     if (searchValue) {
@@ -105,7 +104,6 @@ export const getMoviesByScroll = async (searchValue, pageValue = 1, genreId) => 
   let films = [];
   const currentGenres = getGenreName(genreId);
   let notified = false;
-  console.dir(currentGenres);
   if (!searchValue) {
     Notiflix.Loading.hourglass();
     for (let total = 0; total < 20; pageValue++) {
@@ -113,19 +111,16 @@ export const getMoviesByScroll = async (searchValue, pageValue = 1, genreId) => 
       await fetchGetTrending(pageValue).then(data => {
         const result = pushAndCount(data, total, genreId, films, true);
         total += result.total;
-        console.log('total - '+total)
         totalResults = data.total_results;
-        console.log('totalResults - '+totalResults)
         totalAdded += result.total;
-        console.log('totalAdded - '+totalAdded)
         notified = result.notified;
-        console.dir('films - '+films)
         films = result.films;
         if (pageValue * 20 >= totalResults - 19) {
           total = 20;
-          throw new Error('not found');
+          doNotification('No more results found', 'Больше ничего не найдено', 'Більше нічого не знайдено.', 'failure');
+          throw new Error('No more results found');
         }
-
+        
       }
       ).catch(err =>
         console.log(err),
@@ -138,12 +133,11 @@ export const getMoviesByScroll = async (searchValue, pageValue = 1, genreId) => 
       ua: 'Ще відображено '+ totalAdded +' трендових фільмів з жанром ' + currentGenres.uk.name + '. Всього ' + totalResults + ' од.',
     };
   window.setTimeout(doNotification(alert.en, alert.ru, alert.ua, 'success'),100);
-    return { films, pageValue, totalResults };
+  return { films, pageValue, totalResults };
   }
   if (searchValue) {
     Notiflix.Loading.hourglass();
     for (let total = 0; total < 10; pageValue++) {
-            console.log(total);
       await fetchGetSearchMovie(searchValue, pageValue).then(data => {
         const result = pushAndCount(data, total, genreId, films, notified);
         total += result.total;
@@ -152,10 +146,11 @@ export const getMoviesByScroll = async (searchValue, pageValue = 1, genreId) => 
         notified = result.notified;
         films = result.films;
          if (pageValue * 10 >= totalResults - 9) {
-          total = 10;
-          throw new Error('not found');
+           total = 10;
+           doNotification('No more results found', 'Больше ничего не найдено', 'Більше нічого не знайдено.', 'failure');
+           throw new Error('not found');
+          }
         }
-      }
       ).catch(err =>
         console.log(err),
         );
@@ -188,14 +183,16 @@ function makeFilterSearch (e) {
   .then(films => {
     mainRefs.galleryItems.innerHTML = '';
     films.forEach(film => renderGallery(film));
-}).catch(err => console.log(err))
+  })
+      .catch(err => console.log(err))
  };
 
   fetchMovieByModalButton(1, queryOption).then(films => parseFilmsData(films.results))
   .then(films => {
     mainRefs.galleryItems.innerHTML = '';
     films.forEach(film => renderGallery(film));
-}).catch(err => console.log(err))
+  })
+    .catch(err => console.log(err))
 
 
 

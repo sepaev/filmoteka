@@ -33,7 +33,6 @@ refs.galleryItems.addEventListener('click', e => {
 function openModalVideoTrailer(id) {
   
     const url = `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${API_KEY}&language=${consts.LANGUAGE}`;
-  console.log(id)
   Notiflix.Loading.pulse();
       fetch(url)
         .then(response => response.json())

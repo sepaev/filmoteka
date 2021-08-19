@@ -18,6 +18,5 @@ function requestData (dataArr) {
     for (let key in dataArr) {
         out += `${key}=${dataArr[key]}&`;
     }
-    console.log(out);
     return out;
 }

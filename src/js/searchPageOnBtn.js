@@ -11,7 +11,6 @@ const instanceParameters = {
     onClose: () => {
         turnAlert(true);
         document.onkeypress = null;
-        console.log('remove')
         refs.buttonGoToPage.removeEventListener('click', goToPage);
         document.onkeydown = null;
     }
@@ -20,7 +19,7 @@ const instanceParameters = {
 const instance = basicLightbox.create(refs.containerGoToPage, instanceParameters);
 
 refs.searchPage.addEventListener('click', openSearchModal);
-function goToPage() {
+export const goToPage = () => {
     const last = parseInt(refs.lastButton.textContent);
     const target = parseInt(refs.inputGoToPage.value);
     const inf = { en: 'Input number less then '+last, ru: 'Введите число меньше '+last, ua: 'Введіть число меньше за '+last };

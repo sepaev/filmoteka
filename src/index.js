@@ -20,15 +20,6 @@ import './js/videoTrailer'; //трейлер
 const refs = getRefs();
 onLoad(refs); //функция загружает все что необходимо сделать при запуске
               // тут находятся слушатели на кнопки и инпуты шапки
-// window.addEventListener('beforeunload', function (event) {
-//         console.log('I am the 1st one.');
-//       });
-// window.addEventListener('unload', function(e) {
-//         console.log('I am the 3rd one.');
-//         console.dir(e);
-//         alert()
-// });
-// обработка клика по фильму
 refs.filmsSection.addEventListener('click', e => {
   e.preventDefault;
     onFilmClick(e); //from "./js/sectionFilmoteka" клик по любой карточке фильма
