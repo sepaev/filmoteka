@@ -1,15 +1,12 @@
 import  Notiflix                        from "notiflix";
+import  axios                           from 'axios';
 import { consts }                       from './consts';
-import axios                            from 'axios';
 import { getRefsLocals }                from "./refs";
 import { getRefs }                      from "./refs";
-import { renderGallery }                from "../js/renderGallery";
-import { parseFilmsData }               from './parseApiData';
 import { tooggleClassFilterIsActive }   from './classWork';
 import { doNotification }               from './localization';
-import { getGenreName }                 from './genresWork';
-import { makeButtonActiv }              from './paginationNav';
-import { showPageHome } from "./showPage";
+import { doStopInfinitScroll }          from './genresWork';
+import { showPageHome }                 from "./showPage";
 
 
 const refs = getRefsLocals();
@@ -84,28 +81,19 @@ export const getMoviesPagination = async (searchValue, pageValue = 1) => {
     }
 }
 
-export const checkDataByGenres = (films, genreId) => {
-  return films.filter((film) => film.genre_ids.indexOf(parseInt(genreId)) > 0);
-}
-
-const pushAndCount = (data, total, genreId, films, notified) => {
-  const filtred = checkDataByGenres(data.results, genreId);
-  const timeAlert = {
-    en: "Please wait, it won't last very long.",
-    ru: 'Пожалуйста подождите, это не продлится очень долго.',
-    ua: 'Будь ласа зачекайте, це не займе багато часу.',
-  };
-  films.push(...filtred);
-  total += filtred.length;
-  if (total > 10 && !notified) {
-    doNotification(timeAlert.en, timeAlert.ru, timeAlert.ua, 'info');
+const findFilmWithGenre = (films, genreId, totalFounds, notified) => {
+  const filtredFilms = films.filter((film) => film.genre_ids.indexOf(parseInt(genreId)) > 0);
+  const infoText = { en: "Please wait, it won't last very long.", ru: 'Пожалуйста подождите, это не продлится очень долго.', ua: 'Будь ласа зачекайте, це не займе багато часу.'};
+  
+  totalFounds += filtredFilms.length;
+  if (totalFounds > 7 && !notified) {
+    doNotification(infoText.en, infoText.ru, infoText.ua, 'info');
     notified = true;
   }
-  return { total: filtred.length, totalAdded: total, notified, films }
+  return { filtredFilms, notified}
 }
 
-export const getMoviesByScroll = async (searchValue, pageValue = 1, genreId) => {
-  let data;
+export const getMoviesByScroll = async (searchValue, pageValue = 1, genreId, genreName) => {
   let target = document.querySelector('.filter_is_active');
   if (!target) {
     refs.trending_ref.classList.add('filter_is_active');
@@ -114,24 +102,24 @@ export const getMoviesByScroll = async (searchValue, pageValue = 1, genreId) => 
   let totalResults = 0;
   let totalAdded = 0;
   let films = [];
-  const currentGenres = getGenreName(genreId);
   let notified = false;
   if (!searchValue) {
     const queryOption = target.dataset.set;
     Notiflix.Loading.hourglass();
-    for (let total = 0; total < 20; pageValue++) {
+    ////////START IF //////////
+    for (let counter = 0; counter < 15; pageValue++) {
 
-      await fetchMovieByModalButton(pageValue, queryOption).then(data => {
-        const result = pushAndCount(data, total, genreId, films, true);
-        total += result.total;
-        totalResults = data.total_results;
-        totalAdded += result.total;
-        notified = result.notified;
-        films = result.films;
-        if (pageValue * 20 >= totalResults - 19) {
-          total = 20;
+      await fetchMovieByModalButton(pageValue, queryOption)
+        .then(data => {
+        const result = findFilmWithGenre(data.results, genreId, counter, true);
+        counter += result.filtredFilms.length;
+        if (!totalResults) totalResults = data.total_results;
+        totalAdded = counter;             //totalAdded внешняя
+        notified = result.notified;       //notified внешняя
+        films.push(...result.filtredFilms);  //films внешний обьект с фильмами
+        if (pageValue * 20 >= totalResults) {
+          counter = 15;
           doNotification('No more results found', 'Больше ничего не найдено', 'Більше нічого не знайдено.', 'failure');
-          throw new Error('No more results found');
         }
         
       }
@@ -139,29 +127,31 @@ export const getMoviesByScroll = async (searchValue, pageValue = 1, genreId) => 
         console.log(err),
         );
     }
+    ///END IF//////
+
     Notiflix.Loading.remove();
-    const alert = {
-      en: 'Also added '+ totalAdded +' trends with genre ' + currentGenres.en.name + '. Total ' + totalResults + ' results.',
-      ru: 'Еще добавлено '+ totalAdded +' трендовых фільмів с жанром ' + currentGenres.ru.name + '. Всего ' + totalResults + ' кино.',
-      ua: 'Ще відображено '+ totalAdded +' трендових фільмів з жанром ' + currentGenres.uk.name + '. Всього ' + totalResults + ' од.',
+    const textAlert = {
+      en: 'Added '+ totalAdded +' films with genre ' + genreName,
+      ru: 'Добавлено '+ totalAdded +' фильмов с жанром ' + genreName,
+      ua: 'Додано '+ totalAdded +' фільмів  з жанром ' + genreName,
     };
-  window.setTimeout(doNotification(alert.en, alert.ru, alert.ua, 'success'),100);
-  return { films, pageValue, totalResults };
+    if (totalAdded) doNotification(textAlert.en, textAlert.ru, textAlert.ua, 'success');
+    return { films, pageValue, totalResults };
   }
   if (searchValue) {
     Notiflix.Loading.hourglass();
-    for (let total = 0; total < 10; pageValue++) {
-      await fetchGetSearchMovie(searchValue, pageValue).then(data => {
-        const result = pushAndCount(data, total, genreId, films, notified);
-        total += result.total;
-        totalResults = data.total_results;
-        totalAdded += result.total;
+    for (let counter = 0; counter < 10; pageValue++) {
+      await fetchGetSearchMovie(searchValue, pageValue)
+        .then(data => {
+        const result = findFilmWithGenre(data.results, genreId, counter, notified);
+        counter += result.filtredFilms.length;
+        if (!totalResults) totalResults = data.total_results;
+        totalAdded = counter;
         notified = result.notified;
-        films = result.films;
-         if (pageValue * 10 >= totalResults - 9) {
-           total = 10;
+        films.push(...result.filtredFilms);
+         if (pageValue * 20 >= totalResults) {
+           counter = 10;
            doNotification('No more results found', 'Больше ничего не найдено', 'Більше нічого не знайдено.', 'failure');
-           throw new Error('not found');
           }
         }
       ).catch(err =>
@@ -169,180 +159,20 @@ export const getMoviesByScroll = async (searchValue, pageValue = 1, genreId) => 
         );
     }
     Notiflix.Loading.remove();
-  const alert = {
-    en: 'Added ' + totalAdded +' for search query << '+searchValue+' >> genre <<' + currentGenres.ru.name + '>>. Total ' + totalResults,
-    ru: 'Добавлено ' + totalAdded +' за поиском << '+searchValue+' >> жанр <<' + currentGenres.ru.name + '>>. Всего ' + totalResults,
-    ua: 'Додано ' + totalAdded +' за пошуком << '+searchValue+' >> жанр <<' + currentGenres.ru.name + '>>. Всього ' + totalResults,
-  };
-  window.setTimeout(doNotification(alert.en, alert.ru, alert.ua, 'success'),100);
+    const textAlert = {
+      en: 'Added '+ totalAdded +' films with genre ' + genreName,
+      ru: 'Добавлено '+ totalAdded +' фильмов с жанром ' + genreName,
+      ua: 'Додано '+ totalAdded +' фільмів  з жанром ' + genreName,
+    };
+  if (totalAdded) doNotification(textAlert.en, textAlert.ru, textAlert.ua, 'success');
   return { films, pageValue, totalResults };
   }
 }
 
 export const makeFilterSearch = (e) => {
   if (e.target.nodeName !== 'BUTTON') return;
+  doStopInfinitScroll();
   const activeButton = document.querySelector('.filter_is_active');
   tooggleClassFilterIsActive(e.target, activeButton);
   showPageHome(1);
-  // Notiflix.Loading.pulse();
-  // makeButtonActiv(1);
-  // console.log(e.target);
-  // console.log(activeButton);
-  // const queryOption = e.target.dataset.set;
-
-  // if (e.target.dataset.set === "trending") {
-  //   fetchGetTrending(1).then(films => parseFilmsData(films.results))
-  //     .then(films => {
-  //       Notiflix.Loading.remove();
-  //       mainRefs.galleryItems.innerHTML = '';
-  //       films.forEach(film => renderGallery(film));
-  //     })
-  //     .catch(err => {
-  //       Notiflix.Loading.remove();
-  //       console.log(err);
-  //     });
-  // };
-
-  // fetchMovieByModalButton(1, queryOption).then(films => parseFilmsData(films.results))
-  //   .then(films => {
-  //     Notiflix.Loading.remove();
-  //     mainRefs.galleryItems.innerHTML = '';
-  //     films.forEach(film => renderGallery(film));
-  //   })
-  //   .catch(err => {
-  //     Notiflix.Loading.remove();
-  //     console.log(err);
-  //   });
 }
-
-
-// get Latest
-
-// export const fetchLatest = async (pageValue) => {
-//   const {data} = await axios.get(
-//     `/movie/latest?api_key=${API_KEY}&page=${pageValue}&language=${consts.LANGUAGE}`,
-//   );
-//   const { results, total_pages, page, total_results } = data;
-//     return { results, total_pages, page, total_results };
-// }
-
-// get Now Playing
-
-// export const fetchNowPlaying = async (pageValue) => {
-//   const {data} = await axios.get(
-//     `movie/now_playing?api_key=${API_KEY}&page=${pageValue}&language=${consts.LANGUAGE}`,
-//   );
-//   const { results, total_pages, page, total_results } = data;
-//     return { results, total_pages, page, total_results };
-// }
-
-// // get Popular
-
-// export const fetchPopular = async (pageValue) => {
-//   const {data} = await axios.get(
-//     `movie/popular?api_key=${API_KEY}&page=${pageValue}&language=${consts.LANGUAGE}`,
-//   );
-//   const { results, total_pages, page, total_results } = data;
-//     return { results, total_pages, page, total_results };
-// }
-
-// // get Upcoming
-
-// export const fetchUpcoming = async (pageValue) => {
-//   const {data} = await axios.get(
-//     `movie/upcoming?api_key=${API_KEY}&page=${pageValue}&language=${consts.LANGUAGE}`,
-//   );
-//   const { results, total_pages, page, total_results } = data;
-//     return { results, total_pages, page, total_results };
-// }
-
-// // get Top Rated
-
-// export const fetchTopRated = async (pageValue) => {
-//   const {data} = await axios.get(
-//     `movie/top_rated?api_key=${API_KEY}&page=${pageValue}&language=${consts.LANGUAGE}`,
-//   );
-//   const { results, total_pages, page, total_results } = data;
-//     return { results, total_pages, page, total_results };
-// }
-
-
-//refs.latest_ref.addEventListener('click', makeFilterSearch)
-// refs.trending_ref.addEventListener('click', makeFilterSearch)
-// refs.now_playing_ref.addEventListener('click', makeFilterSearch)
-// refs.popular_ref.addEventListener('click', makeFilterSearch)
-// refs.top_rated_ref.addEventListener('click', makeFilterSearch)
-// refs.upcoming_ref.addEventListener('click', makeFilterSearch)
-
-
-
-// console.log(e.target)
-// if (e.target.dataset.set === "now_playing") {
-// fetchNowPlaying(1).then(films => {
-// mainRefs.galleryItems.innerHTML = '';
-// films.results.forEach(film => renderGallery(film));
-// }).catch(err => console.log(err))
-// } 
-
-// else if (e.target.dataset.set === "popular") {
-// fetchPopular(1).then(films => {
-// mainRefs.galleryItems.innerHTML = '';
-// films.results.forEach(film => renderGallery(film));
-// }).catch(err => console.log(err))
-// } 
-
-// else if (e.target.dataset.set === "top_rated") {
-// fetchTopRated(1).then(films => {
-// mainRefs.galleryItems.innerHTML = '';
-// films.results.forEach(film => renderGallery(film));
-// }).catch(err => console.log(err))
-// } 
-  
-// else if (e.target.dataset.set === "upcoming") {
-//   fetchUpcoming(1).then(films => parseFilmsData(films.results))
-//     .then(films => {
-//       mainRefs.galleryItems.innerHTML = '';
-//       films.forEach(film => renderGallery(film));
-// }).catch(err => console.log(err))
-// } 
-  
-// else if (e.target.dataset.set === "trending") {
-// fetchGetTrending(1).then(films => {
-// mainRefs.galleryItems.innerHTML = '';
-// films.results.forEach(film => renderGallery(film));
-// }).catch(err => console.log(err))
-// }
-
-
-
-
-//console.dir(mainRefs.filterList.map())
-
-
-// let options = {
-//     type: "search",
-//     what: "movie",
-//     language: "en-US",
-//     page: 1,
-//     adult: true,
-//     query: "Matrix",
-// }
-
-// export const getContent = async (e) => {
-//     console.log("URL = " + API_URL + "?api_key=" + API_KEY);
-//     try {
-//         const response = await axios.get(getString(options));
-//         console.log("Внизу пример запроса по поиску 'Matrix'↓");
-//         console.log(response.data);
-//         return response.data;
-//     } catch(error) {
-//         console.log(error);;
-//     }
-// }
-
-
-// const getString = (opt) => {
-//     return opt.type+"/"+opt.what+"?api_key="+API_KEY+"&query="+opt.query+"&language="+opt.language+"&page="+opt.page+"&include_adult="+opt.adault
-// }
-// Пример ссылки
-// https://api.themoviedb.org/3/search/movie?api_key=8948cf34f147d17edd39edcb74badce4&language=en-US&page=1&include_adult=false

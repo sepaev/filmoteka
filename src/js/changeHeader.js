@@ -5,6 +5,7 @@ import { loadListnersForHome, removeListnersForHome, loadListnersForMyLibrary, r
 import { getRefs } from './refs';
 import { showPageHome, showPageMyLibrary, hidePagination, showPagination , showFilters, hideFilters} from './showPage'
 import { doLocalization } from './localization';
+import { doStopInfinitScroll } from './genresWork';
 
 
 export const changeHeader = (pageName, target) => {
@@ -26,7 +27,7 @@ export const changeHeader = (pageName, target) => {
     };
     
     if  (pageName.includes('MY') || pageName.includes('МОЯ')) {
-        // refs.galleryItems.innerHTML = '';
+        doStopInfinitScroll();
         removeListnersForHome(refs);
         target.innerHTML = myLibrary(); //меняю шапку
         const newRefs = getRefs(); //подгружаю новые рефы

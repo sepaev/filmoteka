@@ -8,7 +8,7 @@ export const trimYear = (fullDate) => {
 }
 // перевожу жанры в строку
 export const getGenres = (genresIdsFromAPI) => {
-    if (genresIdsFromAPI.length < 1 || !genresIdsFromAPI) return '';
+    if (!genresIdsFromAPI || genresIdsFromAPI.length < 1) return '';
     const lang = getLang().slice(0, 2);
     let genresString = '';
     
@@ -20,7 +20,7 @@ export const getGenres = (genresIdsFromAPI) => {
 }
 
 export const getGenresToArr = (genresIdsFromAPI) => {
-    if (genresIdsFromAPI.length < 1 || !genresIdsFromAPI) return '';
+    if (!genresIdsFromAPI || genresIdsFromAPI.length  < 1 ) return '';
     const lang = getLang().slice(0, 2);
     let genresArr = [];
 
@@ -49,21 +49,21 @@ export const checkPoster = (poster, reserve) => {
 
 export const parseOneFilm = (film) => {
     return {
-        backdrop_path: film['backdrop_path'],
-        id: film['id'],
-        original_title: film['original_title'],
-        overview: film['overview'],
-        popularity: film['popularity'],
-        poster_path: checkPoster(film['poster_path'],film['backdrop_path']),
-        release_date: film['release_date'],
-        title: film['title'],
-        vote_average: film['vote_average'],
-        vote_count: film['vote_count'],
-        ids: getArray(film['ids'], film['id']),
-        ids: getArray(film['posters'], film['poster_path']),
-        genres: getGenres(film['genre_ids']),
-        genresArr: getGenresToArr(film['genre_ids']),
-        year: trimYear(film['release_date']),
+        backdrop_path: film.backdrop_path,
+        id: film.id,
+        original_title: film.original_title,
+        overview: film.overview,
+        popularity: film.popularity,
+        poster_path: checkPoster(film.poster_path, film.backdrop_path),
+        release_date: film.release_date,
+        title: film.title,
+        vote_average: film.vote_average,
+        vote_count: film.vote_count,
+        ids: getArray(film.ids, film.id),
+        posters: getArray(film.posters, film.poster_path),
+        genres: getGenres(film.genre_ids),
+        genresArr: getGenresToArr(film.genre_ids),
+        year: trimYear(film.release_date)
     };
 }
 

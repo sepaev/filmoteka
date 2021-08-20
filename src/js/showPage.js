@@ -22,12 +22,12 @@ export const hideFilters = (refs) => {
 export const hidePagination = (refs) => {
     refs.paginationNav.style.display = 'none';
     refs.footer.style.position = 'absolute';
-    refs.footer.style.width = '100vw';
+    // refs.footer.style.width = '100%';
     const docHeight = document.documentElement.scrollHeight + 150;
     const winHeight = window.innerHeight + 150;
     refs.footer.style.top = (docHeight > winHeight) ? docHeight : winHeight;
 }
-export const showPagination = (refs) => {
+export const showPagination = (refs = getRefs()) => {
     refs.paginationNav.style.display = 'flex';
     refs.footer.style.position = 'inherit';
     refs.footer.style.top = 'inherit';
@@ -99,27 +99,20 @@ export const showPageHome = (pageNumber = 1) => {
 }
 
 export const showPageHomeGenres = (pageNumber, genreId, genreName) => {
-
     const refs = getRefs();
-    return getMoviesByScroll(refs.searchBox.value, pageNumber, genreId)
-    .then(data => {
-        if (data.totalResults) {
-            // const alert = {
-            // en: 'Films shown by genre ' + genreName + '. Total ' + data.totalResults + ' results',
-            // ru: 'Показано фильмы с жанром ' + genreName + '. Total ' + data.totalResults + ' results',
-            // ua: 'Показано фільми з жанром ' + genreName + '. Total ' + data.totalResults + ' results',
-            // };
-            // doNotification(alert.en, alert.ru, alert.ua, 'success');
-            refs.headerError.style.display = 'none';
-        } else {
-            doOnFailure();
-        }
-        return data;
-    })
-    .then(data => {
-        data.filmData = parseFilmsData(data.films);
-        localStorage.setItem('tempQuery',  JSON.stringify(data.filmData));
-        return data;
+    return getMoviesByScroll(refs.searchBox.value, pageNumber, genreId, genreName)
+        .then(data => {
+            if (data.totalResults) {
+                refs.headerError.style.display = 'none';
+            } else {
+                doOnFailure();
+            }
+            return data;
+        })
+        .then(data => {
+            data.filmData = parseFilmsData(data.films);
+            localStorage.setItem('tempQuery',  JSON.stringify(data.filmData));
+            return data;
     })
     .then(data => {
         renderAllGallery(data.filmData);// перебирает обьект и выводит карточки фильмов
@@ -127,9 +120,9 @@ export const showPageHomeGenres = (pageNumber, genreId, genreName) => {
     })
 };
 
-export const showMorePageHomeGenres = (pageNumber, genreId) => {
+export const showMorePageHomeGenres = (pageNumber, genreId, genreName) => {
     const refs = getRefs();
-    return getMoviesByScroll(refs.searchBox.value, pageNumber, genreId)
+    return getMoviesByScroll(refs.searchBox.value, pageNumber, genreId, genreName)
         .then(data => {
             if (!data.totalResults) doOnFailure();
             data.filmData = parseFilmsData(data.films);
