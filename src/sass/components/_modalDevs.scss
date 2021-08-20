@@ -142,3 +142,18 @@
   max-width: 1000px;
   margin: auto;
 }
+
+//////////////////////
+.modal-devs__footer {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+}
+.logo-team {
+  height: 50px;
+  width: 50px;
+  margin-top: 10px;
+  margin-left: 15px;
+  border-radius: 50%;
+  box-shadow: 0px 0px 10px 10px rgba(238, 118, 6, 0.911);
+}
