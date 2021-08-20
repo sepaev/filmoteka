@@ -32,7 +32,7 @@ export const fetchMovieByModalButton = async (pageValue, queryOption) => {
     string = `/trending/movie/week?api_key=${API_KEY}&language=${consts.LANGUAGE}&page=${pageValue}`;
   } else {
     string = `/movie/${queryOption}?api_key=${API_KEY}&language=${consts.LANGUAGE}&page=${pageValue}`;
-  } 
+  }
   const { data } = await axios.get(string);
   const { results, total_pages, page, total_results } = data;
     return { results, total_pages, page, total_results };
@@ -93,8 +93,18 @@ const findFilmWithGenre = (films, genreId, totalFounds, notified) => {
   return { filtredFilms, notified}
 }
 
+let reservGenreId = 0;
 export const getMoviesByScroll = async (searchValue, pageValue = 1, genreId, genreName) => {
-  let target = document.querySelector('.filter_is_active');
+  //если жанр потерялся
+  if (!genreId) {
+    // doNotification('Genre error. Please try again', 'Ошибка жанра. Попробуйте снова', 'Помилка жанру. Спробуйте знов.', 'warning')
+    if (!reservGenreId) return;
+    genreId = reservGenreId;
+  } else {
+    reservGenreId = genreId;
+  }
+  //дальше как обычно
+    let target = document.querySelector('.filter_is_active');
   if (!target) {
     refs.trending_ref.classList.add('filter_is_active');
     target = refs.trending_ref;
@@ -108,7 +118,6 @@ export const getMoviesByScroll = async (searchValue, pageValue = 1, genreId, gen
     Notiflix.Loading.hourglass();
     ////////START IF //////////
     for (let counter = 0; counter < 15; pageValue++) {
-
       await fetchMovieByModalButton(pageValue, queryOption)
         .then(data => {
         const result = findFilmWithGenre(data.results, genreId, counter, true);
