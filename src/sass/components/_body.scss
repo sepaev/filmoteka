@@ -95,6 +95,7 @@
     max-width: 274px;
     max-height: 398px;
     border-radius: $main-border-radius;
+    contain: content;
   }
 
   &__info {
