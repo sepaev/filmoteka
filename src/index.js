@@ -38,11 +38,11 @@ refs.headerNav.addEventListener('click', e => {
 // обработка клика по control language
 refs.languageLinks.addEventListener('click', e => {
   e.preventDefault;
-  if (e.target.nodeName === "use") {
-    const lang = e.target.parentNode.parentNode.dataset.set;
+  let lang;
+  if (e.target.nodeName === "use" || e.target.nodeName === "svg") {
+    lang = e.target.parentNode.dataset.set? e.target.parentNode.dataset.set: e.target.parentNode.parentNode.dataset.set;
     changeLanguage(lang); //from "./js/localization" меняет язык сайта
-
-  };
+  }
 });
 
 // обработка клика по header logo
@@ -53,9 +53,7 @@ refs.headerLogo.addEventListener('click', e => {
 // обработка клика по header pagination nav
 refs.paginationNav.addEventListener('click', e => {
   e.preventDefault;
-
-  if (e.target.nodeName === "A") {
-
+  if (e.target.nodeName === "A" && e.target.className!=='filmoteka-nav__search-page') {
     onPaginationNavClick(e.target.dataset.number);
   };
 });
@@ -73,4 +71,4 @@ window.addEventListener('scroll',
   }));
 
   
-refs.filterList.addEventListener('click', makeFilterSearch)
+refs.filterList.addEventListener('click', makeFilterSearch) // клик по фильтрам
