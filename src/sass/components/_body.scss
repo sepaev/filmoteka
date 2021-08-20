@@ -87,6 +87,11 @@
     max-width: 274px;
     position: relative;
   }
+  &__img-poster {
+    object-fit: cover;
+    width: 100%;
+    // width: 274px;
+  }
   &__picture {
     //pict
   }
