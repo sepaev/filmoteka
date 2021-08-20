@@ -1,4 +1,5 @@
 import     Notiflix                                 from "notiflix";
+import home                                         from '../partials/templates/home.hbs';
 import { getMoviesPagination, getMoviesByScroll }   from "./getContent";
 import { renderAllGallery, renderAddToGallery}      from "./renderGallery";
 import { getRefs }                                  from "./refs";
@@ -8,6 +9,7 @@ import { renderPaginationBtn }                      from './paginationNav';
 import { makeButtonActiv }                          from './paginationNav';
 import { doNotification }                           from './localization';
 import { locals }                                   from './consts';
+import { changeHeader } from "./changeHeader";
 
 Notiflix.Notify.init({
     position: 'center-top',
@@ -99,8 +101,11 @@ export const showPageHome = (pageNumber = 1) => {
 }
 
 export const showPageHomeGenres = (pageNumber, genreId, genreName) => {
-    const refs = getRefs();
-    return getMoviesByScroll(refs.searchBox.value, pageNumber, genreId, genreName)
+    let refs = getRefs();
+    if (!refs.headerError) changeHeader('HOME', refs.headerDivToChange);
+    refs = getRefs();
+    const searchQuery = (refs.searchBox) ? refs.searchBox.value : '';
+    return getMoviesByScroll(searchQuery, pageNumber, genreId, genreName)
         .then(data => {
             if (data.totalResults) {
                 refs.headerError.style.display = 'none';
