@@ -105,11 +105,15 @@ function findAndAddPrevNext(currentArray, targetCardId) {
 
 function slider(e, baseLS) {
   e.preventDefault;
+  const refs = getRefs();
   if (e.target.className === 'modal-card__image modal-card__image--next' || e.target.className === 'modal-card__image modal-card__image--prev') {
     const targetCardId = e.target.id
     const currentArray = JSON.parse(localStorage.getItem(baseLS));
     cardItem = findAndAddPrevNext(currentArray, targetCardId);
     renderFilmCard(cardItem);
+    // проверяет, есть ли карточка в ЛС
+    checkAdd('watched', targetCardId, refs.modalWatchedBtn);
+    checkAdd('queue', targetCardId, refs.modalQueueBtn);
   }
 }
 
