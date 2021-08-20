@@ -7,6 +7,36 @@
   position: relative;
   background-color: $black-color;
   //header специально внизу контейнер для изменений на всю шапку
+  @media (max-width: $max-mobile) {
+    background-image: $header-gradient, url(/images/img/mobile/1x/headerHomeBG.jpg);
+    @media screen and (min-device-pixel-ratio: 2),
+      screen and (-webkit-min-device-pixel-ratio: 2),
+      screen and (-o-min-device-pixel-ratio: 2/1),
+      screen and (min-resolution: 192dpi),
+      screen and (min-resolution: 2dppx) {
+      background-image: $header-gradient, url(/images/img/mobile/2x/headerHomeBG.jpg);
+    }
+  }
+  @media (min-width: $min-tablet) and (max-width: $max-tablet) {
+    background-image: $header-gradient, url(/images/img/tablet/1x/headerHomeBG.jpg);
+    @media screen and (min-device-pixel-ratio: 2),
+      screen and (-webkit-min-device-pixel-ratio: 2),
+      screen and (-o-min-device-pixel-ratio: 2/1),
+      screen and (min-resolution: 192dpi),
+      screen and (min-resolution: 2dppx) {
+      background-image: $header-gradient, url(/images/img/tablet/2x/headerHomeBG.jpg);
+    }
+  }
+  @media (min-width: $min-desktop) {
+    background-image: $header-gradient, url(/images/img/desktop/1x/headerHomeBG.jpg);
+    @media screen and (min-device-pixel-ratio: 2),
+      screen and (-webkit-min-device-pixel-ratio: 2),
+      screen and (-o-min-device-pixel-ratio: 2/1),
+      screen and (min-resolution: 192dpi),
+      screen and (min-resolution: 2dppx) {
+      background-image: $header-gradient, url(/images/img/desktop/2x/headerHomeBG.jpg);
+    }
+  }
   &__container {
     justify-content: space-between;
     vertical-align: baseline;
@@ -31,36 +61,6 @@
     }
 
     &.home {
-      @media (max-width: $max-mobile) {
-        background-image: $header-gradient, url(/images/img/mobile/1x/headerHomeBG.jpg);
-        @media screen and (min-device-pixel-ratio: 2),
-          screen and (-webkit-min-device-pixel-ratio: 2),
-          screen and (-o-min-device-pixel-ratio: 2/1),
-          screen and (min-resolution: 192dpi),
-          screen and (min-resolution: 2dppx) {
-          background-image: $header-gradient, url(/images/img/mobile/2x/headerHomeBG.jpg);
-        }
-      }
-      @media (min-width: $min-tablet) and (max-width: $max-tablet) {
-        background-image: $header-gradient, url(/images/img/tablet/1x/headerHomeBG.jpg);
-        @media screen and (min-device-pixel-ratio: 2),
-          screen and (-webkit-min-device-pixel-ratio: 2),
-          screen and (-o-min-device-pixel-ratio: 2/1),
-          screen and (min-resolution: 192dpi),
-          screen and (min-resolution: 2dppx) {
-          background-image: $header-gradient, url(/images/img/tablet/2x/headerHomeBG.jpg);
-        }
-      }
-      @media (min-width: $min-desktop) {
-        background-image: $header-gradient, url(/images/img/desktop/1x/headerHomeBG.jpg);
-        @media screen and (min-device-pixel-ratio: 2),
-          screen and (-webkit-min-device-pixel-ratio: 2),
-          screen and (-o-min-device-pixel-ratio: 2/1),
-          screen and (min-resolution: 192dpi),
-          screen and (min-resolution: 2dppx) {
-          background-image: $header-gradient, url(/images/img/desktop/2x/headerHomeBG.jpg);
-        }
-      }
     }
 
     &.my-library {
