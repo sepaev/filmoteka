@@ -44,7 +44,8 @@ export const doOpenGenre = (id, name, instance) => {
     if (instance) instance.close();
 
     if (!listnerEnabled) {
-        window.addEventListener('scroll', throttle(consts.DEBOUNCE_DELAY, infinitScroll));
+        // window.addEventListener('scroll', throttle(consts.DEBOUNCE_DELAY, infinitScroll));
+        window.addEventListener('scroll', infinitScroll);
         listnerEnabled = true;
     }
 
@@ -61,7 +62,8 @@ export const getGenreName = (genreId) => {
 export const doStopInfinitScroll = () => {
 
     if (listnerEnabled) {
-        window.removeEventListener('scroll', throttle(consts.DEBOUNCE_DELAY, infinitScroll));
+        // window.removeEventListener('scroll', throttle(consts.DEBOUNCE_DELAY, infinitScroll));
+        window.removeEventListener('scroll', infinitScroll);
         listnerEnabled = false;
     }
     showPagination();

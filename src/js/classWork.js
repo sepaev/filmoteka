@@ -1,23 +1,27 @@
 import { getRefs } from "./refs";
 
 export const addClass = (target, className) => {
+    if (!target) return;
     if (!target.classList.contains(className)) {
         target.classList.add(className);
     }
 };
 
 export const removeClass = (target, className) => {
+    if (!target) return;
     if (target.classList.contains(className)) {
         target.classList.remove(className);
     }
 };
 
 export const tooggleClassCurrent = (refToAdd, ferToRemove) => {
+    if (!refToAdd || !ferToRemove) return;
     addClass(refToAdd, 'current');
     removeClass(ferToRemove, 'current');
 }
 
 export const tooggleClassFilterIsActive = (refToAdd, ferToRemove) => {
+    if (!refToAdd || !ferToRemove) return;
     addClass(refToAdd, 'filter_is_active');
     removeClass(ferToRemove, 'filter_is_active');
 }
