@@ -22,7 +22,7 @@ const checkElement = (elem, ref) => {
         if (elem[0] !== 'x') {
             ref.textContent = elem[0];
             ref.dataset.number = elem[1];
-            ref.style.display = 'block';
+            ref.style.display = 'flex';
         } else {
             ref.style.display = 'none';
             ref.dataset.number = '';
@@ -31,7 +31,7 @@ const checkElement = (elem, ref) => {
         if (elem !== 'x') {
             ref.textContent = elem;
             ref.dataset.number = elem;
-            ref.style.display = 'block';
+            ref.style.display = 'flex';
         } else {
             ref.style.display = 'none';
             ref.dataset.number = '';

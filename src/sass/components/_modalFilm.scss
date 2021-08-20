@@ -87,13 +87,6 @@
 
     color: $black-color;
 
-    // @media (max-width: $max-mobile) {
-    //   width: 113px;
-    // }
-    // @media (min-width: $min-tablet) and (max-width: $max-tablet) {
-    //   width: 125px;
-    // }
-
     // слова на кнопке не помещаются в пределы блока,
     //убираю отдельные медиаправила для ширины кнопки на моб и таблетки, и меняю на @media (max-width: $max-tablet)
     @media (max-width: $max-tablet) {
@@ -104,18 +97,6 @@
       width: 136px;
     }
   }
-
-  // &__btn-watched:hover,
-  // &__btn-watched:focus {
-  //   background-color: $orange-color;
-  //   color: $white-color;
-  // }
-
-  // &__btn-queque:hover,
-  // &__btn-queque:focus {
-  //   background-color: $orange-color;
-  //   color: $white-color;
-  // }
 
   &__buttons {
     position: absolute;
@@ -144,7 +125,11 @@
 }
 
 .modal-card {
-  color: white; // потом убрать
+  body.dark & {
+    //   color: red;
+    //   background-color: $footer-background-color;
+    box-shadow: 0px 0px 20px 10px rgba(116, 17, 17, 0.8);
+  }
   @media (max-width: $max-mobile) {
     padding: 48px 20px 106px 20px;
 
@@ -167,8 +152,8 @@
     padding: 48px 30px 42px 24px;
     max-width: 882px;
   }
-  &__prev{
-    @media  (max-width: $max-mobile) {
+  &__prev {
+    @media (max-width: $max-mobile) {
       position: sticky;
       width: 0px;
       height: 0px;
@@ -178,23 +163,21 @@
       opacity: 0.75;
     }
 
-    @media (min-width: $min-tablet)  {
-   position: absolute;
-    z-index: 10;
-    left: -34%;
-    top: calc(50% - 170px);
-    filter: blur(2px);
-    transform: scale(0.9);
-    &:hover {
-      filter: blur(0px);
-      transform: translateX(20px);
-      
+    @media (min-width: $min-tablet) {
+      position: absolute;
+      z-index: 10;
+      left: -34%;
+      top: calc(50% - 170px);
+      filter: blur(2px);
+      transform: scale(0.9);
+      &:hover {
+        filter: blur(0px);
+        transform: translateX(20px);
+      }
     }
-    }
-    
   }
-  &__next{
-    @media  (max-width: $max-mobile) {
+  &__next {
+    @media (max-width: $max-mobile) {
       position: sticky;
       width: 0px;
       height: 0px;
@@ -204,22 +187,19 @@
       opacity: 0.75;
     }
 
-    @media (min-width: $min-tablet)  {
+    @media (min-width: $min-tablet) {
       position: absolute;
-    z-index: 10;
-    right: -34%;
-    top: calc(50% - 170px);
-    transform: scale(0.9);
-    filter: blur(2px);
-    
-    
-    
-    &:hover {
-      filter: blur(0px);
-      transform: translateX(-20px);
+      z-index: 10;
+      right: -34%;
+      top: calc(50% - 170px);
+      transform: scale(0.9);
+      filter: blur(2px);
+
+      &:hover {
+        filter: blur(0px);
+        transform: translateX(-20px);
+      }
     }
-    }
-    
   }
 
   &__image {
@@ -245,50 +225,49 @@
       max-height: 478px;
     }
     &--prev {
-      @media  (max-width: $max-mobile) {
+      @media (max-width: $max-mobile) {
         position: fixed;
         right: 288px;
         top: 125px;
 
-        max-width: calc(264px/2);
-        max-height: calc(374px/2);
+        max-width: calc(264px / 2);
+        max-height: calc(374px / 2);
       }
-      
+
       @media (min-width: $min-tablet) and (max-width: $max-tablet) {
-        max-width: calc(264px/1.3);
-        max-height: calc(374px/1.3);
+        max-width: calc(264px / 1.3);
+        max-height: calc(374px / 1.3);
       }
       @media (min-width: $min-desktop) {
-        max-width: calc(396px/1.3);
-        max-height: calc(478px/1.3);
+        max-width: calc(396px / 1.3);
+        max-height: calc(478px / 1.3);
+      }
     }
-  }
     &--next {
-      @media  (max-width: $max-mobile) {
+      @media (max-width: $max-mobile) {
         position: fixed;
         right: -132px;
         top: 125px;
 
-        max-width: calc(264px/2);
-        max-height: calc(374px/2);
+        max-width: calc(264px / 2);
+        max-height: calc(374px / 2);
       }
-      
-      
-      @media (min-width: $min-tablet) and (max-width: $max-tablet) {background-color: #ff6b01;
-        max-width: calc(264px/1.3);
-        max-height: calc(374px/1.3);
+
+      @media (min-width: $min-tablet) and (max-width: $max-tablet) {
+        background-color: #ff6b01;
+        max-width: calc(264px / 1.3);
+        max-height: calc(374px / 1.3);
       }
       @media (min-width: $min-desktop) {
-        max-width: calc(396px/1.3);
-        max-height: calc(478px/1.3);
+        max-width: calc(396px / 1.3);
+        max-height: calc(478px / 1.3);
+      }
     }
-  }
   }
 
   // общие стили
 
   &__img-thumb {
-
     @media (max-width: $max-mobile) {
       margin-bottom: 30px;
       display: flex;
@@ -448,8 +427,6 @@
       font-weight: 500;
     }
   }
-  
-  
 
   // &__list {
   //   @media (max-width: $max-mobile) {
